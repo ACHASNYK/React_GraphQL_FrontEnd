@@ -1,0 +1,1 @@
+export const CHANGE_QUERY_NAME = 'CHANGE_QUERY_NAME';

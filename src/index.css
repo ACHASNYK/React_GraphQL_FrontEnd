@@ -1,13 +1,83 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    font-family: "Raleway";
+    color: #1D1F22;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.navbar {
+    position: sticky;
+    width: 1440px;
+    height: 80px;
+    left: 0px;
+    top: 0px;
+}
+
+.navbar .buttons {
+    margin-left: auto;
+}
+
+.button {
+    margin-left: 16px;
+    text-decoration: none;
+    padding: 6px;
+}
+
+.button :hover {
+    color: #5ECE7B;
+    border-bottom: #5ECE7B;
+}
+
+.categories {
+    list-style-type: none;
+    display: inline;
+}
+
+/* .content {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+  } */
+
+.photo_card {
+
+    width: auto;
+    max-width: 354px;
+    height: auto;
+    max-height: 330px;
+}
+
+.card {
+    /* display: flex; */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    width: 386px;
+    height: 444px;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 160%;
+    display: flexbox;
+    align-items: flex-start;
+    position: sticky;
+}
+
+.list {
+    list-style-type: none;
+
+}
+
+.card_list {
+    display: inline-flex;
+
+}
+
+.buttons {
+    display: inline-block;
 }
