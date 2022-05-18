@@ -36,7 +36,7 @@ class App extends Component {
     this.state = {
       data: {},
       DataIsLoaded: false,
-      variable: 'all'
+      // variable: 'all'
     };
     // this.onclickChange = this.onclickChange.bind(this);
   }
@@ -50,11 +50,11 @@ class App extends Component {
   componentDidMount() {
     const query_variable = {
       "input": {
-        "title": `${this.props.variable}`
+        "title": `${this.props.variable.value}`
         
       }
     }
-    console.log(this.props.variable);
+    console.log(this.props.variable.value);
     client.query({ query: allProducts, variables: query_variable })
       .then(result => {
         this.setState({
@@ -75,7 +75,7 @@ class App extends Component {
       // <Router>
         <div className="main">
           <div className="navbar">
-          <Navbar onclickChange={this.onclickChange}/>      
+          <Navbar/>      
           </div>
           <div>
             <Title name={data.category.name} />
@@ -92,4 +92,4 @@ class App extends Component {
 
 } 
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, null)(App);
