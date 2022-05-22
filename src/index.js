@@ -11,13 +11,15 @@ import { Provider, connect } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import { configureStore } from '@reduxjs/toolkit';
 import categoryReducer from './redux/category';
+import store from './redux/store'
 
-const logger = createLogger();
-const store = configureStore({
-  reducer: {
-    category: categoryReducer,
-  },
-});
+// const logger = createLogger();
+// export const store = configureStore({
+  // reducer: {
+    // category: categoryReducer,
+  // },
+// });
+console.log(store.getState());
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
