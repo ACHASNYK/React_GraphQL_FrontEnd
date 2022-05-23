@@ -2,7 +2,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  // useQuery,
+  useQuery,
   // Query,
   gql
 } from "@apollo/client";
@@ -79,30 +79,30 @@ class App extends Component {
   //     return false;
   //   }
   // }
-  //  queryFunc = async (query, variable) =>{
+  
   //   const query_variable = {
   //     "input": {
   //       "title": `${this.state.name}`
         
   //       }
   //     }
-  //   return await client.query({ query: query, variables: variable });
+     
   //   // this.setState({
   //   //   data: result.data,
   //   //   DataIsLoaded: true,
   //   // }); 
-  // }
+   
   render() {
-    const query_variable = {
-      "input": {
-        "title": `${this.state.name}`
-      }
-    }
-    client.query({query: allProducts, variables: query_variable}).then(result => {this.props.set_category(result.data)} );
-    // const {data, loading} = this.queryFunc(allProducts, query_variable ); 
+    // const query_variable = {
+      // "input": {
+        // "title": `all`
+      // }
+    // }
+    // client.query({ query: allProducts, variables: query_variable })
+      // .then(result => this.props.set_category(result.data));
     // });
     
-    // console.log(data);   
+    // console.log(store);   
     // if (!DataIsLoaded) 
     //   return 
     // <div>Loading...</div>
@@ -115,7 +115,7 @@ class App extends Component {
       // <Router>
       
         <div className="main">
-          
+          <h1>hi</h1>
           {/* <button className="button" onClick={(e) => this.setState({name: 'clothes'})}><h2>clothes</h2></button> */}
           {/* <button className="button" onClick={(e) => this.setState({name: 'tech'})}><h2>tech</h2></button> */} 
           <div className="navbar">
@@ -125,7 +125,7 @@ class App extends Component {
           {/* <Title name={data.category.name} /> */}
           {/* </div> */}
           {/* <div> */}
-          <Main key = {this.state.name} />
+          <Main key = {this.props.cat_name} />
           {/* </div>           */}
         </div>
       // </Router>
@@ -141,11 +141,15 @@ class App extends Component {
 
 }
 
-// const mapStateToProps = (state) => ({
-//   // console.log(state)
-//   name: state.category,
+const mapStateToProps = state => {
+    console.log(state.category.value)
+    if (!state) {
+        return (console.log("error"))
+    }else{
+        return { cat_name: state.category.value, }
+    }
+  };
 
-// });
 // console.log(this.props.name)
 const mapDispatchToProps = {set_category};
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
