@@ -15,6 +15,7 @@ import Title from "./components/Title";
 import { Router, Route, Link } from "react-router-dom";
 import Main from "./components/Main";
 import { set_category } from "./redux/category";
+import ProductDetailPage from "./components/ProductDetailPage";
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache()
@@ -33,7 +34,7 @@ class App extends Component {
     this.state = {
       data: {},
       DataIsLoaded: false,
-      name: 'clothes'
+      // name: 'clothes'
       
   //     // variable: 'all'
     };
@@ -115,18 +116,19 @@ class App extends Component {
       // <Router>
       
         <div className="main">
-          <h1>hi</h1>
+          
           {/* <button className="button" onClick={(e) => this.setState({name: 'clothes'})}><h2>clothes</h2></button> */}
           {/* <button className="button" onClick={(e) => this.setState({name: 'tech'})}><h2>tech</h2></button> */} 
           <div className="navbar">
           <Navbar/>      
           </div>
-          {/* <div> */}
-          {/* <Title name={data.category.name} /> */}
-          {/* </div> */}
-          {/* <div> */}
-          <Main key = {this.props.cat_name} />
-          {/* </div>           */}
+          <div>
+          {/* <Title name={this.props.cat_name} /> */}
+          </div>
+          <div>
+           {/* <Main key = {this.props.cat_name} /> */}
+           <ProductDetailPage/>
+          </div>
         </div>
       // </Router>
     );

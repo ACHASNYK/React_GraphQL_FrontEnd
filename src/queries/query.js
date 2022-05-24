@@ -67,4 +67,45 @@ query Query4 {
 }
 `
 
-export {allCatQuery, allProducts, allClothes, allTech};
+const productById = gql`
+query Query5 ($productId: String!) {
+  product(id: $productId) {
+    id
+    name
+    inStock
+    gallery
+    description
+    attributes {
+      id
+      name
+      type
+      items {
+        displayValue
+        value
+        id
+      }
+    }
+    prices {
+      currency {
+        label
+        symbol
+      }
+      amount
+    }
+    brand
+  }
+}
+`
+const testQ = gql`
+query Query($input: CategoryInput, $productId: String!) {
+  category(input: $input) {
+    name
+  }
+  product(id: $productId) {
+    gallery
+    name
+  }
+}
+`
+
+export {allCatQuery, allProducts, productById, testQ};

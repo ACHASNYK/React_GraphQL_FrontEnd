@@ -81,3 +81,28 @@
 .buttons {
     display: inline-block;
 }
+
+.small_images {
+    width: auto;
+    max-width: 79px;
+    height: auto;
+    max-height: 80px;
+    border: #1D1F22;
+    background-color: #c4c4c4;
+}
+
+.small_card{
+
+    margin: 10px;
+    border: #1D1F22;
+
+}
+
+.big_images {
+
+    width: auto;
+    max-width: 610px;
+    height: auto;
+    max-height: 511px;
+
+}

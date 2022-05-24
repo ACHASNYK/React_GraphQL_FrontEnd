@@ -13,14 +13,14 @@ class Main extends Component {
     constructor(props) {
         super(props);
         
-         this.state = {
-            data:{},
+        this.state = {
+            data: {},
             DataIsLoaded: false,
-            
-                  
+        }
+    }              
          
-         }
-    } 
+       
+     
     
     componentDidMount() {
         const query_variable = {
@@ -34,6 +34,7 @@ class Main extends Component {
                 data: result.data,
                 DataIsLoaded: true
             })
+                
         });
 
     }
@@ -46,7 +47,7 @@ class Main extends Component {
         
         try{
             const { data, DataIsLoaded } = this.state;
-            console.log(data)
+            
             if (!DataIsLoaded) {
                 return (<div>Loading...</div>)
             } else {
@@ -75,12 +76,12 @@ class Main extends Component {
     // // }
     
     render() {
-        
-
+        // const ddata = this.state.data;
+            // console.log(ddata.category.products)
       return (
          
         <div>
-            <h1>HI</h1>
+            
             <div>
                 <Title name = {this.props.name}/>
                 
