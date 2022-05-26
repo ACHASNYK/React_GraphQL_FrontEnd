@@ -52,7 +52,7 @@ class Main extends Component {
                 return (<div>Loading...</div>)
             } else {
                 return data.category.products.map((items, i) => {
-                    return (<li className="card_list" key={i}><Card
+                    return (<li className="card_list" key={i}><Card 
                     
                         item_key={items.id}
                         photo={items.gallery[0]}
@@ -83,7 +83,7 @@ class Main extends Component {
         <div>
             
             <div>
-                <Title name = {this.props.name}/>
+                <Title name = {this.props.cat_name}/>
                 
             </div>
             <div className="card_list">

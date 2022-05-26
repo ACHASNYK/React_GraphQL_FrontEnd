@@ -13,10 +13,12 @@ class HeaderButton extends Component {
     render() {
   
       return (
-        <div className="button">
+        <Link to="/">
+          <div className="button">
           <button link={this.props.name} onClick={(e) => this.props.set_category(e.target.innerText)}>{this.props.name}</button>
           
-        </div>
+          </div>
+        </Link>  
       );
     }
     // { this.handleClick(e.target.innerText) }

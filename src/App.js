@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { allProducts, allClothes, allTech } from "./queries/query";
 import Navbar from "./components/Navbar";
 import Title from "./components/Title";
-import { Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link, Switch } from "react-router-dom";
 import Main from "./components/Main";
 import { set_category } from "./redux/category";
 import ProductDetailPage from "./components/ProductDetailPage";
@@ -122,13 +122,19 @@ class App extends Component {
           <div className="navbar">
           <Navbar/>      
           </div>
-          <div>
-          {/* <Title name={this.props.cat_name} /> */}
-          </div>
-          <div>
-           {/* <Main key = {this.props.cat_name} /> */}
-           <ProductDetailPage/>
-          </div>
+            <div>
+              <Switch>
+                <Route exact path="/">
+                  <Main key = {this.props.cat_name} />
+                </Route>
+                <Route path="/pdp">
+                  <ProductDetailPage />
+                </Route>
+                <Route path="*">
+                  <h1>Error</h1>
+                </Route>
+              </Switch>                
+            </div>
         </div>
       // </Router>
     );
