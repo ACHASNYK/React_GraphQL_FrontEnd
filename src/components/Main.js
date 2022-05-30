@@ -47,7 +47,7 @@ class Main extends Component {
         
         try{
             const { data, DataIsLoaded } = this.state;
-            
+            console.log(data)
             if (!DataIsLoaded) {
                 return (<div>Loading...</div>)
             } else {

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { set_productid } from '../redux/productid';
 import { set_imglink } from '../redux/imglink';
 import parse from 'html-react-parser';
+import Attributes from "./Attributes";
+
 
 class Detailes extends Component {
     constructor(props) {
@@ -29,20 +31,47 @@ class Detailes extends Component {
     //     const data = this.state;
     //     return console.log(data);
     // }
-    // attributes() {
+
+    
+    // attributes = props => {
     //     const data = this.props.data.product.attributes;
-    //     data.map
+    //     data.forEach(item => {
+            
+
+    //             if (item.type === "swatch") {
+    //                 return (<div>
+    //                             <div className="attributes_title"> {item.name}</div>
+    //                             <Swatch />
+    //                         </div>                        
+    //                  )
+    //             } else if (item.type === ""{
+    //                 return item.items.map((element, i) => {
+    //                     return (
+    //                         <button className="attributes_text"
+    //                             key={element.id}
+    //                             onClick={set_capacityid(element.value)}>
+    //                             {element.value}
+    //                         </button>
+
+
+    //                     )
+    //                 })
+    //             }
+            
+    //     });
+        
     // }
     renderHTML = props => {
         return parse(this.props.data.product.description);
     }; 
-    
+
+       
     render() {
-    // console.log(this.props.data)
+        
         const data = this.props.data;
-        if (data.product == undefined) {
+        if (data.product === undefined) {
             return null;
-       } 
+        } 
         return (
 
             <div>
@@ -53,20 +82,9 @@ class Detailes extends Component {
                     <h3>{data.product.name}</h3>
                 </div>
                 <div>
-                    <p>SIZE</p>
+                    <Attributes />
                 </div>
-                <div>
-                    {/* <SizeButtons/> */}
-                </div>
-                <div>
-                    <p>COLOR</p>
-                </div>
-                <div>
-                    <p>PRICE</p>
-                </div>
-                <div>
-                    {/* <Price/> */}
-                </div>
+                
                 <div>
                     {/* <AddtoCartButton/> */}
                 </div>
