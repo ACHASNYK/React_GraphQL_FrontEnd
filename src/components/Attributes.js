@@ -1,6 +1,4 @@
 import React, {Component, Fragment} from "react";
-import Swatch from "./Swatch";
-import Text from "./Text";
 import { connect } from 'react-redux';
 import { set_sizeid } from '../redux/size';
 import { set_swatchid } from '../redux/swatchid';

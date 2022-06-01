@@ -7,6 +7,7 @@ import swatchReducer from '../redux/swatchid';
 import capacityReducer from '../redux/capacity';
 import sizeReducer from '../redux/size';
 import currencyReducer from '../redux/currency';
+import modalReducer from '../redux/modal';
 
 const store = configureStore({
     reducer: {
@@ -18,6 +19,8 @@ const store = configureStore({
       capacityid: capacityReducer,
       sizeid: sizeReducer,
       currencyid: currencyReducer,
+      modal: modalReducer,
+      
     },
   });
 

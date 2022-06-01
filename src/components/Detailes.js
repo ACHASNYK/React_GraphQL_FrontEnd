@@ -84,9 +84,11 @@ class Detailes extends Component {
                 <div>
                     <Attributes />
                 </div>
-                
                 <div>
-                    {/* <AddtoCartButton/> */}
+                    {data.product.prices[this.props.index].currency.symbol}{data.product.prices[this.props.index].amount}
+                </div>
+                <div>
+                    <button>ADD TO CART</button>
                 </div>
                 <div>
                     {this.renderHTML()}
@@ -98,7 +100,10 @@ class Detailes extends Component {
 }
 
 const mapStateToProps = state => {
-    return {data: state.detailes.value}
+    return {
+        data: state.detailes.value,
+        index: state.currencyid.value,
+    }
 };
 
 export default connect(mapStateToProps, null)(Detailes)

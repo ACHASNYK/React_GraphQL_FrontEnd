@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const currencySlice = createSlice({
     name: "currencyid",
     initialState: {
-        value: '',
+        value: '0',
     },
     reducers: {
         set_currencyid: (state, action) => {

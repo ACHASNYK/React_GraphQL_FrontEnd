@@ -1,14 +1,13 @@
 import React, {Component} from "react";
-// import {gql} from 'apollo-boost';
-// import { graphql } from "react-apollo"
-// import { allProducts, allTech} from "../queries/query";
-// import ApolloProvider from 'react-apollo';
 import Card from "./Card";
 import { client } from "../App";
-// import Title from "./Title";
 import { connect } from "react-redux";
 import { allProducts } from "../queries/query";
 import Title from "./Title";
+import { set_modal } from '../redux/modal';
+import Modal from "./Modal";
+
+
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -52,13 +51,15 @@ class Main extends Component {
                 return (<div>Loading...</div>)
             } else {
                 return data.category.products.map((items, i) => {
-                    return (<li className="card_list" key={i}><Card 
+                    return (<div className="card_list" key={i}><Card 
                     
                         item_key={items.id}
                         photo={items.gallery[0]}
                         name={items.name}
-                        // price={items.prices}
-                    /></li>);
+                        brand={items.brand}
+                        attributes={items.attributes}
+                        price={items.prices}
+                    /></div>);
                 })
             }
         }
@@ -81,7 +82,7 @@ class Main extends Component {
       return (
          
         <div>
-            
+            <Modal />
             <div>
                 <Title name = {this.props.cat_name}/>
                 
@@ -102,8 +103,13 @@ const mapStateToProps = state => {
     if (!state) {
         return (console.log("error"))
     }else{
-        return { cat_name: state.category.value, }
+        return {
+            cat_name: state.category.value,
+            index: state.currencyid.value,
+            
+        }
     }
-  };
+};
+  const mapDispatchToProps = {}
 // console.log(this.data)
 export default connect(mapStateToProps, null)(Main);
