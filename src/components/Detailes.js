@@ -5,6 +5,7 @@ import { set_productid } from '../redux/productid';
 import { set_imglink } from '../redux/imglink';
 import parse from 'html-react-parser';
 import Attributes from "./Attributes";
+import setDefaultLocalStorage from "../utilities/setLocalStorage";
 
 
 class Detailes extends Component {
@@ -63,7 +64,42 @@ class Detailes extends Component {
     // }
     renderHTML = props => {
         return parse(this.props.data.product.description);
-    }; 
+    };
+//     setDefaultLocalStorage = () => {
+//         if (this.props.data.attributes === undefined) {
+//             return null
+//         }
+//         const Object = {
+//             name: this.props.name,
+//             id: this.props.item_key,
+//             brand: this.props.brand,
+//             price: this.props.price,
+//             attributes: this.props.attributes,
+//             photo: this.props.photo,
+//             items_count: 1,
+//             choices: {}
+            
+            
+//         }
+//         if (Object.name === undefined) {
+//             return null
+//         }
+
+//         let get = [];
+//         // a.push(JSON.parse(localStorage.getItem('session')));
+//         // localStorage.setItem('session', JSON.stringify(a));
+        
+        
+//         get = JSON.parse(localStorage.getItem('shopping_cart')) || [];
+//     // Push the new data (whether it be an object or anything else) onto the array
+//         get.push(Object);
+//     // Alert the array value
+//         // alert(a);  // Should be something like [Object array]
+//     // Re-serialize the array back into a string and store it in localStorage
+//         localStorage.setItem('shopping_cart', JSON.stringify(get));
+//     //  localStorage.setItem('shopping_card', JSON.stringify(get));
+
+// }
 
        
     render() {
@@ -88,7 +124,7 @@ class Detailes extends Component {
                     {data.product.prices[this.props.index].currency.symbol}{data.product.prices[this.props.index].amount}
                 </div>
                 <div>
-                    <button>ADD TO CART</button>
+                    <button  onClick={()=>{setDefaultLocalStorage}} >ADD TO CART</button>
                 </div>
                 <div>
                     {this.renderHTML()}

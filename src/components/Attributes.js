@@ -45,9 +45,9 @@ class Attributes extends Component {
                             <div>{element.items.map((e, i) => {
                                 return (
                                     <button className="attributes_swatch"
-                                        key={element.id}
-                                        onClick={()=>this.props.set_swatchid(element.value)}
-                                        style={{ background: `${element.value}` }} >
+                                        key={e.id}
+                                        onClick={()=>this.props.set_swatchid(e.value)}
+                                        style={{ background: `${e.value}` }} >
                                     </button>)
                             })
                             }</div>;
