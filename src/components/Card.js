@@ -39,7 +39,41 @@ class Card extends Component {
     //     );
 
     // }
-    setLocal
+    setDefaultLocalStorage = () => {
+        if (this.props.attributes === undefined) {
+            return null
+        }
+        const Object = {
+            name: this.props.name,
+            id: this.props.item_key,
+            brand: this.props.brand,
+            price: this.props.price,
+            attributes: this.props.attributes,
+            photo: this.props.photo,
+            items_count: 1,
+            choices: {}
+            
+            
+        }
+        if (Object.name === undefined) {
+            return null
+        }
+
+        let get = [];
+        // a.push(JSON.parse(localStorage.getItem('session')));
+        // localStorage.setItem('session', JSON.stringify(a));
+        
+        
+        get = JSON.parse(localStorage.getItem('shopping_cart')) || [];
+    // Push the new data (whether it be an object or anything else) onto the array
+        get.push(Object);
+    // Alert the array value
+        // alert(a);  // Should be something like [Object array]
+    // Re-serialize the array back into a string and store it in localStorage
+        localStorage.setItem('shopping_cart', JSON.stringify(get));
+    //  localStorage.setItem('shopping_card', JSON.stringify(get));
+
+}
    
     render() {
         const data = this.props.price[this.props.index];
@@ -47,11 +81,11 @@ class Card extends Component {
         if (this.props.price === undefined) {
               return null;
         }
-        console.log(this.props.price)
-        // console.log(index)
+        
+
         return (
         <>
-                <button className="circle_icon" onClick={() => { this.props.set_modal(true); this.props.set_productid(this.props.item_key) }} >cart</button>
+                <button className="circle_icon" onClick={() => { this.props.set_modal(true); this.setDefaultLocalStorage() }} >cart</button>
             
             <Link to="/pdp" className="router_links">
                 {/* <button className="circle_icon" onClick={() => { this.props.set_modal(true) }} >cart</button> */}
