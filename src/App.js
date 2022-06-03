@@ -2,7 +2,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  // useQuery,
+  useQuery,
   // Query,
   gql
 } from "@apollo/client";
@@ -12,9 +12,10 @@ import { connect } from "react-redux";
 import { allProducts, allClothes, allTech } from "./queries/query";
 import Navbar from "./components/Navbar";
 import Title from "./components/Title";
-import { Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link, Switch } from "react-router-dom";
 import Main from "./components/Main";
 import { set_category } from "./redux/category";
+import ProductDetailPage from "./components/ProductDetailPage";
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache()
@@ -33,7 +34,7 @@ class App extends Component {
     this.state = {
       data: {},
       DataIsLoaded: false,
-      name: 'clothes'
+      // name: 'clothes'
       
   //     // variable: 'all'
     };
@@ -79,30 +80,30 @@ class App extends Component {
   //     return false;
   //   }
   // }
-  //  queryFunc = async (query, variable) =>{
+  
   //   const query_variable = {
   //     "input": {
   //       "title": `${this.state.name}`
         
   //       }
   //     }
-  //   return await client.query({ query: query, variables: variable });
+     
   //   // this.setState({
   //   //   data: result.data,
   //   //   DataIsLoaded: true,
   //   // }); 
-  // }
+   
   render() {
-    const query_variable = {
-      "input": {
-        "title": `${this.state.name}`
-      }
-    }
-    client.query({query: allProducts, variables: query_variable}).then(result => {this.props.set_category(result.data)} );
-    // const {data, loading} = this.queryFunc(allProducts, query_variable ); 
+    // const query_variable = {
+      // "input": {
+        // "title": `all`
+      // }
+    // }
+    // client.query({ query: allProducts, variables: query_variable })
+      // .then(result => this.props.set_category(result.data));
     // });
     
-    // console.log(data);   
+    // console.log(store);   
     // if (!DataIsLoaded) 
     //   return 
     // <div>Loading...</div>
@@ -121,12 +122,19 @@ class App extends Component {
           <div className="navbar">
           <Navbar/>      
           </div>
-          {/* <div> */}
-          {/* <Title name={data.category.name} /> */}
-          {/* </div> */}
-          {/* <div> */}
-          <Main key = {this.state.name} />
-          {/* </div>           */}
+            <div>
+              <Switch>
+                <Route exact path="/">
+                  <Main key = {this.props.cat_name} />
+                </Route>
+                <Route path="/pdp">
+                  <ProductDetailPage />
+                </Route>
+                <Route path="*">
+                  <h1>Error</h1>
+                </Route>
+              </Switch>                
+            </div>
         </div>
       // </Router>
     );
@@ -141,11 +149,15 @@ class App extends Component {
 
 }
 
-// const mapStateToProps = (state) => ({
-//   // console.log(state)
-//   name: state.category,
+const mapStateToProps = state => {
+    console.log(state.category.value)
+    if (!state) {
+        return (console.log("error"))
+    }else{
+        return { cat_name: state.category.value, }
+    }
+  };
 
-// });
 // console.log(this.props.name)
 const mapDispatchToProps = {set_category};
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

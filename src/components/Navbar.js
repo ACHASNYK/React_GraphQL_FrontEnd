@@ -4,6 +4,8 @@ import React, {Component} from "react";
 import { allCatQuery } from "../queries/query";
 // import ApolloProvider from 'react-apollo';
 import HeaderButton from "./HeaderButton";
+import CurrSelector from "./CurrSelector";
+
 import { client } from "../App";
 
 
@@ -56,9 +58,14 @@ class Navbar extends Component {
   
       return (
         <div className="navbar">
-            <ul className="categories">
+          <div>  
+          <ul className="categories">
                 {this.displayList() }
             </ul>
+          </div>
+          <div>
+            <CurrSelector/>
+          </div>
         </div>
       );
     }

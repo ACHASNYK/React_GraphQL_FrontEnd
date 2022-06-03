@@ -17,54 +17,68 @@ query Query2 ($input: CategoryInput) {
       id
       inStock
       gallery
+      attributes {
+        id
+        name
+        type
+        items {
+          displayValue
+          value
+          id
+        }
+      }
       prices {
         currency {
           symbol
         }
         amount
       }
-    }
-  }
-}
-`
-const allClothes = gql`
-query Query3 {
-  category(input: { title: "clothes" }) {
-    name
-    products {
-      name
-      id
-      inStock
-      gallery
-      prices {
-        currency {
-          symbol
-        }
-        amount
-      }
+      brand
     }
   }
 }
 `
 
-const allTech = gql`
-query Query4 {
-  category(input: { title: "tech" }) {
+
+
+
+const productById = gql`
+query Query5 ($productId: String!) {
+  product(id: $productId) {
+    id
     name
-    products {
-      name
+    inStock
+    gallery
+    description
+    attributes {
       id
-      inStock
-      gallery
-      prices {
-        currency {
-          symbol
-        }
-        amount
+      name
+      type
+      items {
+        displayValue
+        value
+        id
       }
     }
+    prices {
+      currency {
+        label
+        symbol
+      }
+      amount
+    }
+    brand
   }
 }
 `
 
-export {allCatQuery, allProducts, allClothes, allTech};
+const currency = gql`
+query Query6 {
+  currencies {
+    label
+    symbol
+  }
+}
+`
+
+export {allCatQuery, allProducts, productById, currency};
