@@ -7,9 +7,9 @@ import Card from "./Card";
 import { client } from "../App";
 // import Title from "./Title";
 import { connect } from "react-redux";
-import store from '../redux/store';
+// import store from '../redux/store';
 
-console.log(store)
+// console.log(store)
 // const mapStateToProps = (state) => {
 //     // console.log(state)
 //     return {
@@ -18,13 +18,13 @@ console.log(store)
 //   };
 // console.log(data)
 class Main extends Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
     //     this.state = {
     //         data:{},
     //         name: ''
     //     }
-    // } 
+    } 
      
     // displayList(){
     //     // const query_variable = {
@@ -64,7 +64,7 @@ class Main extends Component {
     render() {
   
         const {data} = this.props;
-        // console.log(data);
+        console.log(data);  
       return (
          
         <div>
@@ -84,10 +84,10 @@ class Main extends Component {
   
 }
 
-const mapStateToProps = state => {
-    console.log(state.category.value)
+const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        data: Object.values(state.category.value),
+        data: state.category.value,
     }
   };
 // console.log(this.data)
