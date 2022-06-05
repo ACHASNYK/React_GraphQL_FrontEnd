@@ -60,16 +60,12 @@ class Card extends Component {
         }
 
         let get = [];
-        // a.push(JSON.parse(localStorage.getItem('session')));
-        // localStorage.setItem('session', JSON.stringify(a));
-        
+            
         
         get = JSON.parse(localStorage.getItem('shopping_cart')) || [];
-    // Push the new data (whether it be an object or anything else) onto the array
+    
         get.push(Object);
-    // Alert the array value
-        // alert(a);  // Should be something like [Object array]
-    // Re-serialize the array back into a string and store it in localStorage
+    
         localStorage.setItem('shopping_cart', JSON.stringify(get));
     //  localStorage.setItem('shopping_card', JSON.stringify(get));
 

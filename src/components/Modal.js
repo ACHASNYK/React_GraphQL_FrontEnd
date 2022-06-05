@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { set_modal } from '../redux/modal';
 import { productById } from '../queries/query';
 import CartItemsList from "./CartItemsList";
+
 
 
 
@@ -12,33 +14,28 @@ class Modal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {},
+            data: [],
             dataIsLoaded: false,
         }
     }
 
-    // componentDidMount() {
+    
+    
+    componentDidUpdate(prevProps) {
+        if (this.props.modal !== prevProps.modal) {
+            this.setState({data: JSON.parse(localStorage.getItem('shopping_cart'))})
         
-    // const query_variable = {
             
-    //         "productId": `${this.props.product_id}`
+        }
 
-    //     }
-    // client.query({ query: productById, variables: query_variable })
-    //     .then(result => {
-    //         this.setState({
-    //             data: result.data,
-    //             dataIsLoaded: true
-    //         });this.props.set_detailes(result.data)
-    //       });
-           
-        
-    // }    
+    }
     displayItemsList() {
-        if (!Data) {
+        const data = this.state.data;
+        
+        if (data===undefined) {
             return null
         }
-        return Data.map((e, i) => {
+        return data.map((e, i) => {
             return (<CartItemsList
                 key={i}
                 brand={e.brand}
@@ -56,23 +53,28 @@ class Modal extends Component {
     }
 
     render() {
-        const Data = JSON.parse(localStorage.getItem('shopping_cart' || null));
+        
         const showHideClassName = this.props.modal ? "modal display-block" : "modal display-none";
         return ReactDOM.createPortal(
             <div className={showHideClassName}>
                 <div className="modal-main">
-                    <div className="modal_title">My Bag, {Data.items_count } items</div>
+                    <div className="modal_title"><bold>My Bag</bold>, {this.state.data.length}  items</div>
                     <div className="modal_cart_items_list">
                         {this.displayItemsList()}
                     </div>
-                    <button type="button" onClick={() => { this.props.set_modal(false) }}>close</button>
-                </div>
+                    <div className="modal_buttons_group">
+                        <button type="button" onClick={() => { this.props.set_modal(false) }}>close</button>
+                        <Link to="/shopcart" className="router_links">
+                            <button type="button" onClick={() => { this.props.set_modal(false) }}>VIEW BAG</button>
+                        </Link>
+                    </div>
+                </div>    
             </div>,
             document.getElementById('portal')
         )
     }
 }
-const Data = JSON.parse(localStorage.getItem('shopping_cart' || null));
+// const Data = JSON.parse(localStorage.getItem('shopping_cart' || null));
 const mapStateToProps = state => {
     return { modal: state.modal.value }
 };

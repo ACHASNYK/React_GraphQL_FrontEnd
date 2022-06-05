@@ -46,11 +46,11 @@ class Cart_attributes extends Component {
                         </div>);
                     else 
 
-                        return (<div key={i}>
+                        return (<div className="cart_item_detailes_attr_icons" key={i}>
 
-                            <div><p>{element.name}</p></div>
-                            <div>{element.items.map((e, i) => {
-                                return (<div className="attributes_text"
+                            <div className="cart_item_detailes_attr_icons_text"><p>{element.name}</p></div>
+                            <div className="cart_item_detailes_attr_icons_list">{element.items.map((e, i) => {
+                                return (<div className="cart_item_detailes_attr_icons_value_default"
                                     key={i}
                                     onClick={() => this.props.set_sizeid(e.value)}>
                                     {e.value}

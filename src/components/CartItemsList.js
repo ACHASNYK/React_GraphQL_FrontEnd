@@ -18,9 +18,13 @@ class CartItemsList extends Component {
                 <div className="cart_item_detailes">
                     <div className="cart_item_detailes_attr">
                         <div className="cart_item_detailes_atrr_title">
-                            {this.props.brand}
-                            {this.props.name}
+                            <div className="cart_item_detailes_atrr_title_text">
+                                {this.props.brand}
+                                {this.props.name}
+                            </div>
+                            <div className="cart_item_detailes_atrr_title_amount">
                             {this.props.prices[this.props.index].currency.symbol}  {this.props.prices[this.props.index].amount}
+                            </div>
                         </div>
                         <div className="cart_item_detailes_attr_icons">
                             <Cart_attributes

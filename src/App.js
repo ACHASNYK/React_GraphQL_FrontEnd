@@ -16,6 +16,7 @@ import { Router, Route, Link, Switch } from "react-router-dom";
 import Main from "./components/Main";
 import { set_category } from "./redux/category";
 import ProductDetailPage from "./components/ProductDetailPage";
+import ShopCart from "./components/ShopCart";
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache()
@@ -34,84 +35,16 @@ class App extends Component {
     this.state = {
       data: {},
       DataIsLoaded: false,
-      // name: 'clothes'
       
-  //     // variable: 'all'
     };
 
-    // this.props.set_category = this.props.set_category.bind(this);
-  }  
-  // console.log(this.data);  // this.onclickChange = this.onclickChange.bind(this);
-  // }
-  // onclickChange(e) {
-  //   this.setState({
-  //     variable: e
-  
-    // });
-  
-// }
     
-  // productListQuery() {
-  // const query_variable = {
-      // "input": {
-        // "title": `${this.state.name}`
-        
-  //     }
-  //   }
-
-    // console.log(query_variable);
-  //  const data = client.query({ query: allProducts, variables: query_variable })
-  //     .then(result => {
-  //       this.setState({
-  //         data: result.data,
-  //         DataIsLoaded: true,
-          
-  //       })
-        
-  //     });
-
-      // console.log({data});
-  // }
-
-  // shouldComponentUpdate(nextState) {
-  //   if(nextState.value !== this.state.value) {
-  //     return true;
-  //   }else{
-  //     return false;
-  //   }
-  // }
+  }  
   
-  //   const query_variable = {
-  //     "input": {
-  //       "title": `${this.state.name}`
-        
-  //       }
-  //     }
-     
-  //   // this.setState({
-  //   //   data: result.data,
-  //   //   DataIsLoaded: true,
-  //   // }); 
    
   render() {
-    // const query_variable = {
-      // "input": {
-        // "title": `all`
-      // }
-    // }
-    // client.query({ query: allProducts, variables: query_variable })
-      // .then(result => this.props.set_category(result.data));
-    // });
+   
     
-    // console.log(store);   
-    // if (!DataIsLoaded) 
-    //   return 
-    // <div>Loading...</div>
-    console.log('rendering');
-    // console.log(this.props.data)
-    // console.log(this.state.name);
-    // // console.log(query_variable);
-
     return (
       // <Router>
       
@@ -129,7 +62,10 @@ class App extends Component {
                 </Route>
                 <Route path="/pdp">
                   <ProductDetailPage />
-                </Route>
+              </Route>
+              {/* <Route path="/shopcart">
+                <ShopCart/>
+              </Route> */}
                 <Route path="*">
                   <h1>Error</h1>
                 </Route>
