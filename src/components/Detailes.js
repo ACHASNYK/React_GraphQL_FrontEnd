@@ -5,7 +5,7 @@ import { set_productid } from '../redux/productid';
 import { set_imglink } from '../redux/imglink';
 import parse from 'html-react-parser';
 import Attributes from "./Attributes";
-import setDefaultLocalStorage from "../utilities/setLocalStorage";
+// import { setShopCartLocalStorage } from "./setLocalStorage";
 
 
 class Detailes extends Component {
@@ -17,90 +17,46 @@ class Detailes extends Component {
         
     }
 
-    // componentDidMount() {
-    //     const { data } = this.props.data;
-    //     if (!data) {
-    //         return <div>Loading</div>
-    //     } else {
-    //          return this.setState({
-    //             data: data,
-    //         });
-    //     }
-    // }
-
-    // detailes() {
-    //     const data = this.state;
-    //     return console.log(data);
-    // }
-
-    
-    // attributes = props => {
-    //     const data = this.props.data.product.attributes;
-    //     data.forEach(item => {
-            
-
-    //             if (item.type === "swatch") {
-    //                 return (<div>
-    //                             <div className="attributes_title"> {item.name}</div>
-    //                             <Swatch />
-    //                         </div>                        
-    //                  )
-    //             } else if (item.type === ""{
-    //                 return item.items.map((element, i) => {
-    //                     return (
-    //                         <button className="attributes_text"
-    //                             key={element.id}
-    //                             onClick={set_capacityid(element.value)}>
-    //                             {element.value}
-    //                         </button>
-
-
-    //                     )
-    //                 })
-    //             }
-            
-    //     });
-        
-    // }
+   
     renderHTML = props => {
         return parse(this.props.data.product.description);
     };
-//     setDefaultLocalStorage = () => {
-//         if (this.props.data.attributes === undefined) {
-//             return null
-//         }
-//         const Object = {
-//             name: this.props.name,
-//             id: this.props.item_key,
-//             brand: this.props.brand,
-//             price: this.props.price,
-//             attributes: this.props.attributes,
-//             photo: this.props.photo,
-//             items_count: 1,
-//             choices: {}
+    
+    setShopCartLocalStorage() {
+        const data = this.props.data
+    if (data.product.attributes === undefined) {
+            return null
+        }
+        
+        const Object = {
+            name: data.product?.name,
+            id: data.product?.id,
+            brand: data.product?.brand,
+            price: data.product?.prices,
+            attributes: data.product?.attributes,
+            photo: data.product?.gallery[0],
+            items_count: 1,
+            choices: {}
             
             
-//         }
-//         if (Object.name === undefined) {
-//             return null
-//         }
-
-//         let get = [];
-//         // a.push(JSON.parse(localStorage.getItem('session')));
-//         // localStorage.setItem('session', JSON.stringify(a));
+        }
+        if (Object.name === undefined) {
+            
+            return null
+        }
+        
+        let get = [];
+            
+        
+        get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
+    
+        get.push(Object);
+    
+        sessionStorage.setItem('shopping_cart', JSON.stringify(get));
         
         
-//         get = JSON.parse(localStorage.getItem('shopping_cart')) || [];
-//     // Push the new data (whether it be an object or anything else) onto the array
-//         get.push(Object);
-//     // Alert the array value
-//         // alert(a);  // Should be something like [Object array]
-//     // Re-serialize the array back into a string and store it in localStorage
-//         localStorage.setItem('shopping_cart', JSON.stringify(get));
-//     //  localStorage.setItem('shopping_card', JSON.stringify(get));
-
-// }
-
+    
+}
        
     render() {
         
@@ -124,7 +80,7 @@ class Detailes extends Component {
                     {data.product.prices[this.props.index].currency.symbol}{data.product.prices[this.props.index].amount}
                 </div>
                 <div>
-                    <button  onClick={()=>{setDefaultLocalStorage}} >ADD TO CART</button>
+                    <button  onClick={()=>{this.setShopCartLocalStorage()}} >ADD TO CART</button>
                 </div>
                 <div>
                     {this.renderHTML()}

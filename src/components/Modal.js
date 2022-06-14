@@ -23,7 +23,7 @@ class Modal extends Component {
     
     componentDidUpdate(prevProps) {
         if (this.props.modal !== prevProps.modal) {
-            this.setState({data: JSON.parse(localStorage.getItem('shopping_cart'))})
+            this.setState({data: JSON.parse(sessionStorage.getItem('shopping_cart'))||[]})
         
             
         }
@@ -33,7 +33,7 @@ class Modal extends Component {
         const data = this.state.data;
         
         if (data===undefined) {
-            return null
+            return ("Loading...")
         }
         return data.map((e, i) => {
             return (<CartItemsList
@@ -43,6 +43,7 @@ class Modal extends Component {
                 prices={e.price}
                 attributes={e.attributes}
                 choices={e.choices}
+                photo={e.photo}
             />)
         }    
                 
@@ -58,7 +59,7 @@ class Modal extends Component {
         return ReactDOM.createPortal(
             <div className={showHideClassName}>
                 <div className="modal-main">
-                    <div className="modal_title"><bold>My Bag</bold>, {this.state.data.length}  items</div>
+                    <div className="modal_title"><b>My Bag</b>, {this.state.data?.length}  items</div>
                     <div className="modal_cart_items_list">
                         {this.displayItemsList()}
                     </div>

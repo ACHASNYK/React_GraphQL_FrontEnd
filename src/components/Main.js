@@ -24,7 +24,7 @@ class Main extends Component {
     componentDidMount() {
         const query_variable = {
             "input": {
-            "title": `${this.props.cat_name}`
+            "title": `${this.props.cat_name? this.props.cat_name : this.loadFromLocalStorage()? this.loadFromLocalStorage(): 'all'}`
             }
         }
         client.query({ query: allProducts, variables: query_variable })
@@ -39,7 +39,16 @@ class Main extends Component {
     }
     
     
-
+    loadFromLocalStorage() {
+    try {
+        const serialisedState = sessionStorage.getItem("category");
+        if (serialisedState === null) return undefined;
+        return JSON.parse(serialisedState);
+        } catch (e) {
+            console.warn(e);
+        return undefined;
+        }
+    }
     
     
     displayList() {
@@ -81,9 +90,9 @@ class Main extends Component {
             // console.log(ddata.category.products)
       return (
          
-        <div>
-            <Modal />
-            <div>
+        <div className="main">
+            
+            <div className="main_title_category">
                 <Title name = {this.props.cat_name}/>
                 
             </div>
@@ -99,7 +108,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.category.value)
+    // console.log(state.category.value)
     if (!state) {
         return (console.log("error"))
     }else{
@@ -110,6 +119,6 @@ const mapStateToProps = state => {
         }
     }
 };
-  const mapDispatchToProps = {}
+//   const mapDispatchToProps = {}
 // console.log(this.data)
 export default connect(mapStateToProps, null)(Main);

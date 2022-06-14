@@ -1,7 +1,9 @@
-import React, { Components } from "react";
-import CartItemsList from "./CartItemsList";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import BigCartItemsList from "./BigCartItemsList";
+// import CartItemsList from './CartItemsList'
 
-class ShopCart extends Components {
+class ShopCart extends Component {
 
     constructor(props) {
         super(props);
@@ -12,17 +14,20 @@ class ShopCart extends Components {
 
     displayItemsList = () => {
         const data = this.state.data;
-        if (!data) {
-            return null
+
+        if (data==undefined) {
+            return ("Loading...")
         }
-        return data.map((e, i) => {
-            return (<CartItemsList
+        return data?.map((e, i) => {
+            return (<BigCartItemsList
                 key={i}
                 brand={e.brand}
                 name={e.name}
                 prices={e.price}
                 attributes={e.attributes}
                 choices={e.choices}
+                photo={e.photo}
+                count={e.items_count}
             />)
         }    
                 
@@ -31,18 +36,19 @@ class ShopCart extends Components {
         
 
     }
-    
+    componentDidMount() {
+        this.setState({data: JSON.parse(sessionStorage.getItem("shopping_cart" || []))})
+    }
     render() {
         
-        JSON.parse(localStorage.getItem('shopping_cart' || null))
-            .then(result => this.setState({ data: result})
-        
-        );
+        // const data = JSON.parse(localStorage.getItem('shopping_cart' || null))           
+        // ;
+            
         
         return (
         <div className="big_shopping_cart">
             <div className="big_shopping_cart_title">
-                <h1>CART</h1>
+                <p>CART</p>
             </div>
             <div className="big_shopping_cart_items_list">
                 <div className="big_shopping_cart_items_detailes">
@@ -51,8 +57,12 @@ class ShopCart extends Components {
                 <div className="big_shopping_cart_counter"></div>
                 <div className="big_shopping_cart_photo"></div>
             </div>
-
-            </div>
+                {/* <Link to="/"> */}
+                <div>
+                    <button type="button">ORDER</button>
+                </div>
+                {/* </Link> */}
+        </div>
         )
 
     }

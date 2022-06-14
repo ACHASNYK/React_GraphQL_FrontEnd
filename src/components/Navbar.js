@@ -5,8 +5,9 @@ import { allCatQuery } from "../queries/query";
 // import ApolloProvider from 'react-apollo';
 import HeaderButton from "./HeaderButton";
 import CurrSelector from "./CurrSelector";
-
 import { client } from "../App";
+import Modal from "./Modal";
+import CartDisplayButton from "./CartDisplayButton";
 
 
 
@@ -35,13 +36,13 @@ class Navbar extends Component {
     // }
     displayList(){
         const { data, DataIsLoaded } = this.state;
-        
         // console.log(data);
         if(!DataIsLoaded) {
             return(<div>Loading...</div>)
-        }else{
-            return data.categories.map((items, i) => {
-                return (<li className="buttons" key={i}> <HeaderButton 
+        }else{ 
+          return data.categories.map((items, i) => {
+                        
+            return ( <li className="buttons" key={i}> <HeaderButton 
                     // updateParent = {this.updateParent}
                     key={i}
                     name = {items.name}
@@ -49,26 +50,32 @@ class Navbar extends Component {
                     /></li>);
                 
             })
-        }
+      } 
     }
     
     
     
     render() {
-  
+    
       return (
         <div className="navbar">
-          <div>  
+          
           <ul className="categories">
                 {this.displayList() }
-            </ul>
-          </div>
-          <div>
+          </ul>
+          
+          
             <CurrSelector/>
-          </div>
+          
+          
+            <CartDisplayButton />
+          
+          <Modal/>
         </div>
       );
     }
   
 }
+
+
 export default Navbar

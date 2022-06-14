@@ -48,14 +48,13 @@ class App extends Component {
     return (
       // <Router>
       
-        <div className="main">
+        <>
           
           {/* <button className="button" onClick={(e) => this.setState({name: 'clothes'})}><h2>clothes</h2></button> */}
           {/* <button className="button" onClick={(e) => this.setState({name: 'tech'})}><h2>tech</h2></button> */} 
-          <div className="navbar">
+          
           <Navbar/>      
-          </div>
-            <div>
+                    
               <Switch>
                 <Route exact path="/">
                   <Main key = {this.props.cat_name} />
@@ -63,15 +62,15 @@ class App extends Component {
                 <Route path="/pdp">
                   <ProductDetailPage />
               </Route>
-              {/* <Route path="/shopcart">
+              <Route path="/shopcart">
                 <ShopCart/>
-              </Route> */}
+              </Route>
                 <Route path="*">
                   <h1>Error</h1>
                 </Route>
               </Switch>                
-            </div>
-        </div>
+            
+        </>
       // </Router>
     );
       
