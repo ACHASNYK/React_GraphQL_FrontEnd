@@ -1,110 +1,101 @@
 import React, {Component, Fragment} from "react";
 import { connect } from 'react-redux';
-import { set_sizeid } from '../redux/size';
-import { set_swatchid } from '../redux/swatchid';
+// import { set_sizeid } from '../redux/size';
+// import { set_swatchid } from '../redux/swatchid';
+import { set_detailes } from '../redux/detail_data';
 
 
 class Attributes extends Component {
     constructor(props) {
         super(props);
+        // this.state = {
+        //     attributes: {
+                
+                
+        //     },
+        //     isactive: {
+        //         id: '',
+        //         active:false
+        //     }
+            
+
+            
+        
     }
-
-    // displayText = item => {
-    //     item.map((element, i) => {
-    //             return (
-    //                 <button className="attributes_text"
-    //                     key={element.id}
-    //                     onClick={set_sizeid(element.value)}
-    //                 >{element.value} </button>)
-    //         })
-    // }
-
+    setAttributes(propname, value, data) {
+        // const index = data?.findIndex(x => x.name === `${propname}`);
+        
+        const newData = data.map(obj => {
+            if (obj.name === `${propname}`) {
+                return { ...obj, id: value };
+            }
+                return obj;                
+        });
+        const storage = { ...this.props.data, product: { ...this.props.data.product, attributes: newData } }
+        // console.log(index)
+        console.log(newData)
+        this.props.set_detailes(storage);
+    }
+        
+    checkMarked(source, target) {
+            return source === target? true : false
+        }
     
     render() {
-        const data = this.props.data.product.attributes;
-        console.log(data)
-
+        const data = this.props.data.product.attributes
         
-        // if (data === undefined || data.length === 0) {
-        //     return null
-        // } else {
-            return (
-                data.map((element, i) => {
+        return (
+            data.map((element, i) => {
                     
-                //  console.log(element)
-                    // switch (element) {
-                    //     case element === undefined:
+               
+                if (element.type === "swatch") {
                         
-                    //         return null;
-                                                
-                    //     case element.type === "text":
-                    if (element.type === "swatch")
-                        
-                        return (<div key={i}>
-                            <div><p>{element.name}</p></div>
-                            <div>{element.items.map((e, i) => {
-                                return (
-                                    <button className="attributes_swatch"
-                                        key={e.id}
-                                        onClick={()=>this.props.set_swatchid(e.value)}
-                                        style={{ background: `${e.value}` }} >
-                                    </button>)
-                            })
-                            }</div>;
+                    return (<div key={i}>
+                        <div><p>{element.name}</p></div>
+                        <div>{element.items.map((e, i) => {
+                            return (
+                                <button className="attributes_swatch"
+                                    key={i}
+                                    name={element.name}
+                                    onClick={() => this.setAttributes(element.name, e.value, data)}
+                                    style={{ background: `${e.value}` }} >
+                                </button>)
+                        })}</div>
 
                                                   
-                        </div>);
-                    else 
+                    </div >);
+                } else {
+                   
+                    
+                    return (<div key={i}>
 
-                        return (<div key={i}>
-
-                            <div><p>{element.name}</p></div>
-                            <div>{element.items.map((e, i) => {
-                                return (<div className="attributes_text"
-                                    key={i}
-                                    onClick={() => this.props.set_sizeid(e.value)}>
-                                    {e.value}
-                                </div>)
-                            })}</div>
-                        </div >);
-                    // else if (element.type === "swatch")
-                        
-                    //     return (<div key={i}>
-                    //         <div><p>{element.name}</p></div>
-                    //         <div>{element.items.map((e, i) => {
-                    //             return (
-                    //                 <button className="attributes_swatch"
-                    //                     key={element.id}
-                    //                     onClick={set_swatchid(element.value)}
-                    //                     style={{ background: `${element.value}` }} >
-                    //                 </button>)
-                    //         })
-                    //         }</div>;
-
+                        <div><p>{element.name}</p></div>
+                        <div>{element.items.map((e, i) => {
                                 
-                                
-                    //     </div>);
-                        // case element.type === "swatch":
-                        //     return <div>
-                        //         <p>{element.name}</p>
-                        //             <Swatch />;
-                        //             </div>
-                        // default:
-                        //     break;
-        
-                    // };
-                })
+                            
+                            return (<div className={`attributes_text ${this.checkMarked(element.id, e.value) ? "marked" : ""}`}
+                                key={i}
+                                name={element.name}
+                                onClick={() => this.setAttributes(element.name, e.value, data)
+                                }>
+                                {e.value}
+                            </div>)
+                        })}</div>
+                    </div >);
+                    
+                }
+            
+                }
             )
-        }
-        
+        )
 
-        
-    // }
+    }   
+    
 }
 
 const mapStateToProps = state => {
     return { data: state.detailes.value }
   
 };
-const mapDispatchToProps = { set_sizeid, set_swatchid };
+const mapDispatchToProps = { set_detailes };
 export default connect(mapStateToProps, mapDispatchToProps)(Attributes)

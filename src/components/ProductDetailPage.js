@@ -6,7 +6,8 @@ import { productById } from "../queries/query"
 import SmallImg from "./SmallImg";
 import BigImg from "./BigImg";
 import Detailes from "./Detailes";
-import {set_detailes} from '../redux/detail_data'
+import { set_detailes } from '../redux/detail_data';
+import {loadFromLocalStorage} from '../components/loadFromLocalStorage'
 
 class ProductDetailPage extends Component {
     constructor(props) {
@@ -15,15 +16,17 @@ class ProductDetailPage extends Component {
         this.state = {
             data: {},
             dataIsLoaded: false,
+            object: {}
         }
          
 
     }        
     
     componentDidMount() {
+        //  this.setState({ object: this.loadFromLocalStorage() })
     const query_variable = {
             
-            "productId": `${this.props.product_id}`
+            "productId": `${this.props.product_id? this.props.product_id : this.getID()}`
 
         }
     client.query({ query: productById, variables: query_variable })
@@ -35,7 +38,21 @@ class ProductDetailPage extends Component {
           });
            
         
-    }    
+    }
+    
+    loadFromLocalStorage() {
+        try {
+        
+        const serialisedState = localStorage.getItem("detailes");
+            if (serialisedState === null) return undefined;
+        const data = (JSON.parse(serialisedState))
+            return data
+        } catch (e) {
+        console.warn(e);
+        return undefined;
+        }
+    }
+
            
       displayImgList() {
         
@@ -55,10 +72,20 @@ class ProductDetailPage extends Component {
                  });
              }
                 
-     }
+    }
+
+    
+    getID() {
+        const Object = loadFromLocalStorage();
+        console.log(Object);
+        return Object.id;
+    }
+    
+
 
     render() {
-        // const { data } = this.state;
+        
+        const Object = this.loadFromLocalStorage();
         // const ddata = Object.keys(data);
         // console.log(data.category.products)
             
@@ -78,7 +105,7 @@ class ProductDetailPage extends Component {
                     <BigImg img={this.props.photo}/>
                 </div>
                 <div>
-                    {/* <Detailes data={this.state.data}/>                 */}
+                    {/* <Detailes data={this.state.data}/> */}
                     <Detailes />
                     
                 </div>

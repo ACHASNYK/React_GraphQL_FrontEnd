@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { set_imglink } from '../redux/imglink';
+import { loadFromLocalStorage } from "./loadFromLocalStorage";
 
 
 class BigImg extends Component {
@@ -10,13 +11,16 @@ class BigImg extends Component {
             img: '',
         }
     }
-
+    displayBigPhoto() {
+        const data = loadFromLocalStorage();
+        return data.photo? data.photo : null;
+    }
 
     render() {
         
         return (
 
-            <img className="big_images" src={this.props.photo} />
+            <img className="big_images" src={this.props.photo? this.props.photo: this.displayBigPhoto()} />
         )
     }        
 }

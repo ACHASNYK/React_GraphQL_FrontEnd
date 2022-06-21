@@ -4,7 +4,7 @@ import React, {Component, Fragment} from "react";
 // import { set_swatchid } from '../redux/swatchid';
 
 
-class Cart_attributes extends Component {
+class BigCart_attributes extends Component {
     constructor(props) {
         super(props);
     }
@@ -36,7 +36,7 @@ class Cart_attributes extends Component {
                                     <div><p>{element.name}</p></div>
                                     <div>{element.items.map((e, i) => {
                                 return (
-                                    <button className="attributes_swatch"
+                                    <button className="big_attributes_swatch"
                                         key={i}
                                         // onClick={}
                                         style={{ background: `${e.value}` }} >
@@ -48,11 +48,11 @@ class Cart_attributes extends Component {
                         </div>);
                     else 
 
-                        return (<div className="cart_item_detailes_attr_icons" key={i}>
+                        return (<div className="big_cart_item_detailes_attr_icons" key={i}>
 
-                            <div className="cart_item_detailes_attr_icons_text"><p>{element.name}</p></div>
-                            <div className="cart_item_detailes_attr_icons_list">{element.items.map((e, i) => {
-                                return (<div className="cart_item_detailes_attr_icons_value_default"
+                            <div className="big_cart_item_detailes_attr_icons_text"><p>{element.name}</p></div>
+                            <div className="big_cart_item_detailes_attr_icons_list">{element.items.map((e, i) => {
+                                return (<div className="big_cart_item_detailes_attr_icons_value_default"
                                     key={i}
                                     onClick={() => this.props.set_sizeid(e.value)}>
                                     {e.value}
@@ -75,4 +75,4 @@ class Cart_attributes extends Component {
 // };
 // const mapDispatchToProps = { set_sizeid, set_swatchid };
 // export default connect(mapStateToProps, mapDispatchToProps)(Attributes)
-export default Cart_attributes
+export default BigCart_attributes

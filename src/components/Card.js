@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { set_productid } from '../redux/productid';
 import { set_imglink } from '../redux/imglink';
-// import Modal from './Modal'
 import { set_modal } from '../redux/modal';
 
 
@@ -39,7 +38,7 @@ class Card extends Component {
     //     );
 
     // }
-    setDefaultLocalStorage = () => {
+    setShopCartLocalStorage() {
         if (this.props.attributes === undefined) {
             return null
         }
@@ -60,20 +59,41 @@ class Card extends Component {
         }
 
         let get = [];
-        // a.push(JSON.parse(localStorage.getItem('session')));
-        // localStorage.setItem('session', JSON.stringify(a));
+            
         
-        
-        get = JSON.parse(localStorage.getItem('shopping_cart')) || [];
-    // Push the new data (whether it be an object or anything else) onto the array
+        get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
+    
         get.push(Object);
-    // Alert the array value
-        // alert(a);  // Should be something like [Object array]
-    // Re-serialize the array back into a string and store it in localStorage
-        localStorage.setItem('shopping_cart', JSON.stringify(get));
-    //  localStorage.setItem('shopping_card', JSON.stringify(get));
+    
+        sessionStorage.setItem('shopping_cart', JSON.stringify(get));
+        
+        
+    }
+    
+    saveToLocalStorage() {
+        
+        const Object = {
+            name: this.props.name,
+            id: this.props.item_key,
+            brand: this.props.brand,
+            price: this.props.price,
+            attributes: this.props.attributes,
+            photo: this.props.photo,
+            items_count: 1,
+            choices: {}
+                 
+        }
+            try {
+                const serialisedState = JSON.stringify(Object);
+                sessionStorage.setItem("detailes", serialisedState);
+                
+        } catch (e) {
+            console.warn(e);
+        }
+        
+    }
 
-}
+
    
     render() {
         const data = this.props.price[this.props.index];
@@ -85,13 +105,14 @@ class Card extends Component {
 
         return (
         <>
-                <button className="circle_icon" onClick={() => { this.props.set_modal(true); this.setDefaultLocalStorage() }} >cart</button>
+                <button className="circle_icon" onClick={() => {this.setShopCartLocalStorage() }} >cart</button>
             
             <Link to="/pdp" className="router_links">
                 {/* <button className="circle_icon" onClick={() => { this.props.set_modal(true) }} >cart</button> */}
                 <div onClick={() => {
                     this.props.set_productid(this.props.item_key);
                     this.props.set_imglink(this.props.photo);
+                    this.saveToLocalStorage();    
                     
                 }} className="card">
                     {/* <Modal show = {this.state.show} handleClose = {this.hideModal}/> */}
