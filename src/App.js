@@ -107,7 +107,7 @@ class App extends Component {
     // if (!DataIsLoaded) 
     //   return 
     // <div>Loading...</div>
-    console.log('rendering');
+    // console.log('rendering');
     // console.log(this.props.data)
     // console.log(this.state.name);
     // // console.log(query_variable);

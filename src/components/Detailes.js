@@ -124,7 +124,7 @@ class Detailes extends Component {
                     {data.product.prices[this.props.index].currency.symbol}{data.product.prices[this.props.index].amount}
                 </div>
                 <div>
-                    <button  onClick={()=>{setDefaultLocalStorage}} >ADD TO CART</button>
+                    <button  onClick={()=>{this.setDefaultLocalStorage()}} >ADD TO CART</button>
                 </div>
                 <div>
                     {this.renderHTML()}
