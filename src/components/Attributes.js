@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 // import { set_sizeid } from '../redux/size';
 // import { set_swatchid } from '../redux/swatchid';
 import { set_detailes } from '../redux/detail_data';
+import { setDefaultAttributes} from '../utilities/handleAttributes'
 
 
 class Attributes extends Component {
@@ -22,7 +23,7 @@ class Attributes extends Component {
             
         
     }
-    setAttributes(propname, value, data) {
+      setAttributes = (propname, value, data) => {
         // const index = data?.findIndex(x => x.name === `${propname}`);
         
         const newData = data.map(obj => {
@@ -31,21 +32,46 @@ class Attributes extends Component {
             }
                 return obj;                
         });
-        const storage = { ...this.props.data, product: { ...this.props.data.product, attributes: newData } }
+    
+        
+        const storage = { ...this.props?.data, product: { ...this.props?.data?.product, attributes: newData } }
         // console.log(index)
         console.log(newData)
         this.props.set_detailes(storage);
     }
+    
+    
+    // setAttributes(propname, value, data) {
+    //     // const index = data?.findIndex(x => x.name === `${propname}`);
         
-    checkMarked(source, target) {
-            return source === target? true : false
-        }
+    //     const newData = data.map(obj => {
+    //         if (obj.name === `${propname}`) {
+    //             return { ...obj, id: value };
+    //         }
+    //             return obj;                
+    //     });
+    //     const storage = { ...this.props.data, product: { ...this.props.data.product, attributes: newData } }
+    //     // console.log(index)
+    //     console.log(newData)
+    //     this.props.set_detailes(storage);
+    // }
+    
+    // setDefaultAttributes =(data) => {
+    //     const newData = data.map(obj => {
+    //         if (obj.id===obj.name) {
+    //             return {...obj, id : obj.items[0].value}
+    //         } return obj;
+        
+    //     }) 
+    //     return newData;
+    // }
+    
     
     render() {
-        const data = this.props.data.product.attributes
-        
+        const data = setDefaultAttributes(this.props.data.product.attributes)
+        console.log(data)
         return (
-            data.map((element, i) => {
+            data?.map((element, i) => {
                     
                
                 if (element.type === "swatch") {
@@ -54,7 +80,7 @@ class Attributes extends Component {
                         <div><p>{element.name}</p></div>
                         <div>{element.items.map((e, i) => {
                             return (
-                                <button className="attributes_swatch"
+                                <button className={`attributes_swatch ${element.id===e.value ? "s_marked" : ""}`}
                                     key={i}
                                     name={element.name}
                                     onClick={() => this.setAttributes(element.name, e.value, data)}
@@ -73,7 +99,7 @@ class Attributes extends Component {
                         <div>{element.items.map((e, i) => {
                                 
                             
-                            return (<div className={`attributes_text ${this.checkMarked(element.id, e.value) ? "marked" : ""}`}
+                            return (<div className={`attributes_text ${element.id===e.value ? "marked" : ""}`}
                                 key={i}
                                 name={element.name}
                                 onClick={() => this.setAttributes(element.name, e.value, data)

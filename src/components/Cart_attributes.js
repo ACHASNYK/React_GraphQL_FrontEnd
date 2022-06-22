@@ -36,7 +36,7 @@ class Cart_attributes extends Component {
                                     <div><p>{element.name}</p></div>
                                     <div>{element.items.map((e, i) => {
                                 return (
-                                    <button className="attributes_swatch"
+                                    <button className={`attributes_swatch ${element.id===e.value? "s_marked" : ""}`}
                                         key={i}
                                         // onClick={}
                                         style={{ background: `${e.value}` }} >
@@ -52,7 +52,7 @@ class Cart_attributes extends Component {
 
                             <div className="cart_item_detailes_attr_icons_text"><p>{element.name}</p></div>
                             <div className="cart_item_detailes_attr_icons_list">{element.items.map((e, i) => {
-                                return (<div className="cart_item_detailes_attr_icons_value_default"
+                                return (<div className={`cart_item_detailes_attr_icons_value_default ${element.id===e.value? "modal_marked":""}`}
                                     key={i}
                                     onClick={() => this.props.set_sizeid(e.value)}>
                                     {e.value}

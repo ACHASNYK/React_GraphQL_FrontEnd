@@ -1,11 +1,12 @@
 import React, {Component, Fragment} from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { set_productid } from '../redux/productid';
+import {increment_count, decrement_count} from '../redux/counter';
 import { set_imglink } from '../redux/imglink';
 import parse from 'html-react-parser';
 import Attributes from "./Attributes";
 // import { setShopCartLocalStorage } from "./setLocalStorage";
+import {setDefaultAttributes} from '../utilities/handleAttributes'
 
 
 class Detailes extends Component {
@@ -27,16 +28,17 @@ class Detailes extends Component {
     if (data.product.attributes === undefined) {
             return null
         }
+        const attributes = setDefaultAttributes(data.product.attributes);
         
         const Object = {
             name: data.product?.name,
             id: data.product?.id,
             brand: data.product?.brand,
             price: data.product?.prices,
-            attributes: data.product?.attributes,
+            attributes: attributes,
             photo: data.product?.gallery[0],
             items_count: 1,
-            choices: {}
+            
             
             
         }
@@ -44,19 +46,46 @@ class Detailes extends Component {
             
             return null
         }
-        
-        let get = [];
+        let counter=1;
+        let get = [];            
+        get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
+        counter= JSON.parse(sessionStorage.getItem('counter')) || 1;
+        let flag = false;
+        console.log(flag)
+        if (get.length===0) {
+            // get.push(Object);
+            return get.push(Object), increment_count();
+            
+        } else {  
+            get.map(element => {
+          
+            if (JSON.stringify(element.attributes)===JSON.stringify(Object?.attributes) && element.id===Object?.id)
+             {return {...element, items_count: element.items_count +=1}, flag=true, counter +=1, increment_count()}
+            // else   {console.log(element)  }
+               
+            })
+            
+                return !flag? (get.push(Object), counter+=1, increment_count())  : null, 
+                sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
+                sessionStorage.setItem('counter', JSON.stringify(counter));
+        }      
+                        
+            return   sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
+                    sessionStorage.setItem('counter', JSON.stringify(counter));
+    
+    }
+        // let get = [];
             
         
-        get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
+        // get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
     
-        get.push(Object);
+        // get.push(Object);
     
-        sessionStorage.setItem('shopping_cart', JSON.stringify(get));
+        // sessionStorage.setItem('shopping_cart', JSON.stringify(get));
         
         
     
-}
+
        
     render() {
         
@@ -80,11 +109,7 @@ class Detailes extends Component {
                     {data.product.prices[this.props.index].currency.symbol}{data.product.prices[this.props.index].amount}
                 </div>
                 <div>
-<<<<<<< HEAD
-                    <button  onClick={()=>{this.setDefaultLocalStorage()}} >ADD TO CART</button>
-=======
                     <button  onClick={()=>{this.setShopCartLocalStorage()}} >ADD TO CART</button>
->>>>>>> b4ba6adcdfb9a16c18517b3dfb8bb1b00b26abf0
                 </div>
                 <div>
                     {this.renderHTML()}
@@ -101,5 +126,6 @@ const mapStateToProps = state => {
         index: state.currencyid.value,
     }
 };
+const mapDispatchToProps = {increment_count};
 
-export default connect(mapStateToProps, null)(Detailes)
+export default connect(mapStateToProps, mapDispatchToProps)(Detailes)

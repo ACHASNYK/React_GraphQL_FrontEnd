@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { set_productid } from '../redux/productid';
 import { set_imglink } from '../redux/imglink';
 import { set_modal } from '../redux/modal';
+import {setDefaultAttributes} from '../utilities/handleAttributes'
+import { isNullableType } from "graphql";
 
 
 class Card extends Component {
@@ -42,32 +44,48 @@ class Card extends Component {
         if (this.props.attributes === undefined) {
             return null
         }
+        const attributes = setDefaultAttributes(this.props.attributes)
         const Object = {
             name: this.props.name,
             id: this.props.item_key,
             brand: this.props.brand,
             price: this.props.price,
-            attributes: this.props.attributes,
+            attributes: attributes,
             photo: this.props.photo,
-            items_count: 1,
-            choices: {}
-            
+            items_count: 1,      
             
         }
+        console.log(Object)
         if (Object.name === undefined) {
             return null
         }
-
-        let get = [];
-            
-        
+        let counter=1;
+        let get = [];            
         get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
+        counter= JSON.parse(sessionStorage.getItem('counter')) || 1;
+        let flag = false;
+        console.log(flag)
+        if (get.length===0) {
+            // get.push(Object);
+            get.push(Object)
+            
+        } else {  
+            get.map(element => {
+          
+            if (JSON.stringify(element.attributes)===JSON.stringify(Object?.attributes) && element.id===Object?.id)
+             {return {...element, items_count: element.items_count +=1}, flag=true, counter +=1}
+            // else   {console.log(element)  }
+               
+            })
+            
+                return !flag? (get.push(Object), counter+=1)  : null, 
+                sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
+                sessionStorage.setItem('counter', JSON.stringify(counter));
+        }      
+                        
+            return   sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
+                    sessionStorage.setItem('counter', JSON.stringify(counter));
     
-        get.push(Object);
-    
-        sessionStorage.setItem('shopping_cart', JSON.stringify(get));
-        
-        
     }
     
     saveToLocalStorage() {

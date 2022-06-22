@@ -54,16 +54,16 @@ class Modal extends Component {
 
     }
 
-    async componentDidMount() {
-        await JSON.parse(localStorage.getItem('shopping_cart')).then
-        (result => {      
+    componentDidMount() {
+        
+             
         this.setState({
-            data: result,
+            data: JSON.parse(sessionStorage.getItem('shopping_cart')) || [],
             dataIsLoaded: true
             });
         }
-       )
-    }    
+       
+        
     // componentDidUpdate(prevProps, prevState) {
     //     if (prevState.data !== this.state.data){
     //     this.setState({data: JSON.parse(localStorage.getItem('shopping_cart')),})

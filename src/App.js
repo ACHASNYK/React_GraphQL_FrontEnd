@@ -45,18 +45,6 @@ class App extends Component {
   render() {
    
     
-<<<<<<< HEAD
-    // console.log(store);   
-    // if (!DataIsLoaded) 
-    //   return 
-    // <div>Loading...</div>
-    // console.log('rendering');
-    // console.log(this.props.data)
-    // console.log(this.state.name);
-    // // console.log(query_variable);
-
-=======
->>>>>>> b4ba6adcdfb9a16c18517b3dfb8bb1b00b26abf0
     return (
       // <Router>
       

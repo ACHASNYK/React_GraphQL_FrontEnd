@@ -8,8 +8,7 @@ class BigCart_attributes extends Component {
     constructor(props) {
         super(props);
     }
-
-    
+       
 
     render() {
         // const get = JSON.parse(localStorage.getItem('shopping_cart'));
@@ -36,7 +35,7 @@ class BigCart_attributes extends Component {
                                     <div><p>{element.name}</p></div>
                                     <div>{element.items.map((e, i) => {
                                 return (
-                                    <button className="big_attributes_swatch"
+                                    <button className={`big_attributes_swatch ${element.id===e.value? "bs_marked" : ""}`}
                                         key={i}
                                         // onClick={}
                                         style={{ background: `${e.value}` }} >
@@ -52,7 +51,7 @@ class BigCart_attributes extends Component {
 
                             <div className="big_cart_item_detailes_attr_icons_text"><p>{element.name}</p></div>
                             <div className="big_cart_item_detailes_attr_icons_list">{element.items.map((e, i) => {
-                                return (<div className="big_cart_item_detailes_attr_icons_value_default"
+                                return (<div className={`big_cart_item_detailes_attr_icons_value_default ${element.id===e.value? "b_marked" : ""}`}
                                     key={i}
                                     onClick={() => this.props.set_sizeid(e.value)}>
                                     {e.value}
