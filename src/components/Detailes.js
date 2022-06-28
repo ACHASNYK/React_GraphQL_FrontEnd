@@ -54,8 +54,8 @@ class Detailes extends Component {
         console.log(flag)
         if (get.length===0) {
             // get.push(Object);
-            return get.push(Object), increment_count();
-            
+            return get.push(Object), increment_count(),
+            sessionStorage.setItem('shopping_cart', JSON.stringify(get));
         } else {  
             get.map(element => {
           
@@ -65,13 +65,13 @@ class Detailes extends Component {
                
             })
             
-                return !flag? (get.push(Object), counter+=1, increment_count())  : null, 
-                sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
-                sessionStorage.setItem('counter', JSON.stringify(counter));
+                if (!flag) {get.push(Object); counter+=1; increment_count()} else 
+                {sessionStorage.setItem('shopping_cart', JSON.stringify(get));
+                sessionStorage.setItem('counter', JSON.stringify(counter))}
         }      
                         
-            return   sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
-                    sessionStorage.setItem('counter', JSON.stringify(counter));
+               {sessionStorage.setItem('shopping_cart', JSON.stringify(get));
+               sessionStorage.setItem('counter', JSON.stringify(counter))}
     
     }
         // let get = [];
@@ -109,7 +109,7 @@ class Detailes extends Component {
                     {data.product.prices[this.props.index].currency.symbol}{data.product.prices[this.props.index].amount}
                 </div>
                 <div>
-                    <button  onClick={()=>{this.setShopCartLocalStorage()}} >ADD TO CART</button>
+                    <button  onClick={()=>{this.setShopCartLocalStorage(); this.props.increment_count()}} >ADD TO CART</button>
                 </div>
                 <div>
                     {this.renderHTML()}

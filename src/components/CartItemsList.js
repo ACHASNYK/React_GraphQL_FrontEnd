@@ -34,7 +34,11 @@ class CartItemsList extends Component {
                             />
                         </div>
                     </div>
-                    <div className="cart_item_detailes_butt"></div>
+                    <div className="cart_item_detailes_butt">
+                        <div className="cart_item_detailes_butt_incr">+</div>
+                        <div className="cart_item_detailes_butt_counter">{this.props.items}</div>
+                        <div className="cart_item_detailes_butt_decr">-</div>
+                    </div>
                     
                 </div>
                 

@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { set_productid } from '../redux/productid';
 import { set_imglink } from '../redux/imglink';
 import { set_modal } from '../redux/modal';
+import {increment_count} from '../redux/counter';
 import {setDefaultAttributes} from '../utilities/handleAttributes'
-import { isNullableType } from "graphql";
+
 
 
 class Card extends Component {
@@ -85,6 +86,7 @@ class Card extends Component {
                         
             return   sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
                     sessionStorage.setItem('counter', JSON.stringify(counter));
+                    
     
     }
     
@@ -123,7 +125,7 @@ class Card extends Component {
 
         return (
         <>
-                <button className="circle_icon" onClick={() => {this.setShopCartLocalStorage() }} >cart</button>
+                <button className="circle_icon" onClick={() => {this.setShopCartLocalStorage(); this.props.increment_count() }} >cart</button>
             
             <Link to="/pdp" className="router_links">
                 {/* <button className="circle_icon" onClick={() => { this.props.set_modal(true) }} >cart</button> */}
@@ -168,5 +170,5 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = { set_productid, set_imglink, set_modal};
+const mapDispatchToProps = { set_productid, set_imglink, set_modal, increment_count};
 export default connect(mapStateToProps, mapDispatchToProps )(Card)

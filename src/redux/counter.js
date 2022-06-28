@@ -15,8 +15,8 @@ export const counterSlice = createSlice({
         }
     },
 });
-  
+const {actions, reducer} = counterSlice;  
 // categorySlice.actions 
 
-export const { increment_count, decrement_count } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { increment_count, decrement_count } = actions;
+export default reducer;

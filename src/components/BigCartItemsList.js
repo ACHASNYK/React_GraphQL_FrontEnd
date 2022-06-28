@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import {increment_count, decrement_count} from '../redux/counter';
 import BigCart_attributes from "./BigCart_attributes";
 
 
@@ -8,10 +9,12 @@ class BigCartItemsList extends Component {
 
     constructor(props) {
     super(props);
+        
     }
 
-       
     
+     
+
     render() {
         
         return (
@@ -30,14 +33,18 @@ class BigCartItemsList extends Component {
                         <div className="big_cart_item_detailes_attr_icons">
                             <BigCart_attributes
                                 attributes={this.props.attributes}
-                                choices={this.props.choices}
+                                
                             />
                         </div>
                     </div>
-                    <div className="big_cart_item_detailes_butt"></div>
-                    
-                </div>
+                </div>   
                 
+                <div className="big_cart_item_detailes_butt">
+                    <div className="big_cart_item_detailes_butt_incr" onClick={()=> {this.props.incrementItemsCount(this.props.id); console.log(this.props.id)}} > + </div>
+                    <div className="big_cart_item_detailes_butt_counter">{this.props.count} </div>
+                    <div className="big_cart_item_detailes_butt_decr" onClick={()=>{this.props.decrementItemsCount(this.props.id); console.log(this.props.id)}} > - </div>
+                </div>
+                 
                 <div className="big_cart-item_photo">
                     <img className="shop_cart_item_photo" alt="product photo" src={this.props.photo[0]} />
                 </div>
@@ -50,7 +57,7 @@ class BigCartItemsList extends Component {
 
 const mapStateToProps = state => {
     return {
-        
+        counter: state.counter.value,
         index: state.currencyid.value,
     }
 };

@@ -15,7 +15,7 @@ class Modal extends Component {
         super(props);
         this.state = {
             data: [],
-            dataIsLoaded: false,
+            counter: 0,
         }
         
     }
@@ -24,7 +24,8 @@ class Modal extends Component {
     
     componentDidUpdate(prevProps) {
         if (this.props.modal !== prevProps.modal) {
-            this.setState({data: JSON.parse(sessionStorage.getItem('shopping_cart'))||[]})
+            this.setState({data: JSON.parse(sessionStorage.getItem('shopping_cart'))||[],
+        counter: sessionStorage.getItem('counter')||0})
         
             
         }
@@ -45,6 +46,7 @@ class Modal extends Component {
                 attributes={e.attributes}
                 choices={e.choices}
                 photo={e.photo}
+                items={e.items_count}
             />)
         }    
                 
@@ -59,11 +61,9 @@ class Modal extends Component {
              
         this.setState({
             data: JSON.parse(sessionStorage.getItem('shopping_cart')) || [],
-            dataIsLoaded: true
-            });
-        }
+            counter: sessionStorage.getItem('counter')||0})
        
-        
+    }
     // componentDidUpdate(prevProps, prevState) {
     //     if (prevState.data !== this.state.data){
     //     this.setState({data: JSON.parse(localStorage.getItem('shopping_cart')),})
@@ -77,7 +77,7 @@ class Modal extends Component {
         return ReactDOM.createPortal(
             <div className={showHideClassName} onClick={() => { this.props.set_modal(false) }} >
                 <div className="modal-main">
-                    <div className="modal_title"><b>My Bag</b>, {this.state.data?.length}  items</div>
+                    <div className="modal_title"><b>My Bag</b>, {this.state.counter}  items</div>
                     <div className="modal_cart_items_list">
                         {this.displayItemsList()}
                     </div>
