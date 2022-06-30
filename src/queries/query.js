@@ -11,17 +11,21 @@ query Query {
 const allProducts = gql`
 query Query2 ($input: CategoryInput) {
   category(input: $input) {
+    __typename @skip(if: true)
     name
     products {
+      __typename @skip(if: true)
       name
       id
       inStock
       gallery
       attributes {
+        __typename @skip(if: true)
         id
         name
         type
         items {
+          __typename @skip(if: true)
           displayValue
           value
           id

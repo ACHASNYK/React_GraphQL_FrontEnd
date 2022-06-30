@@ -7,6 +7,7 @@ import HeaderButton from "./HeaderButton";
 import CurrSelector from "./CurrSelector";
 import { client } from "../App";
 import Modal from "./Modal";
+import {set_swatchid} from '../redux/swatchid'
 import CartDisplayButton from "./CartDisplayButton";
 
 
@@ -26,7 +27,7 @@ class Navbar extends Component {
         this.setState({
           data: result.data,
           DataIsLoaded: true
-        })
+        }); set_swatchid(result.data.categories[0].name);
       });
     }
 

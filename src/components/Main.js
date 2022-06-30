@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { allProducts } from "../queries/query";
 import Title from "./Title";
 import { set_modal } from '../redux/modal';
+import { set_swatchid } from "../redux/swatchid";
 import Modal from "./Modal";
 
 
@@ -24,16 +25,17 @@ class Main extends Component {
     componentDidMount() {
         const query_variable = {
             "input": {
-            "title": `${this.props.cat_name? this.props.cat_name : this.loadFromLocalStorage()? this.loadFromLocalStorage(): 'all'}`
+            "title": `${this.props.cat_name? this.props.cat_name : this.loadFromLocalStorage()? this.loadFromLocalStorage(): this.props.initial_cat_name}`
             }
         }
+        // `${this.props.cat_name? this.props.cat_name : this.loadFromLocalStorage()? this.loadFromLocalStorage(): this.props.initial_cat_name}`
         client.query({ query: allProducts, variables: query_variable })
             .then(result => {
             this.setState({
                 data: result.data,
                 DataIsLoaded: true
             })
-                
+          console.log(result)      
         });
 
     }
@@ -55,10 +57,11 @@ class Main extends Component {
         
         try{
             const { data, DataIsLoaded } = this.state;
-            console.log(data)
+            
             if (!DataIsLoaded) {
                 return (<div>Loading...</div>)
             } else {
+                console.log(data)
                 return data.category.products.map((items, i) => {
                     return (<div className="card_list" key={i}><Card 
                     
@@ -86,14 +89,14 @@ class Main extends Component {
     // // }
     
     render() {
-        // const ddata = this.state.data;
-            // console.log(ddata.category.products)
+         const ddata = this.state.data;
+         console.log(this.props.initial_cat_name, ddata)
       return (
          
         <div className="main">
             
             <div className="main_title_category">
-                <Title name = {this.props.cat_name}/>
+                  <Title name={this.props.cat_name} initial_name={this.props.initial_cat_name } />
                 
             </div>
             <div className="card_list">
@@ -115,6 +118,7 @@ const mapStateToProps = state => {
         return {
             cat_name: state.category.value,
             index: state.currencyid.value,
+            initial_cat_name: state.swatchid.value
             
         }
     }

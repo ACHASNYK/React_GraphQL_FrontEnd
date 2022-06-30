@@ -53,7 +53,7 @@ class BigCart_attributes extends Component {
                             <div className="big_cart_item_detailes_attr_icons_list">{element.items.map((e, i) => {
                                 return (<div className={`big_cart_item_detailes_attr_icons_value_default ${element.id===e.value? "b_marked" : ""}`}
                                     key={i}
-                                    onClick={() => this.props.set_sizeid(e.value)}>
+                                    >
                                     {e.value}
                                 </div>)
                             })}</div>

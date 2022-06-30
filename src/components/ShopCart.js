@@ -15,6 +15,7 @@ class ShopCart extends Component {
         }
     }
 
+
     displayItemsList = () => {
         const data = this.state.data;
 
@@ -46,33 +47,34 @@ class ShopCart extends Component {
     incrementItemsCount= (e) => {
         console.log(e)
         let data = this.state.data;
-        let counter = sessionStorage.getItem('counter');
+        let counter = JSON.parse(sessionStorage.getItem('counter'));
         data?.map(item => {
             if (item.id === e) {
-                   sessionStorage.setItem('counter', counter +=1 );
+                   sessionStorage.setItem('counter', JSON.stringify(counter +=1) );
                 return {...item, items_count: item.items_count+=1};
             }
           console.log("increment", data)   
         })
-        return sessionStorage.setItem('shoping_cart', JSON.stringify(data)), increment_count();
+        return sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.increment_count();
     }
 
     decrementItemsCount = (e) => {
         console.log(e)
         let data = this.state.data;
-        let counter = sessionStorage.getItem('counter');
+        let counter = JSON.parse(sessionStorage.getItem('counter'));
         data?.map(item => {
             if(item.id=== e && item.items_count>=2) {
-                sessionStorage.setItem('counter', counter-=1);
+                sessionStorage.setItem('counter', JSON.stringify(counter-=1));
                 return {...item, items_count: item.items_count-=1 };
             }
             else if(item.id===e && item.items_count===1){
-                sessionStorage.setItem('counter', counter-=1);
-                data.slice(data.indexOf(item), 1);
+                sessionStorage.setItem('counter', JSON.stringify(counter-=1));
+                data.splice(data.indexOf(item), 1);
+                console.log("erase". data)
             }
             console.log("decrement", data)
         })  
-      return  sessionStorage.setItem('shoping_cart', JSON.stringify(data)), decrement_count();
+      return  sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count();
      
     }
     componentDidUpdate(prevProps) {
@@ -104,7 +106,21 @@ class ShopCart extends Component {
                 </div>
                 
             </div>
-                {/* <Link to="/"> */}
+                <div className="big_shopping_cart_box" >
+                    <div className="big_shopping_cart_box_text">
+                        <div className="big_shopping_cart_box_text_tax">
+                            Tax 21%:{ }
+                        </div>
+                        <div className="big_shopping_cart_box_text_qnt">
+                            Qantity: { }
+                        </div>
+                        <div className="big_shopping_cart_box_text_total">
+                            Total: { }
+                        </div>
+
+                    </div>
+
+                </div>
                 <div>
                     <button type="button">ORDER</button>
                 </div>

@@ -7,7 +7,7 @@ class Title extends Component {
         return (
 
             <div className="title">
-                <h1>{this.props.name||loadFromStorage("category")}</h1>
+                <h1>{this.props.name||loadFromStorage("category")||this.props.initial_name||'all'}</h1>
             </div>
         )
     }

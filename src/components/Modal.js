@@ -38,6 +38,7 @@ class Modal extends Component {
             return ("Loading...")
         }
         return data.map((e, i) => {
+            
             return (<CartItemsList
                 key={i}
                 brand={e.brand}
@@ -54,6 +55,26 @@ class Modal extends Component {
         )
         
 
+    }
+    totalAmount() {
+        const data = this.state.data;
+        let price = []
+        let count = []
+        let symbol = ''
+        let amount = 0
+        data.map(e => {
+            price.push(e.price[this.props.index].amount);
+            count.push(e.items_count);
+            symbol = e.price[this.props.index].currency.symbol;
+        })
+        console.log(price, count)
+        for (let i = 0; i < price.length; ++i){
+            amount += (price[i] * count[i]);
+            
+            console.log(amount.toFixed(2))
+        }
+        amount = amount.toFixed(2);
+        return { amount, symbol }
     }
 
     componentDidMount() {
@@ -72,7 +93,7 @@ class Modal extends Component {
     
 
     render() {
-        
+        const { amount, symbol } = this.totalAmount();
         const showHideClassName = this.props.modal ? "modal display-block" : "modal display-none";
         return ReactDOM.createPortal(
             <div className={showHideClassName} onClick={() => { this.props.set_modal(false) }} >
@@ -80,6 +101,15 @@ class Modal extends Component {
                     <div className="modal_title"><b>My Bag</b>, {this.state.counter}  items</div>
                     <div className="modal_cart_items_list">
                         {this.displayItemsList()}
+                    </div>
+                    <div className="modal_total_price">
+                        <div className="modal_total_price_label">
+                                Total
+                        </div>
+                        <div className="modal_total_price_amount">
+                            {symbol}  { amount }
+                        </div>
+
                     </div>
                     <div className="modal_buttons_group">
                         <button type="button" onClick={() => { this.props.set_modal(false) }}>close</button>
@@ -96,7 +126,10 @@ class Modal extends Component {
 }
 // const Data = JSON.parse(localStorage.getItem('shopping_cart' || null));
 const mapStateToProps = state => {
-    return { modal: state.modal.value }
+    return {
+        modal: state.modal.value,
+        index: state.currencyid.value
+    }
 };
 
 // ReactDOM.createPortal

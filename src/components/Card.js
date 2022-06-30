@@ -56,7 +56,7 @@ class Card extends Component {
             items_count: 1,      
             
         }
-        console.log(Object)
+        
         if (Object.name === undefined) {
             return null
         }
@@ -116,6 +116,7 @@ class Card extends Component {
 
    
     render() {
+        
         const data = this.props.price[this.props.index];
         // const index = this.props.index;
         if (this.props.price === undefined) {
@@ -132,7 +133,8 @@ class Card extends Component {
                 <div onClick={() => {
                     this.props.set_productid(this.props.item_key);
                     this.props.set_imglink(this.props.photo);
-                    this.saveToLocalStorage();    
+                        this.saveToLocalStorage(); 
+                        
                     
                 }} className="card">
                     {/* <Modal show = {this.state.show} handleClose = {this.hideModal}/> */}
