@@ -94,7 +94,7 @@ class ProductDetailPage extends Component {
         return (
             
             
-            <div className="images_block">
+            <ImagesBlock>
                 
                 <div>    
                     <ul className="list">
@@ -109,7 +109,7 @@ class ProductDetailPage extends Component {
                     <Detailes />
                     
                 </div>
-            </div>
+            </ImagesBlock>
         )
     }
 }
@@ -119,6 +119,7 @@ const ImagesBlock = styled.div`
     gap: 1rem;
     grid-auto-flow: column;
     border: 1px solid black;
+    margin-top: 80px;
 `;
 
 const mapStateToProps = state => {
