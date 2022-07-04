@@ -43,7 +43,7 @@ class CartItemsList extends Component {
                 </div>
                 
                 <div className="cart-item_photo">
-                    <img className="modal_cart_item_photo" alt="product photo" src={this.props.photo} />
+                    <img className="modal_cart_item_photo" alt="product photo" src={this.props.photo[0]} />
                 </div>
             </div>
 

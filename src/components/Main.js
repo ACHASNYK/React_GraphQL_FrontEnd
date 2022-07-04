@@ -4,9 +4,10 @@ import { client } from "../App";
 import { connect } from "react-redux";
 import { allProducts } from "../queries/query";
 import Title from "./Title";
-import { set_modal } from '../redux/modal';
-import { set_swatchid } from "../redux/swatchid";
-import Modal from "./Modal";
+// import { set_modal } from '../redux/modal';
+// import { set_swatchid } from "../redux/swatchid";
+// import Modal from "./Modal";
+import styled from "styled-components";
 
 
 class Main extends Component {
@@ -63,52 +64,67 @@ class Main extends Component {
             } else {
                 console.log(data)
                 return data.category.products.map((items, i) => {
-                    return (<div className="card_list" key={i}><Card 
+                    return (<div className="card_list" key={i}><Card
                     
                         item_key={items.id}
-                        photo={items.gallery[0]}
+                        photo={items.gallery}
                         name={items.name}
                         brand={items.brand}
                         attributes={items.attributes}
                         price={items.prices}
-                    /></div>);
+                    /></div>); 
                 })
             }
         }
         catch (e) { console.log(e) }
     }
-    // displayTitle(){
-    //     const title = this.props.data.category.name;
-    //     // if (this.props.data.loading) {
-    //         // return(<div>Loading...</div>)
-    //     // }else{
-
-    //         return (<Title title={title}/>)
-    //     };
-
-    // // }
+    
     
     render() {
          const ddata = this.state.data;
          console.log(this.props.initial_cat_name, ddata)
       return (
-         
-        <div className="main">
-            
-            <div className="main_title_category">
-                  <Title name={this.props.cat_name} initial_name={this.props.initial_cat_name } />
+        <> 
                 
-            </div>
-            <div className="card_list">
-                <ul className="list">
-                    {this.displayList() }
-                </ul>
-            </div>
-        </div>
+            
+            <Title name={this.props.cat_name} initial_name={this.props.initial_cat_name } />
+              <PLP>   
+                <CardList>
+                    <List>
+                        {this.displayList() }
+                    </List>
+                </CardList>
+              </PLP>
+        </>
       );
     }
   
 }
+
+const PLP = styled.div`
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+
+`;
+
+const CardList = styled.div`
+    position: relative;
+    display: inline-flex;
+    list-style: none;
+    text-decoration: none;
+    margin-top: 250px;
+    margin-left: 60px;
+    
+
+`;
+const List = styled.ul`
+    list-style-type: none;
+    margin-left: 0;
+    margin-right: 40px;
+    margin-bottom: 100px;
+
+`;
 
 const mapStateToProps = state => {
     // console.log(state.category.value)

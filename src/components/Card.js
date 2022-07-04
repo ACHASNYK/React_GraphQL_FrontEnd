@@ -5,42 +5,17 @@ import { set_productid } from '../redux/productid';
 import { set_imglink } from '../redux/imglink';
 import { set_modal } from '../redux/modal';
 import {increment_count} from '../redux/counter';
-import {setDefaultAttributes} from '../utilities/handleAttributes'
+import { setDefaultAttributes } from '../utilities/handleAttributes';
+import { ReactComponent as CircleIcon } from '../components/icons/circle.svg';
+import styled from "styled-components";
 
 
 
 class Card extends Component {
      constructor(props) {
          super(props);
-        //  this.state = {
-        //      show: false,
-        //  };
-        //  this.showModal = this.showModal.bind(this);
-        //  this.hideModal = this.hideModal.bind(this);
-     }
-    // showModal = () => {
-    //     this.setState({ show: true });
-    // };
-    // hideModal = () => {
-    //     this.setState({ show: false });
-    // };
-    //  displayCurrency() {
-    //     if (this.props.prices === undefined) {
-    //         return null;
-    //     }
-        
-    //     const data = this.props.prices;
-    //     const index = this.props.index;
-    //     const ddata = data[index];
-    //      console.log(data)
-    //      console.log(index)
-    //     return (
-    //         <div>
-    //             {/* {ddata.currency.symbol}{ddata.amount}; */}
-    //         </div>
-    //     );
-
-    // }
+        }
+    
     setShopCartLocalStorage() {
         if (this.props.attributes === undefined) {
             return null
@@ -125,33 +100,41 @@ class Card extends Component {
         
 
         return (
-        <>
-                <button className="circle_icon" onClick={() => {this.setShopCartLocalStorage(); this.props.increment_count() }} >cart</button>
+            <>
+                
             
-            <Link to="/pdp" className="router_links">
                 {/* <button className="circle_icon" onClick={() => { this.props.set_modal(true) }} >cart</button> */}
-                <div onClick={() => {
+                    <CardMain>
+                    
+                        
+                    <CircleContainer onClick={() => {this.setShopCartLocalStorage(); this.props.increment_count() }}>
+                                <CircleIcon />
+                            </CircleContainer>
+                
+                    {/* <Modal show = {this.state.show} handleClose = {this.hideModal}/> */}
+                    <Image >
+                     <Link to="/pdp" className="router_links">       
+                        <Photo  onClick={() => {
                     this.props.set_productid(this.props.item_key);
                     this.props.set_imglink(this.props.photo);
                         this.saveToLocalStorage(); 
                         
                     
-                }} className="card">
-                    {/* <Modal show = {this.state.show} handleClose = {this.hideModal}/> */}
-                    <div className="image">                
-                        <img className="photo_card" alt="product_img" src={this.props.photo} />
-                        {/* <button className="circle_icon" onClick={((e) => { e.stopPropagation(); this.showModal() })} >cart</button> */}
-                    </div>
+                }}alt="product_img" src={this.props.photo[0]}/>
+                                
+                            
+                        </Link>
+                    </Image>
                     {/* <div className="image_text"><h2>OUT OF STOCK</h2></div> */}
-                    <div className="card_title">
+                    <CardTitle>
                             {this.props.brand}    {this.props.name}
-                    </div>
-                    <div className="card_price">
+                    </CardTitle>
+                    <CardPrice>
                          {data.currency.symbol}{data.amount}
-                    </div>
+                    </CardPrice>
                     
-                </div>
-            </Link>    
+                </CardMain>
+                
             {/* //         <p> */}
             {/* //             {} */}
             {/* //         </p> */}
@@ -165,6 +148,90 @@ class Card extends Component {
   
 }
 
+const CardMain = styled.div`
+display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 40px;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    width: 386px;
+    height: 444px;
+    background: #ffffff;
+    text-decoration: none;
+    
+    
+    &:hover {
+        transition: 0.3s;
+        filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.23));
+    }
+`;
+
+const CircleContainer = styled.div`
+display: none;
+position: absolute;
+right: 31px;
+bottom: 85px;
+z-index: 3;
+width: 52px;
+height: 52px;
+${CardMain}:hover & {
+    display: block;
+    transition: 0.2s;
+    filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.15));
+}
+&:hover{
+    cursor: pointer;
+}
+&:active{
+    transform: scale(0.96);
+    filter: drop-shadow(0px 1px 2px rgba(29, 31, 34, 0.15));
+}
+`;
+
+
+const Image = styled.div`
+/* height: 330px;
+width: 354px; */
+position: relative;
+top: 16px;
+left: 16px;
+`;
+
+const Photo = styled.img`
+    position: relative;
+    width: 354px;
+    height: 330px;
+    object-fit: contain;
+    align-self: stretch;
+    
+`;
+
+const CardTitle = styled.div`
+    position: relative;
+    margin-top: 24px;
+    margin-left: 16px;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 160%;
+    
+    align-items: center;
+    color: #1D1F22;;
+
+`;
+
+const CardPrice = styled.div`
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 160%;
+margin-top: 5px;
+margin-left: 16px;
+color: #1D1F22;
+`;
 const mapStateToProps = state => {
     return {
         index: state.currencyid.value,

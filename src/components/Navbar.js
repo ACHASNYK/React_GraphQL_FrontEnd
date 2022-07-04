@@ -9,8 +9,8 @@ import { client } from "../App";
 import Modal from "./Modal";
 import {set_swatchid} from '../redux/swatchid'
 import CartDisplayButton from "./CartDisplayButton";
-
-
+import styled from "styled-components";
+import { ReactComponent as ShopLogo } from '../components/icons/shop.svg'
 
 class Navbar extends Component {
     constructor(props) {
@@ -43,12 +43,11 @@ class Navbar extends Component {
         }else{ 
           return data.categories.map((items, i) => {
                         
-            return ( <li className="buttons" key={i}> <HeaderButton 
-                    // updateParent = {this.updateParent}
+            return ( <HeaderButton 
                     key={i}
                     name = {items.name}
                     link = {items.name}
-                    /></li>);
+                    />);
                 
             })
       } 
@@ -59,24 +58,70 @@ class Navbar extends Component {
     render() {
     
       return (
-        <div className="navbar">
-          
-          <ul className="categories">
+        <NavbarMain>
+         <ButtonGroup>
+            {/* <Categories> */}
                 {this.displayList() }
-          </ul>
-          
-          
+            {/* </Categories> */}
+          </ButtonGroup>
+          <ShopLogo/>
+          <ActionGroup>
             <CurrSelector/>
-          
-          
             <CartDisplayButton />
-          
+          </ActionGroup>
           <Modal/>
-        </div>
+        </NavbarMain>
       );
     }
   
 }
+// const ShopLogo = styled.div``;
 
+const NavbarMain = styled.div`
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center ;
+    z-index: 5;
+    height: 80px;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    border: 1px black solid;
+    background: #FFFFFF;
+    
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  z-index: 6;
+  margin-left: 6em;
+`;
+const Categories = styled.ul`
+    list-style-type: none;
+    display: inline-block;
+    text-decoration: none;
+    /* border: 1px solid black; */
+    z-index: 6;
+`;
+const Buttons = styled.li`
+  display: inline-block;
+`;
+// const Logo = styled.div`
+// border: 1px black solid`;
+
+const ActionGroup = styled.div`
+    display: flex;
+    height: 40px;
+    
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 8em;
+    background: #ffffff;
+    z-index: 10;
+`;
 
 export default Navbar

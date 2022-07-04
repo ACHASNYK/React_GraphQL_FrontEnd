@@ -36,7 +36,7 @@ class Detailes extends Component {
             brand: data.product?.brand,
             price: data.product?.prices,
             attributes: attributes,
-            photo: data.product?.gallery[0],
+            photo: data.product?.gallery,
             items_count: 1,
             
             
@@ -46,16 +46,17 @@ class Detailes extends Component {
             
             return null
         }
-        let counter=1;
+        let counter=0;
         let get = [];            
         get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
-        counter= JSON.parse(sessionStorage.getItem('counter')) || 1;
+        counter= JSON.parse(sessionStorage.getItem('counter')) || 0;
         let flag = false;
         console.log(flag)
         if (get.length===0) {
             // get.push(Object);
-            return get.push(Object), increment_count(),
-            sessionStorage.setItem('shopping_cart', JSON.stringify(get));
+            return get.push(Object), increment_count(), counter += 1,
+                sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
+                sessionStorage.setItem('counter', JSON.stringify(counter));
         } else {  
             get.map(element => {
           

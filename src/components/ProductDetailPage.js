@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { client } from "../App";
-// import Title from "./Title";
 import { connect } from "react-redux";
 import { productById } from "../queries/query"
 import SmallImg from "./SmallImg";
 import BigImg from "./BigImg";
 import Detailes from "./Detailes";
 import { set_detailes } from '../redux/detail_data';
-import {loadFromLocalStorage} from '../components/loadFromLocalStorage'
+import { loadFromLocalStorage } from '../components/loadFromLocalStorage'
+import styled from "styled-components";
 
 class ProductDetailPage extends Component {
     constructor(props) {
@@ -63,12 +63,12 @@ class ProductDetailPage extends Component {
                  return (<div>Loading...</div>)
               } else {
                  return data.product.gallery.map((items, i) => {
-                     return (<li className="tiny_img" key={i}><SmallImg
+                     return (<SmallImg key={i}
                                           
                          photo={items}
                        
                         
-                     /></li>);
+                     />);
                  });
              }
                 
@@ -113,6 +113,13 @@ class ProductDetailPage extends Component {
         )
     }
 }
+
+const ImagesBlock = styled.div`
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+    border: 1px solid black;
+`;
 
 const mapStateToProps = state => {
     // console.log(state.productid.value)

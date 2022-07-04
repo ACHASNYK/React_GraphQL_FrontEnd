@@ -49,23 +49,28 @@ query Query2 ($input: CategoryInput) {
 const productById = gql`
 query Query5 ($productId: String!) {
   product(id: $productId) {
+    __typename @skip(if: true)
     id
     name
     inStock
     gallery
     description
     attributes {
+      __typename @skip(if: true)
       id
       name
       type
       items {
+        __typename @skip(if: true)
         displayValue
         value
         id
       }
     }
     prices {
+      
       currency {
+        
         label
         symbol
       }

@@ -1,16 +1,35 @@
 import React, { Component } from "react"
-import {loadFromStorage} from './loadFromStorage'
+import { loadFromStorage } from './loadFromStorage'
+import styled from "styled-components";
 
 class Title extends Component {
     render() {
 
         return (
 
-            <div className="title">
-                <h1>{this.props.name||loadFromStorage("category")||this.props.initial_name||'all'}</h1>
-            </div>
+            <Display>
+                {this.props.name || loadFromStorage("category") || this.props.initial_name || 'all'}
+            </Display>
         )
     }
 }
 
+const Display = styled.div`
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 160%;
+    display: flexbox;
+    align-items: flex-start;
+    position: fixed;
+    padding-top: 80px;
+    padding-bottom: 103px;
+    padding-left: 100px;
+    
+    background: #ffffff;
+    z-index: 3;
+    text-transform: capitalize;
+
+`;
 export default Title;   

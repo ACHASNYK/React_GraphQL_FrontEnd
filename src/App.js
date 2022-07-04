@@ -9,10 +9,10 @@ import {
 import { Component } from "react";
 import React from "react";
 import { connect } from "react-redux";
-import { allProducts, allClothes, allTech } from "./queries/query";
+
 import Navbar from "./components/Navbar";
 import Title from "./components/Title";
-import { Router, Route, Link, Switch } from "react-router-dom";
+import { Router, Route, Routes, Link, Switch } from "react-router-dom";
 import Main from "./components/Main";
 import { set_category } from "./redux/category";
 import ProductDetailPage from "./components/ProductDetailPage";
@@ -54,22 +54,22 @@ class App extends Component {
           {/* <button className="button" onClick={(e) => this.setState({name: 'tech'})}><h2>tech</h2></button> */} 
           
           <Navbar/>      
-                    
-              <Switch>
-                <Route exact path="/">
-                  <Main key = {this.props.cat_name} />
-                </Route>
-                <Route path="/pdp">
-                  <ProductDetailPage />
-              </Route>
-              <Route path="/shopcart">
-                <ShopCart/>
-              </Route>
-                <Route path="*">
-                  <h1>Error</h1>
-                </Route>
-              </Switch>                
-            
+           <Routes>        
+              {/* <Switch> */}
+            <Route exact path="/" element={ <Main key = {this.props.cat_name} />}/>
+                  {/* <Main key = {this.props.cat_name} /> */}
+                {/* </Route> */}
+            <Route path="/pdp" element={ <ProductDetailPage />}/>
+                  {/*  */}
+              {/* </Route> */}
+            <Route path="/shopcart" element={<ShopCart/> }/>
+                
+              {/* </Route> */}
+            <Route path="*" element={<h1>Error</h1> }/>
+                  
+                {/* </Route> */}
+              {/* </Switch>                 */}
+          </Routes>  
         </>
       // </Router>
     );

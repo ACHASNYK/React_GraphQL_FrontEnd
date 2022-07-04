@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { set_modal } from "../redux/modal";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import {ReactComponent as CartLogo } from '../components/icons/cart.svg'
+import styled from "styled-components";
+
 
 class CartDisplayButton extends Component {
     constructor(props) {
@@ -30,9 +33,10 @@ class CartDisplayButton extends Component {
 
         return (
 
-            <div className="cart_display_button" onClick={()=>{this.props.set_modal(true)}}>SHOPPING CART
-                <div className={`cart_display_button_counter ${this.state.counter>0? "display": ""}`}>{this.state.counter}</div>
-            </div>
+            <LogoContainer onClick={() => { this.props.set_modal(true) }}>
+                <CartLogo style={{marginBottom: '3px'}} />
+                <LogoCounter counter={this.state.counter}>{this.state.counter}</LogoCounter>
+            </LogoContainer>
         )
     }
 
@@ -48,6 +52,29 @@ const mapStateToProps = state => {
         }
     }
 };
+
+const LogoContainer = styled.div`
+
+align-items: center;
+
+`;
+const LogoCounter = styled.div`
+display: ${props=>props.counter>0? 'block' : 'none'};
+position: absolute;
+top: 18px;
+right: 115px;
+text-align: center;
+padding-bottom: 0.1em;
+width: 20px;
+height: 20px;
+border-radius: 60px;
+background: #1D1F22;
+color: #FFFFFF;
+&:hover{
+    cursor: pointer;
+}
+`;
+
 const mapDispatchToProps = { set_modal };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartDisplayButton)
