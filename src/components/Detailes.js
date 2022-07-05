@@ -6,7 +6,8 @@ import { set_imglink } from '../redux/imglink';
 import parse from 'html-react-parser';
 import Attributes from "./Attributes";
 // import { setShopCartLocalStorage } from "./setLocalStorage";
-import {setDefaultAttributes} from '../utilities/handleAttributes'
+import {setDefaultAttributes} from '../utilities/handleAttributes';
+import styled from "styled-components";
 
 
 class Detailes extends Component {
@@ -75,14 +76,7 @@ class Detailes extends Component {
                sessionStorage.setItem('counter', JSON.stringify(counter))}
     
     }
-        // let get = [];
-            
-        
-        // get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
-    
-        // get.push(Object);
-    
-        // sessionStorage.setItem('shopping_cart', JSON.stringify(get));
+       
         
         
     
@@ -96,30 +90,90 @@ class Detailes extends Component {
         } 
         return (
 
-            <div>
-                <div>
-                    <h2>{data.product.brand}</h2>
-                </div>
-                <div>
-                    <h3>{data.product.name}</h3>
-                </div>
-                <div>
+            <DetailesContainer>
+                <ProductBrand>
+                   {data.product.brand}
+                </ProductBrand>
+                <ProductName>
+                    {data.product.name}
+                </ProductName>
+                <AttributesContainer>
                     <Attributes />
-                </div>
-                <div>
-                    {data.product.prices[this.props.index].currency.symbol}{data.product.prices[this.props.index].amount}
-                </div>
+                </AttributesContainer>
+                <ProductPriceContainer>
+                    <PriceName>
+                        Price
+                    </PriceName>
+                    <PriceAmount>
+                        {data.product.prices[this.props.index].currency.symbol}
+                        {data.product.prices[this.props.index].amount}
+                    </PriceAmount>
+                </ProductPriceContainer>
                 <div>
                     <button  onClick={()=>{this.setShopCartLocalStorage(); this.props.increment_count()}} >ADD TO CART</button>
                 </div>
                 <div>
                     {this.renderHTML()}
                 </div>
-            </div>
+            </DetailesContainer>
         )
     }
 
 }
+
+const DetailesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 292px
+`;
+
+const ProductBrand = styled.div`
+    display: flex;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 27px;
+    color: #1D1F22;
+`;
+
+const ProductName = styled.div`
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 27px;
+color: #1D1F22;
+margin-top: 16px;
+`;
+
+const AttributesContainer = styled.div`
+display: flex;
+margin-top: 43px;
+
+`;
+
+const ProductPriceContainer = styled.div`
+display: flex;
+flex-direction: column;
+`;
+const PriceName = styled.div`
+font-family: 'Roboto Condensed';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 18px;
+color: #1D1F22;
+`;
+const PriceAmount = styled.div`
+display: flex;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 18px;
+color: #1D1F22;
+`;
 
 const mapStateToProps = state => {
     return {

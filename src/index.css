@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&family=Roboto+Condensed:wght@700&family=Roboto:wght@300;400;500;700&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Tourney:wdth,wght@100,400;120.9,460&display=swap');
 
 * { 
@@ -247,15 +248,27 @@
 }
 
 .attributes_swatch {
-
-    display:flex;
-    flex-direction: row;
-    height: 30px;
-    width: 30px;
-    gap: 8px;
+   position: absolute;
+    height: 31px;
+    width: 31px;
+    border: #1D1F22 1px solid;
+    
 }
 .s_marked{
-    border:#5ECE7B 1px solid;
+    border: #ffffff 4px solid;
+    outline:#5ECE7B 1px solid;
+    
+}
+
+.swatch_border_marked {
+    position: relative;
+    display:none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #5ECE7B;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .cart_item {

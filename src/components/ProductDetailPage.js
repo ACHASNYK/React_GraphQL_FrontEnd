@@ -43,7 +43,7 @@ class ProductDetailPage extends Component {
     loadFromLocalStorage() {
         try {
         
-        const serialisedState = localStorage.getItem("detailes");
+        const serialisedState = sessionStorage.getItem("detailes");
             if (serialisedState === null) return undefined;
         const data = (JSON.parse(serialisedState))
             return data
@@ -96,31 +96,58 @@ class ProductDetailPage extends Component {
             
             <ImagesBlock>
                 
-                <div>    
-                    <ul className="list">
+                <PhotoListContainer>    
+                    <PhotoList>
                          {this.displayImgList() } 
-                    </ul>
-                </div>
-                <div>
+                    </PhotoList>
+                </PhotoListContainer>
+                <BigImageContainer>
                     <BigImg img={this.props.photo}/>
-                </div>
-                <div>
+                </BigImageContainer>
+                <DetailesContainer>
                     {/* <Detailes data={this.state.data}/> */}
                     <Detailes />
                     
-                </div>
+                </DetailesContainer>
             </ImagesBlock>
         )
     }
 }
 
 const ImagesBlock = styled.div`
-    display: grid;
-    gap: 1rem;
-    grid-auto-flow: column;
+    display: flex;
+    flex-direction: row;
+    
     border: 1px solid black;
-    margin-top: 80px;
+    margin-top: 160px;
 `;
+const PhotoListContainer = styled.div`
+display: flex;
+flex-direction: column;
+/* margin-left: 100px; */
+margin-right: 5%;
+margin-left: 3%;
+
+
+
+border: 1px solid black;
+
+
+`;
+
+const PhotoList = styled.ul`
+list-style-type: none;
+`;
+const BigImageContainer = styled.div`
+display: flex;
+margin-right: 7%;
+
+`;
+
+const DetailesContainer = styled.div`
+display: flex;
+`;
+
 
 const mapStateToProps = state => {
     // console.log(state.productid.value)

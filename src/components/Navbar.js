@@ -88,7 +88,7 @@ const NavbarMain = styled.div`
     width: 100%;
     left: 0px;
     top: 0px;
-    border: 1px black solid;
+    
     background: #FFFFFF;
     
 `;
@@ -97,7 +97,7 @@ const ButtonGroup = styled.div`
   flex-direction: row;
   gap: 0.5em;
   z-index: 6;
-  margin-left: 6em;
+  padding-left: 100px;
 `;
 const Categories = styled.ul`
     list-style-type: none;
@@ -119,6 +119,7 @@ const ActionGroup = styled.div`
     align-items: center;
     flex-direction: row;
     justify-content: flex-end;
+    width: auto;
     margin-right: 8em;
     background: #ffffff;
     z-index: 10;

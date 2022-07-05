@@ -54,20 +54,29 @@ const mapStateToProps = state => {
 };
 
 const LogoContainer = styled.div`
-
+display: flex;
+flex-direction: row;
 align-items: center;
-
 `;
+
 const LogoCounter = styled.div`
-display: ${props=>props.counter>0? 'block' : 'none'};
+display: ${props=>props.counter>0? 'flex' : 'none'};
 position: absolute;
 top: 18px;
-right: 115px;
-text-align: center;
-padding-bottom: 0.1em;
+right: 150px;
 width: 20px;
 height: 20px;
 border-radius: 60px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 16px;
+
+align-items: center;
+/* text-align: center; */
+justify-content: center;
+text-transform: uppercase;
 background: #1D1F22;
 color: #FFFFFF;
 &:hover{

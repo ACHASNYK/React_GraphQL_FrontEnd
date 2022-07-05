@@ -7,7 +7,7 @@ import { set_modal } from '../redux/modal';
 import {increment_count} from '../redux/counter';
 import { setDefaultAttributes } from '../utilities/handleAttributes';
 import { ReactComponent as CircleIcon } from '../components/icons/circle.svg';
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 
 
@@ -116,7 +116,7 @@ class Card extends Component {
                      <Link to="/pdp" className="router_links">       
                         <Photo  onClick={() => {
                     this.props.set_productid(this.props.item_key);
-                    this.props.set_imglink(this.props.photo);
+                    this.props.set_imglink(this.props.photo[0]);
                         this.saveToLocalStorage(); 
                         
                     
@@ -197,6 +197,19 @@ width: 354px; */
 position: relative;
 top: 16px;
 left: 16px;
+
+`;
+
+const Fade = keyframes`
+  
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+
 `;
 
 const Photo = styled.img`
@@ -205,6 +218,12 @@ const Photo = styled.img`
     height: 330px;
     object-fit: contain;
     align-self: stretch;
+    animation: ${Fade} 0.3s ease-in forwards;
+    transition: all ease-in-out 0.5s;
+
+    &:hover{
+        transform: scale(1.1);
+    }
     
 `;
 
