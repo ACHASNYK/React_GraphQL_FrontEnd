@@ -174,7 +174,7 @@
     width: 63px;
     height: 45px;
     border: 1px solid black;
-    margin: 20px;
+    margin: 12px;
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
@@ -248,15 +248,17 @@
 }
 
 .attributes_swatch {
-   position: absolute;
+   display: flex;
     height: 31px;
     width: 31px;
-    border: #1D1F22 1px solid;
-    
+    /* margin-right: 10px; */
+    /* border: #1D1F22 1px solid; */
+    margin-right: 5px;
+    border: #1D1F22 0.5px solid;
 }
-.s_marked{
-    border: #ffffff 4px solid;
-    outline:#5ECE7B 1px solid;
+.s_marked {
+    border: #ffffff 3px solid;
+    outline: 1px solid #5ECE7B;
     
 }
 

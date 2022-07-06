@@ -70,8 +70,8 @@ class Attributes extends Component {
     render() {
         const data = setDefaultAttributes(this.props.data.product.attributes)
         console.log(data)
-        return (
-            data?.map((element, i) => {
+        return (<AttributesContainer>
+            {data?.map((element, i) => {
                     
                
                 if (element.type === "swatch") {
@@ -80,7 +80,7 @@ class Attributes extends Component {
                         <SwatchName>{element.name}</SwatchName>
                         <SwatchElement>{element.items.map((e, i) => {
                             return (
-                                <div className={`attributes_swatch ${element.if===e.value? "s_marked": ""} `}
+                                <div className={`attributes_swatch ${element.id===e.value? "s_marked": ""} `}
                                     key={i}
                                     name={element.name}
                                     onClick={() => this.setAttributes(element.name, e.value, data)}
@@ -113,7 +113,7 @@ class Attributes extends Component {
             
                 }
             )
-        )
+            }</AttributesContainer>)
 
     }   
     
@@ -138,8 +138,11 @@ list-style: none;
 display: flex;
 flex-direction: row;
 border: 1px solid black;
-margin-left: 0;
-
+margin-top: 8px;
+margin-left: -35px;
+gap:5px;
+align-items: center;
+justify-content: center;
 `;
 
 // const SwatchMarked = styled.div`
