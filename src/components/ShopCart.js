@@ -5,6 +5,8 @@ import BigCartItemsList from "./BigCartItemsList";
 import {increment_count, decrement_count} from '../redux/counter';
 import { connect } from 'react-redux';
 import { totalAmount } from '../utilities/countershandler';
+import ModalDisplay from "./ModalDisplay";
+import styled from "styled-components";
 
 
 class ShopCart extends Component {
@@ -107,7 +109,11 @@ class ShopCart extends Component {
     //         })
     //     }
     // }
-    
+    componentDidUpdate(prevProps) {
+        if (this.props.counter !== prevProps.counter) {
+            this.setState({data: JSON.parse(sessionStorage.getItem("shopping_cart" || []))})
+        }
+    }
 
     componentDidMount() {
         this.setState({data: JSON.parse(sessionStorage.getItem("shopping_cart" || []))})
@@ -120,40 +126,226 @@ class ShopCart extends Component {
         
         return (
         
-            <div className="big_shopping_cart">
-            <div className="big_shopping_cart_title">
-                <p>CART</p>
-            </div>
-            <div className="big_shopping_cart_items_list">
-                <div className="big_shopping_cart_items_detailes">
+        <BigCartContainer>
+            <BigCartTitle>CART</BigCartTitle>
+            <BigCartItemsListContainer>
+                <BigItem>
                     {this.displayItemsList()}
-                </div>
+                </BigItem>
+            </BigCartItemsListContainer>
+              <BigCartTotalAmountBox>
+                    <AmountBox>
+                            <AmountTax>
+                                <TaxLabel>Tax 21%:</TaxLabel><TaxValue>{(amount/100*21).toFixed(2) }</TaxValue>
+                            </AmountTax>
+                            <ItemsQuantity>
+                                <QuantityLabel>Quantity: </QuantityLabel>
+                                <QuantityCounter>{counter}</QuantityCounter>
+                            </ItemsQuantity>
+                            <Total>
+                                <TotalLabel>Total:</TotalLabel>
+                                <TotalAmount>{symbol} {amount}</TotalAmount>
+                            </Total>
+
+                    </AmountBox>
+                            
+                    <ButtonToOrder>ORDER</ButtonToOrder>
+                    <Link to="/" className="router_links">
+                        <ButtonToReturn>CONTINUE SHOPPING</ButtonToReturn>
+                    </Link>
+                </BigCartTotalAmountBox>
                 
-            </div>
-                <div className="big_shopping_cart_box" >
-                    <div className="big_shopping_cart_box_text">
-                        <div className="big_shopping_cart_box_text_tax">
-                            Tax 21%:{(amount/100*21).toFixed(2) }
-                        </div>
-                        <div className="big_shopping_cart_box_text_qnt">
-                            Quantity: {counter }
-                        </div>
-                        <div className="big_shopping_cart_box_text_total">
-                            Total: {symbol} { amount}
-                        </div>
-
-                    </div>
-
-                </div>
-                <div>
-                    <button type="button">ORDER</button>
-                </div>
-                {/* </Link> */}
-        </div>
+            </BigCartContainer>
         )
 
     }
 }
+
+const BigCartContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 90%;
+height: 44vw;
+margin-top: 80px;
+margin-left: 100px;
+margin-right: 100px;
+
+`;
+const BigCartTitle = styled.div`
+    
+    top: 80px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    text-transform: uppercase;
+    color: #1D1F22;
+
+`;
+const BigCartItemsListContainer = styled.div`
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+height: 26vw;
+width: 100%;
+overflow-y: auto;
+
+`;
+
+const BigItem = styled.div`
+max-height: 336px;
+display: flex;
+flex-direction: column;
+width: 100%;
+justify-content: space-between;
+
+`;
+
+const BigCartTotalAmountBox = styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+
+width: 280px;
+height: auto;
+
+position: absolute;
+bottom: 1%;
+`;
+
+const AmountBox = styled.div`
+display: flex;
+position: relative;
+margin-left: 0;
+flex-direction: column;
+gap: 10px;
+align-items: flex-start;
+`;
+const AmountTax = styled.div`
+display: flex;
+flex-direction: row;
+gap: 10px;
+align-items: flex-start;
+`;
+const TaxLabel = styled.div`
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+color: #1D1F22;
+`;
+const TaxValue = styled.div`
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 28px;
+color: #1D1F22;
+`;
+const ItemsQuantity = styled.div`
+display: flex;
+flex-direction: row;
+gap: 10px;
+align-items: flex-start;
+`;
+const QuantityLabel = styled.div`
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+color: #1D1F22;
+`;
+const QuantityCounter = styled.div`
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 28px;
+color: #1D1F22;
+`;
+const Total = styled.div`
+display: flex;
+flex-direction: row;
+gap: 10px;
+align-items: flex-start;
+`;
+const TotalLabel = styled.div`
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+color: #1D1F22;
+`;
+const TotalAmount = styled.div`
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 28px;
+color: #1D1F22;
+`;
+
+const ButtonToOrder = styled.div`
+display: flex;
+position: relative;
+margin-top: 20px;
+height: 43px;
+width: 100%;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 120%;
+text-transform: uppercase;
+color: #ffffff;
+cursor: pointer;
+background-color: #5ECE7B;
+&:hover {transition: 0.2s;
+    filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.15));
+};
+
+&:active {
+    transform: scale(0.96);
+    filter: drop-shadow(0px 1px 2px rgba(29, 31, 34, 0.15));
+}
+align-items: center;
+justify-content: center;
+`;
+const ButtonToReturn = styled.div`
+
+margin-top: 10px;
+display: flex;
+position: relative;
+height: 43px;
+width: 100%;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 120%;
+text-transform: uppercase;
+border: 1px solid #1D1F22;
+align-items: center;
+justify-content: center;
+background-color : #ffffff ;
+&:hover {
+        transition: 0.2s;
+        filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.15));
+        cursor: pointer;
+        /* 168, 172, 176, 0.23 */
+    }
+
+&:active {
+    transform: scale(0.98);
+    filter: drop-shadow(0px 1px 2px rgba(29, 31, 34, 0.15));
+}
+`;
+
+
 const mapStateToProps = (state) => {
     return {
         counter: state.counter.value,

@@ -1,8 +1,5 @@
 import React, {Component} from "react";
-// import {gql} from 'apollo-boost';
-// import { graphql } from "react-apollo"
 import { allCatQuery } from "../queries/query";
-// import ApolloProvider from 'react-apollo';
 import HeaderButton from "./HeaderButton";
 import CurrSelector from "./CurrSelector";
 import { client } from "../App";
@@ -11,33 +8,31 @@ import {set_swatchid} from '../redux/swatchid'
 import CartDisplayButton from "./CartDisplayButton";
 import styled from "styled-components";
 import { ReactComponent as ShopLogo } from '../components/icons/shop.svg'
+import { connect } from 'react-redux';
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             DataIsLoaded: false,
-            data: {}
-        };
+            data: {},
+          };
     }
 
-    componentDidMount() {
+  componentDidMount() {
         client.query({ query: allCatQuery })
       .then(result => {
         this.setState({
           data: result.data,
-          DataIsLoaded: true
+          DataIsLoaded: true,
+          modal: this.props.modal
         }); set_swatchid(result.data.categories[0].name);
       });
     }
 
-    // updateParent(e) {
-    //     this.props.onclickChange(e)
-    //     console.log(e)
-    // }
     displayList(){
         const { data, DataIsLoaded } = this.state;
-        // console.log(data);
+     
         if(!DataIsLoaded) {
             return(<div>Loading...</div>)
         }else{ 
@@ -56,16 +51,16 @@ class Navbar extends Component {
     
     
     render() {
-    
+      document.body.style.overflowY = "hidden";
       return (
-        <NavbarMain>
+        <NavbarMain modal={ this.props.modal} >
          <ButtonGroup>
-            {/* <Categories> */}
+            
                 {this.displayList() }
-            {/* </Categories> */}
+            
           </ButtonGroup>
           <ShopLogo/>
-          <ActionGroup>
+          <ActionGroup modal={this.props.modal }>
             <CurrSelector/>
             <CartDisplayButton />
           </ActionGroup>
@@ -75,7 +70,6 @@ class Navbar extends Component {
     }
   
 }
-// const ShopLogo = styled.div``;
 
 const NavbarMain = styled.div`
     position: fixed;
@@ -88,41 +82,43 @@ const NavbarMain = styled.div`
     width: 100%;
     left: 0px;
     top: 0px;
-    
     background: #FFFFFF;
-    
 `;
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5em;
-  z-index: 6;
+  z-index: 5;
   padding-left: 100px;
 `;
-const Categories = styled.ul`
-    list-style-type: none;
-    display: inline-block;
-    text-decoration: none;
-    /* border: 1px solid black; */
-    z-index: 6;
-`;
-const Buttons = styled.li`
-  display: inline-block;
-`;
-// const Logo = styled.div`
-// border: 1px black solid`;
+
 
 const ActionGroup = styled.div`
     display: flex;
     height: 40px;
-    
+    /* padding-right: ${props => props.modal? "17px" : "0px"}; */
     align-items: center;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     width: auto;
     margin-right: 8em;
     background: #ffffff;
-    z-index: 10;
+    z-index: 5;
 `;
 
-export default Navbar
+const mapStateToProps = state => {
+  
+    
+  if (!state) {
+    return (console.log("error"))
+  } else {
+    return {
+      modal: state.modal.value,
+            
+    }
+    
+  }
+  
+}
+
+export default connect(mapStateToProps, null)(Navbar);

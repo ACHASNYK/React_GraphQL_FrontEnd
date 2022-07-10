@@ -36,7 +36,7 @@ class Main extends Component {
                 data: result.data,
                 DataIsLoaded: true
             })
-          console.log(result)      
+                
         });
 
     }
@@ -62,7 +62,7 @@ class Main extends Component {
             if (!DataIsLoaded) {
                 return (<div>Loading...</div>)
             } else {
-                console.log(data)
+               
                 return data.category.products.map((items, i) => {
                     return (<div className="card_list" key={i}><Card
                     
@@ -72,6 +72,7 @@ class Main extends Component {
                         brand={items.brand}
                         attributes={items.attributes}
                         price={items.prices}
+                        instock={items.inStock}
                     /></div>); 
                 })
             }
@@ -82,7 +83,7 @@ class Main extends Component {
     
     render() {
          const ddata = this.state.data;
-         console.log(this.props.initial_cat_name, ddata)
+        
       return (
         <> 
                 
@@ -102,9 +103,11 @@ class Main extends Component {
 }
 
 const PLP = styled.div`
-    margin-top: 70px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    max-height: 750px;
 
 `;
 

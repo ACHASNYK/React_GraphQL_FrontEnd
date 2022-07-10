@@ -13,14 +13,22 @@ class BigImg extends Component {
     }
     displayBigPhoto() {
         const data = loadFromLocalStorage();
-        return data.photo? data.photo : null;
+        return data.photo[0]? data.photo[0] : null;
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.photo !== prevProps.photo) {
+            this.setState({
+                img: this.props.photo
+            })
+        }
     }
 
     render() {
         
         return (
 
-            <BigImage className="big_images" src={this.props.photo? this.props.photo: this.displayBigPhoto()} />
+            <BigImage alt="big_img" src={this.props.photo? this.props.photo: this.displayBigPhoto()} />
         )
     }        
 }
@@ -42,7 +50,7 @@ const BigImage = styled.img`
     /* max-width: 610px; */
     height: 511px;
     /* max-height: 511px; */
-    border: 1px solid black;
+    
     object-fit: contain;
     animation: ${Fade} 0.5s ease-in forwards;
 `;

@@ -1,7 +1,10 @@
 import React, {Component, Fragment} from "react";
+
 // import { connect } from 'react-redux';
 // import { set_sizeid } from '../redux/size';
 // import { set_swatchid } from '../redux/swatchid';
+
+import styled, {css } from "styled-components";
 
 
 class Cart_attributes extends Component {
@@ -12,67 +15,147 @@ class Cart_attributes extends Component {
     
 
     render() {
-        // const get = JSON.parse(localStorage.getItem('shopping_cart'));
+        
         const data = this.props.attributes;
         if (data===undefined) {
             return null
         }
-        console.log(data)
+       
 
             
-            return (
-                data.map((element, i) => {
-                    
-                //  console.log(element)
-                    // switch (element) {
-                    //     case element === undefined:
+        return (<AttributesContainer>{
+            data.map((element, i) => {
+                                
+                if (element.type === "swatch")
                         
-                    //         return null;
-                                                
-                    //     case element.type === "text":
-                    if (element.type === "swatch")
-                        
-                        return (<div key={i}>
-                                    <div><p>{element.name}</p></div>
-                                    <div>{element.items.map((e, i) => {
-                                return (
-                                    <button className={`attributes_swatch ${element.id===e.value? "s_marked" : ""}`}
-                                        key={i}
-                                        // onClick={}
-                                        style={{ background: `${e.value}` }} >
-                                    </button>)
-                            })
-                            }</div>;
+                    return (<SwatchContainer key={i}>
+                        <ElementName>{element.name}</ElementName>
+                        <SwatchElement>{element.items.map((e, i) => {
+                            return (
+                                <SwatchItem id={element.id} value={e.value}
+                                    key={i}
+                                    
+                                    style={{ background: `${e.value}` }} >
+                                </SwatchItem>)
+                        })
+                        }</SwatchElement>;
 
                                                   
-                        </div>);
-                    else 
+                    </SwatchContainer>);
+                else
 
-                        return (<div className="cart_item_detailes_attr_icons" key={i}>
+                    return (<TextAttrContainer key={i}>
 
-                            <div className="cart_item_detailes_attr_icons_text"><p>{element.name}</p></div>
-                            <div className="cart_item_detailes_attr_icons_list">{element.items.map((e, i) => {
-                                return (<div className={`cart_item_detailes_attr_icons_value_default ${element.id===e.value? "modal_marked":""}`}
-                                    key={i}
-                                    onClick={() => this.props.set_sizeid(e.value)}>
-                                    {e.value}
-                                </div>)
-                            })}</div>
-                        </div >);
+                        <TextAttrName>{element.name}</TextAttrName>
+                        <TextAtrElement>{element.items.map((e, i) => {
+                            return (<TextAtrrItem id={element.id} value={e.value}
+                                key={i}>
+                                {e.value}
+                            </TextAtrrItem>)
+                        })}</TextAtrElement>
+                    </TextAttrContainer >);
                     
-                })
-            )
+            })
+        }</AttributesContainer>)
         }
         
-
+// onClick={() => this.props.set_sizeid(e.value)}
         
     
 }
 
-// const mapStateToProps = state => {
-    // return { data: state.detailes.value }
-  
-// };
-// const mapDispatchToProps = { set_sizeid, set_swatchid };
-// export default connect(mapStateToProps, mapDispatchToProps)(Attributes)
+const AttributesContainer = styled.div`
+display: flex;
+flex-direction: column;
+`;
+const SwatchContainer = styled.div`
+display: flex;
+flex-direction: column;
+
+`;
+const ElementName = styled.div`
+    display: flex;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    align-items: center;
+`;
+
+const SwatchElement = styled.div`
+margin-top: 8px;
+display: flex;
+flex-direction: row;
+/* border: 1px black solid; */
+`;
+
+const SwatchItem = styled.div`
+
+    display: flex;
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+    border: #1D1F22 0.5px solid;
+    ${props => props.id === props.value && css`
+        border: #ffffff 2px solid;
+        outline: 1px solid #5ECE7B;
+    `};
+`;
+
+const TextAttrContainer = styled.div`
+    top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* border: .5px solid #1D1F22 */
+`;
+
+const TextAttrName = styled.div`
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #1D1F22;
+    /* border: .5px solid #1D1F22 */
+
+`;
+
+const TextAtrElement = styled.div`
+    display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 8px;
+        /* border: .5px solid #1D1F22 */
+`;
+
+const TextAtrrItem = styled.div`
+    width: max-content;
+    min-width: 24px;
+    height: 24px;
+    padding-left: 3px;
+    padding-right: 3px;
+    gap: 8px;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1D1F22;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #1D1F22;
+    ${props => props.id === props.value && css`
+        background-color: #1D1F22;
+        color: white;
+    `}
+
+`;
 export default Cart_attributes

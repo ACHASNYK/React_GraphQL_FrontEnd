@@ -37,11 +37,12 @@ class Small_Img extends Component {
 const SmallCard = styled.div`
     display: flex;
     margin: 10px;
-    border: 1px solid black;
+    
     &:hover {
         cursor: pointer;
         transition: 0.3s;
-        filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.23));
+        filter: drop-shadow(0px 4px 35px rgba(29, 31, 34, 0.15));
+        transform: scale(1.08);
     }
 `;
 

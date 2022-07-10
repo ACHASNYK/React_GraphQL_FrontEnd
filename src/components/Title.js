@@ -24,7 +24,7 @@ const Display = styled.div`
     align-items: flex-start;
     position: fixed;
     padding-top: 80px;
-    padding-bottom: 103px;
+    padding-bottom: 50px;
     padding-left: 100px;
     
     background: #ffffff;

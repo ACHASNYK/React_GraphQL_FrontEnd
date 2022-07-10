@@ -8,6 +8,7 @@ import Attributes from "./Attributes";
 // import { setShopCartLocalStorage } from "./setLocalStorage";
 import {setDefaultAttributes} from '../utilities/handleAttributes';
 import styled from "styled-components";
+import { Interweave } from 'interweave';
 
 
 class Detailes extends Component {
@@ -21,7 +22,7 @@ class Detailes extends Component {
 
    
     renderHTML = props => {
-        return parse(this.props.data.product.description);
+        return parse(this.props.data.product.description), console.log(this.props.data.product.description);
     };
     
     setShopCartLocalStorage() {
@@ -109,12 +110,25 @@ class Detailes extends Component {
                         {data.product.prices[this.props.index].amount}
                     </PriceAmount>
                 </ProductPriceContainer>
-                <div>
-                    <button  onClick={()=>{this.setShopCartLocalStorage(); this.props.increment_count()}} >ADD TO CART</button>
-                </div>
-                <div>
-                    {this.renderHTML()}
-                </div>
+                <ButtonContainer>
+                    <ButtonToCart onClick={() =>
+                    { this.setShopCartLocalStorage(); this.props.increment_count() }} >
+                      ADD TO CART
+                    </ButtonToCart>
+                    <ButtonDisabled instock={data.product.inStock}>
+                            OUT OF STOCK
+                        </ButtonDisabled>
+                </ButtonContainer>    
+                 
+                    <Link to="/" className="router_links">
+                        <ButtonToReturn >CONTINUE SHOPPING</ButtonToReturn>
+                    </Link>
+                
+                <ProductDescription>
+                         <Interweave content={data.product.description}/>            
+                        
+                     {/* {this.renderHTML()} */}
+                </ProductDescription>
             </DetailesContainer>
         )
     }
@@ -124,7 +138,8 @@ class Detailes extends Component {
 const DetailesContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 292px
+    width: 292px;
+    
 `;
 
 const ProductBrand = styled.div`
@@ -156,6 +171,7 @@ margin-top: 43px;
 const ProductPriceContainer = styled.div`
 display: flex;
 flex-direction: column;
+margin-top: 30px;
 `;
 const PriceName = styled.div`
 font-family: 'Roboto Condensed';
@@ -165,6 +181,7 @@ font-size: 18px;
 line-height: 18px;
 color: #1D1F22;
 `;
+
 const PriceAmount = styled.div`
 display: flex;
 font-family: 'Raleway';
@@ -173,7 +190,107 @@ font-weight: 700;
 font-size: 24px;
 line-height: 18px;
 color: #1D1F22;
+margin-top: 10px;
 `;
+const ButtonContainer = styled.div`
+margin-top: 20px;
+position: relative;
+height: 52px;
+width: 100%;
+`;
+
+const ButtonToCart = styled.div`
+
+display: flex;
+position: relative;
+
+height: 52px;
+width: 100%;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 120%;
+text-transform: uppercase;
+color: #ffffff;
+cursor: pointer;
+background-color: #5ECE7B;
+&:hover {transition: 0.2s;
+    filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.15));
+};
+
+&:active {
+    transform: scale(0.96);
+    filter: drop-shadow(0px 1px 2px rgba(29, 31, 34, 0.15));
+}
+align-items: center;
+justify-content: center;
+`;
+
+const ButtonDisabled = styled.div`
+display: flex;
+position: absolute;
+top: 0;
+left: 0;
+height: 52px;
+width: 100%;
+display: ${props => props.instock ? 'none' : 'flex'};
+background-color: #ffffff;
+opacity: 0.8;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 160%;
+color: rgba(29, 31, 34, 1);
+/* border: 1px #1D1F22 solid; */
+    /* #8D8F9A */
+align-items: center;
+justify-content: center;
+    z-index: 3;
+`;
+
+const ButtonToReturn = styled.div`
+margin-top: 30px;
+display: flex;
+position: relative;
+height: 52px;
+width: 100%;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 120%;
+text-transform: uppercase;
+border: 1px solid #1D1F22;
+align-items: center;
+justify-content: center;
+background-color : #ffffff ;
+&:hover {
+        transition: 0.2s;
+        filter: drop-shadow(0px 4px 35px rgba(29, 31, 34, 0.15));
+        
+    }
+
+&:active {
+    transform: scale(0.98);
+    filter: drop-shadow(0px 1px 2px rgba(29, 31, 34, 0.15));
+}
+`;
+
+const ProductDescription = styled.div`
+margin-top: 30px;
+display: flex;
+position: relative;
+width: fit-content;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 159.96%;
+color: #1D1F22;
+`;
+
 
 const mapStateToProps = state => {
     return {

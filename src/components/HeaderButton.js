@@ -105,7 +105,7 @@ display: ${props => props.name === props.index ? 'block' : 'none'};
 width: 60px;
 margin-top: 20px;
 border-bottom: 2px #5ECE7B solid;
-animation: ${bot_line} 0.2s ease-in-out 1 forwards;
+animation: ${bot_line} 0.3s ease-in-out 1 forwards;
 `;
 const mapStateToProps = state => {
   return { index: state.category.value }

@@ -54,16 +54,18 @@ const mapStateToProps = state => {
 };
 
 const LogoContainer = styled.div`
+position: relative;
 display: flex;
 flex-direction: row;
 align-items: center;
+cursor: pointer;
 `;
 
 const LogoCounter = styled.div`
 display: ${props=>props.counter>0? 'flex' : 'none'};
 position: absolute;
-top: 18px;
-right: 150px;
+top: -9px;
+right: -10px;
 width: 20px;
 height: 20px;
 border-radius: 60px;

@@ -99,7 +99,7 @@ flex-direction: row;
 justify-content: center;
 `;
 const HeaderSymbol = styled.div`
-padding-top: 4px;
+padding-top: 5px;
 transform: ${props=> props.isopen? "matrix(1, 0, 0, -1, 0, 0)" : "none" };
 `
 const DropDownHeader = styled.div`

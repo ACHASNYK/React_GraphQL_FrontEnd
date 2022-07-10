@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import { set_swatchid } from '../redux/swatchid';
 import { set_detailes } from '../redux/detail_data';
 import { setDefaultAttributes} from '../utilities/handleAttributes'
-import styled from "styled-components";
+import styled, { css} from "styled-components";
 
 class Attributes extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class Attributes extends Component {
         
     }
       setAttributes = (propname, value, data) => {
-        // const index = data?.findIndex(x => x.name === `${propname}`);
+        
         
         const newData = data.map(obj => {
             if (obj.name === `${propname}`) {
@@ -41,30 +41,7 @@ class Attributes extends Component {
     }
     
     
-    // setAttributes(propname, value, data) {
-    //     // const index = data?.findIndex(x => x.name === `${propname}`);
-        
-    //     const newData = data.map(obj => {
-    //         if (obj.name === `${propname}`) {
-    //             return { ...obj, id: value };
-    //         }
-    //             return obj;                
-    //     });
-    //     const storage = { ...this.props.data, product: { ...this.props.data.product, attributes: newData } }
-    //     // console.log(index)
-    //     console.log(newData)
-    //     this.props.set_detailes(storage);
-    // }
     
-    // setDefaultAttributes =(data) => {
-    //     const newData = data.map(obj => {
-    //         if (obj.id===obj.name) {
-    //             return {...obj, id : obj.items[0].value}
-    //         } return obj;
-        
-    //     }) 
-    //     return newData;
-    // }
     
     
     render() {
@@ -80,12 +57,12 @@ class Attributes extends Component {
                         <SwatchName>{element.name}</SwatchName>
                         <SwatchElement>{element.items.map((e, i) => {
                             return (
-                                <div className={`attributes_swatch ${element.id===e.value? "s_marked": ""} `}
+                                <AttributesSwatch id={element.id} value={e.value}
                                     key={i}
                                     name={element.name}
                                     onClick={() => this.setAttributes(element.name, e.value, data)}
                                     style={{ background: `${e.value}` }} >
-                                </div>)
+                                </AttributesSwatch>)
                         })}</SwatchElement>
 
                                                   
@@ -93,21 +70,21 @@ class Attributes extends Component {
                 } else {
                    
                     
-                    return (<div key={i}>
+                    return (<SwatchContainer key={i}>
 
-                        <div><p>{element.name}</p></div>
-                        <div>{element.items.map((e, i) => {
+                        <SwatchName>{element.name}</SwatchName>
+                        <SwatchElement>{element.items.map((e, i) => {
                                 
                             
-                            return (<div className={`attributes_text ${element.id===e.value ? "marked" : ""}`}
+                            return (<AttributesText id={element.id} value={e.value}
                                 key={i}
                                 name={element.name}
                                 onClick={() => this.setAttributes(element.name, e.value, data)
                                 }>
                                 {e.value}
-                            </div>)
-                        })}</div>
-                    </div >);
+                            </AttributesText>)
+                        })}</SwatchElement>
+                    </SwatchContainer >);
                     
                 }
             
@@ -119,10 +96,17 @@ class Attributes extends Component {
     
 }
 
+const AttributesContainer = styled.div`
+display: flex;
+flex-direction: column;
+
+`;
+
 const SwatchContainer = styled.div`
 display: flex;
 flex-direction: column;
-border: 1px solid black;
+
+margin-bottom: 20px;
 `;
 const SwatchName = styled.div`
 font-family: 'Roboto Condensed';
@@ -131,39 +115,53 @@ font-weight: 700;
 font-size: 18px;
 line-height: 18px;
 color: #1D1F22;
-border: 1px solid black;
+
 `;
 const SwatchElement = styled.ul`
+cursor: pointer;
 list-style: none;
 display: flex;
 flex-direction: row;
-border: 1px solid black;
+
 margin-top: 8px;
-margin-left: -35px;
+margin-left: -40px;
 gap:5px;
 align-items: center;
-justify-content: center;
+justify-content: space-around;
 `;
-
-// const SwatchMarked = styled.div`
-//     position: relative;
-//     display: none;
-//     /* ${props => props.id===props.value? 'flex' : 'none'}; */
-//     width: 36px;
-//     height: 36px;
-//     border: 1px solid #5ECE7B;
-//     align-items: center;
-//     justify-content: center;
-// `;
-
-const SwatchItem = styled.div` 
-    position: absolute;
+const AttributesSwatch = styled.div`
+    display: flex;
     height: 31px;
     width: 31px;
-    border: ${props=> props.id===props.value? '#ffffff 5px solid': '#1D1F22 1px solid'};
-    outline: ${props=>props.id===props.value? '1px #5ECE7B solid' : 'none'};
-`;     
- 
+    margin-right: 5px;
+    border: #1D1F22 0.5px solid;
+    ${props => props.id === props.value && css`
+        border: #ffffff 3px solid;
+        outline: 1px solid #5ECE7B;
+    `}
+`;
+const AttributesText = styled.div`
+  /* box-sizing: border-box; */
+    display: flex;
+    width: 63px;
+    height: 45px;
+    border: 1px solid #1D1F22;
+    margin-right: 10px;
+    
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.05em;
+     color: #1D1F22;
+     ${props => props.id === props.value && css`
+        background-color: #1D1F22;
+        color: white;     
+     `}
+`;
 
 
 const mapStateToProps = state => {

@@ -37,7 +37,7 @@ class ProductDetailPage extends Component {
             });this.props.set_detailes(result.data)
           });
            
-        
+       
     }
     
     loadFromLocalStorage() {
@@ -118,19 +118,17 @@ const ImagesBlock = styled.div`
     display: flex;
     flex-direction: row;
     
-    border: 1px solid black;
+    
     margin-top: 160px;
+    max-height: 40vw;
+    overflow-y: auto;
 `;
 const PhotoListContainer = styled.div`
 display: flex;
 flex-direction: column;
-/* margin-left: 100px; */
-margin-right: 5%;
+margin-right: 9%;
 margin-left: 3%;
 
-
-
-border: 1px solid black;
 
 
 `;
@@ -141,11 +139,13 @@ list-style-type: none;
 const BigImageContainer = styled.div`
 display: flex;
 margin-right: 7%;
+margin-left: 3%;
 
 `;
 
 const DetailesContainer = styled.div`
 display: flex;
+margin-left: 3%;
 `;
 
 

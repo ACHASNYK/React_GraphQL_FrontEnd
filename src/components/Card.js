@@ -75,7 +75,9 @@ class Card extends Component {
             attributes: this.props.attributes,
             photo: this.props.photo,
             items_count: 1,
-            choices: {}
+            choices: {},
+            instock: this.props.inStock
+
                  
         }
             try {
@@ -103,8 +105,18 @@ class Card extends Component {
             <>
                 
             
-                {/* <button className="circle_icon" onClick={() => { this.props.set_modal(true) }} >cart</button> */}
-                    <CardMain>
+                <CardContainer>
+                    <Link to="/pdp" className="router_links">
+                        <BannerOutofStock onClick={() => {
+                    this.props.set_productid(this.props.item_key);
+                    this.props.set_imglink(this.props.photo[0]);
+                        this.saveToLocalStorage();               
+                    }}instock={this.props.instock}>
+                            <Text>OUT OF STOCK</Text>
+                        </BannerOutofStock>
+                    </Link>
+
+                <CardMain instock={ this.props.instock }>
                     
                         
                     <CircleContainer onClick={() => {this.setShopCartLocalStorage(); this.props.increment_count() }}>
@@ -125,7 +137,7 @@ class Card extends Component {
                             
                         </Link>
                     </Image>
-                    {/* <div className="image_text"><h2>OUT OF STOCK</h2></div> */}
+                    
                     <CardTitle>
                             {this.props.brand}    {this.props.name}
                     </CardTitle>
@@ -134,12 +146,7 @@ class Card extends Component {
                     </CardPrice>
                     
                 </CardMain>
-                
-            {/* //         <p> */}
-            {/* //             {} */}
-            {/* //         </p> */}
-            {/* //     </div> */}
-                {/* // </div> */}
+            </CardContainer>           
         </>
         )
        
@@ -148,44 +155,89 @@ class Card extends Component {
   
 }
 
-const CardMain = styled.div`
-display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-right: 40px;
+const CardContainer = styled.div`
+margin-right: 40px;
     margin-top: 10px;
     margin-bottom: 60px;
+    width: 387px;
+    height: 445px;
+display: flex;
+position: relative;
+&:hover {
+        transition: 0.3s;
+        filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.23));
+    }
+
+`;
+const CardMain = styled.div`
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
     width: 386px;
     height: 444px;
     background: #ffffff;
     text-decoration: none;
-    
-    
+   
     &:hover {
         transition: 0.3s;
         filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.23));
     }
 `;
+const BannerOutofStock = styled.div`
+    display: ${props=>props.instock? 'none' : 'flex' };
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #ffffff;
+    opacity: 0.5; 
+    height: 444px;
+    width: 386px;
+    /* align-items: center; */
+    justify-content: center;
+    z-index: 2;
+`;
 
+const Text = styled.div`
+    display: ${props=>props.instock? 'none' : 'flex'};
+    position: absolute;
+    /* top: 50%;
+    left: 50%; */
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 160%;
+    color: #1D1F22;
+    /* #8D8F9A */
+    opacity: 1;
+    z-index: 2;
+    margin-top: 40%;
+    /* align-items: center; */
+    /* justify-content: center; */
+`;
 const CircleContainer = styled.div`
 display: none;
 position: absolute;
 right: 31px;
 bottom: 85px;
-z-index: 3;
+z-index: 2;
 width: 52px;
 height: 52px;
 ${CardMain}:hover & {
     display: block;
-    transition: 0.2s;
+    transition: 0.4s;
     filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.15));
 }
 &:hover{
     cursor: pointer;
 }
 &:active{
-    transform: scale(0.96);
+    transform: scale(0.94);
     filter: drop-shadow(0px 1px 2px rgba(29, 31, 34, 0.15));
 }
 `;
@@ -197,6 +249,7 @@ width: 354px; */
 position: relative;
 top: 16px;
 left: 16px;
+
 
 `;
 
@@ -222,7 +275,7 @@ const Photo = styled.img`
     transition: all ease-in-out 0.5s;
 
     &:hover{
-        transform: scale(1.1);
+        transform: scale(1.08);
     }
     
 `;
