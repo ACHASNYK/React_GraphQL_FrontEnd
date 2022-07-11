@@ -6,7 +6,7 @@ import { set_imglink } from '../../redux/imglink';
 import { set_modal } from '../../redux/modal';
 import {increment_count} from '../../redux/counter';
 import { setDefaultAttributes } from '../../utilities/handleAttributes';
-import { ReactComponent as CircleIcon } from '/projects/2react/src/icons/circle.svg';
+import { ReactComponent as CircleIcon } from '../icons/circle.svg';
 import styled, { keyframes } from "styled-components";
 
 

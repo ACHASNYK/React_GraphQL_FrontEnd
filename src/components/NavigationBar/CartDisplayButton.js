@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { set_modal } from "../../redux/modal";
 import { connect } from 'react-redux'
-import {ReactComponent as CartLogo } from '/projects/2react/src/icons/cart.svg'
+import {ReactComponent as CartLogo } from '../icons/cart.svg'
 import styled from "styled-components";
 
 

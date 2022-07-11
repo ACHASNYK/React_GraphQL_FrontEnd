@@ -7,7 +7,7 @@ import Modal from "./Modal";
 import {set_swatchid} from '../../redux/swatchid'
 import CartDisplayButton from "./CartDisplayButton";
 import styled from "styled-components";
-import { ReactComponent as ShopLogo } from '/projects/2react/src/icons/shop.svg'
+import { ReactComponent as ShopLogo } from '../icons/shop.svg'
 import { connect } from 'react-redux';
 
 class Navbar extends Component {
