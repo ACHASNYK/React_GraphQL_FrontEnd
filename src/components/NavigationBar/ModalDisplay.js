@@ -130,7 +130,7 @@ class ModalDisplay extends Component {
                         <Link to="/shopcart" className="router_links_cart">
                             <ButtonToBag onClick={() => { this.props.set_modal(false) }}>VIEW BAG</ButtonToBag>
                         </Link>
-                        <ButtonCheckOut onClick={() => { this.props.set_modal(false); alert('Thank you for you shopping!' ) }}>CHECK OUT</ButtonCheckOut>
+                        <ButtonCheckOut onClick={() => { this.props.set_modal(false); alert('Thank you for your shopping!' ) }}>CHECK OUT</ButtonCheckOut>
                     </ModalButtonGroup>
                 </ModalDisplayFrame>
         )
