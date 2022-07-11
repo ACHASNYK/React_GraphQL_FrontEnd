@@ -1,13 +1,13 @@
  import { configureStore } from "@reduxjs/toolkit";
-import productReducer from '../redux/productid';
-import categoryReducer from '../redux/category';
-import linkReducer from '../redux/imglink';
-import detailReducer from '../redux/detail_data';
-import swatchReducer from '../redux/swatchid';
-import counterReducer from '../redux/counter'
-import sizeReducer from '../redux/size';
-import currencyReducer from '../redux/currency';
-import modalReducer from '../redux/modal';
+import productReducer from './productid';
+import categoryReducer from './category';
+import linkReducer from './imglink';
+import detailReducer from './detail_data';
+import swatchReducer from './swatchid';
+import counterReducer from './counter'
+import sizeReducer from './size';
+import currencyReducer from './currency';
+import modalReducer from './modal';
 
 const store = configureStore({
     reducer: {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { set_imglink } from '../redux/imglink'
+import { set_imglink } from '../../redux/imglink'
 import styled from "styled-components";
 
 
@@ -21,7 +21,7 @@ class Small_Img extends Component {
     render() {
 
         return (
-            // console.log(this.props)
+      
             
                 <SmallCard onClick={() => this.props.set_imglink(this.props.photo)} >                
                     <SmallImage src={this.props.photo} />                    

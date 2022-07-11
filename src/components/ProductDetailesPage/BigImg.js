@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { set_imglink } from '../redux/imglink';
-import { loadFromLocalStorage } from "./loadFromLocalStorage";
+import { loadFromLocalStorage } from "../../utilities/loadFromLocalStorage";
 import styled, { keyframes } from "styled-components";
 
 class BigImg extends Component {
@@ -47,12 +46,15 @@ const Fade = keyframes`
 
 const BigImage = styled.img`
     width: 610px;
-    /* max-width: 610px; */
     height: 511px;
-    /* max-height: 511px; */
-    
+    cursor: pointer;
     object-fit: contain;
     animation: ${Fade} 0.5s ease-in forwards;
+    transition: all ease-in-out 0.5s;
+
+    &:hover{
+        transform: scale(1.2);
+    }
 `;
 
 const mapStateToProps = state => {

@@ -32,7 +32,9 @@ query Query2 ($input: CategoryInput) {
         }
       }
       prices {
+        __typename @skip(if: true)
         currency {
+          __typename @skip(if: true)
           symbol
         }
         amount
@@ -68,9 +70,9 @@ query Query5 ($productId: String!) {
       }
     }
     prices {
-      
+       __typename @skip(if: true)
       currency {
-        
+         __typename @skip(if: true)
         label
         symbol
       }
@@ -83,7 +85,9 @@ query Query5 ($productId: String!) {
 
 const currency = gql`
 query Query6 {
+  __typename @skip(if: true)
   currencies {
+    __typename @skip(if: true)
     label
     symbol
   }

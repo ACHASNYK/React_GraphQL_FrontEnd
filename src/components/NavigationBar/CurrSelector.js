@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { set_currencyid } from "../redux/currency";
-import { client } from '../App';
-import { currency } from '../queries/query';
-import { setStorage } from './setStorage'
+import { set_currencyid } from "../../redux/currency";
+import { client } from '../../App';
+import { currency } from '../../queries/query';
 import styled from 'styled-components';
-import ReactDOM from 'react-dom';
+
 
 
 class CurrSelector extends Component {
@@ -120,7 +119,6 @@ position:absolute;
 top: 65px;
 width: 8em;
 z-index: 11;
-/* box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15); */
 filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 background: #ffffff;
 &:hover{
@@ -128,10 +126,8 @@ background: #ffffff;
 }
 `;
 const DropDownList = styled.ul`
-padding: 0;
+  padding: 0;
   margin-top: 0em;
-  /* padding-left: 1em; */
-   
   box-sizing: border-box;
   color: #1D1F22;
   font-size: 1rem;

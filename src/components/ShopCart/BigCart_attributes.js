@@ -89,7 +89,9 @@ const SwatchElement = styled.div`
 display: flex;
 flex-direction: row;
 gap:8px;
+padding: 3px;
 align-items: flex-start;
+justify-content: center;
 `;
 const ElementItem = styled.div`
 width: 32px;

@@ -1,12 +1,9 @@
 import React, {Component} from "react";
 import Card from "./Card";
-import { client } from "../App";
+import { client } from "../../App";
 import { connect } from "react-redux";
-import { allProducts } from "../queries/query";
-import Title from "./Title";
-// import { set_modal } from '../redux/modal';
-// import { set_swatchid } from "../redux/swatchid";
-// import Modal from "./Modal";
+import { allProducts } from "../../queries/query";
+import Title from './Title';
 import styled from "styled-components";
 
 
@@ -29,7 +26,7 @@ class Main extends Component {
             "title": `${this.props.cat_name? this.props.cat_name : this.loadFromLocalStorage()? this.loadFromLocalStorage(): this.props.initial_cat_name}`
             }
         }
-        // `${this.props.cat_name? this.props.cat_name : this.loadFromLocalStorage()? this.loadFromLocalStorage(): this.props.initial_cat_name}`
+        
         client.query({ query: allProducts, variables: query_variable })
             .then(result => {
             this.setState({
@@ -82,12 +79,9 @@ class Main extends Component {
     
     
     render() {
-         const ddata = this.state.data;
-        
+         
       return (
         <> 
-                
-            
             <Title name={this.props.cat_name} initial_name={this.props.initial_cat_name } />
               <PLP>   
                 <CardList>
@@ -105,6 +99,7 @@ class Main extends Component {
 const PLP = styled.div`
     margin-top: 20px;
     display: flex;
+    width: 100%;
     flex-direction: column;
     overflow-y: auto;
     max-height: 750px;
@@ -130,7 +125,6 @@ const List = styled.ul`
 `;
 
 const mapStateToProps = state => {
-    // console.log(state.category.value)
     if (!state) {
         return (console.log("error"))
     }else{
@@ -142,6 +136,5 @@ const mapStateToProps = state => {
         }
     }
 };
-//   const mapDispatchToProps = {}
-// console.log(this.data)
+
 export default connect(mapStateToProps, null)(Main);

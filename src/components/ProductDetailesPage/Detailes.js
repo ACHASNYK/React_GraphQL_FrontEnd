@@ -1,12 +1,12 @@
 import React, {Component, Fragment} from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import {increment_count, decrement_count} from '../redux/counter';
-import { set_imglink } from '../redux/imglink';
+import {increment_count, decrement_count} from '../../redux/counter';
+import { set_imglink } from '../../redux/imglink';
 import parse from 'html-react-parser';
 import Attributes from "./Attributes";
 // import { setShopCartLocalStorage } from "./setLocalStorage";
-import {setDefaultAttributes} from '../utilities/handleAttributes';
+import {setDefaultAttributes} from '../../utilities/handleAttributes';
 import styled from "styled-components";
 import { Interweave } from 'interweave';
 
@@ -21,23 +21,22 @@ class Detailes extends Component {
     }
 
    
-    renderHTML = props => {
-        return parse(this.props.data.product.description), console.log(this.props.data.product.description);
-    };
+    
     
     setShopCartLocalStorage() {
         const data = this.props.data
     if (data.product.attributes === undefined) {
             return null
         }
-        const attributes = setDefaultAttributes(data.product.attributes);
+        
+        // const attributes = setDefaultAttributes(data.product.attributes);
         
         const Object = {
             name: data.product?.name,
             id: data.product?.id,
             brand: data.product?.brand,
             price: data.product?.prices,
-            attributes: attributes,
+            attributes: setDefaultAttributes(data.product.attributes),
             photo: data.product?.gallery,
             items_count: 1,
             
@@ -55,7 +54,7 @@ class Detailes extends Component {
         let flag = false;
         console.log(flag)
         if (get.length===0) {
-            // get.push(Object);
+            
             return get.push(Object), increment_count(), counter += 1,
                 sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
                 sessionStorage.setItem('counter', JSON.stringify(counter));
@@ -126,8 +125,6 @@ class Detailes extends Component {
                 
                 <ProductDescription>
                          <Interweave content={data.product.description}/>            
-                        
-                     {/* {this.renderHTML()} */}
                 </ProductDescription>
             </DetailesContainer>
         )
@@ -243,8 +240,6 @@ font-weight: 400;
 font-size: 24px;
 line-height: 160%;
 color: rgba(29, 31, 34, 1);
-/* border: 1px #1D1F22 solid; */
-    /* #8D8F9A */
 align-items: center;
 justify-content: center;
     z-index: 3;

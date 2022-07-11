@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { client } from "../App";
+import { client } from "../../App";
 import { connect } from "react-redux";
-import { productById } from "../queries/query"
+import { productById } from "../../queries/query"
 import SmallImg from "./SmallImg";
 import BigImg from "./BigImg";
 import Detailes from "./Detailes";
-import { set_detailes } from '../redux/detail_data';
-import { loadFromLocalStorage } from '../components/loadFromLocalStorage'
+import { set_detailes } from '../../redux/detail_data';
+import { loadFromLocalStorage } from '../../utilities/loadFromLocalStorage'
 import styled from "styled-components";
 
 class ProductDetailPage extends Component {
@@ -23,7 +23,7 @@ class ProductDetailPage extends Component {
     }        
     
     componentDidMount() {
-        //  this.setState({ object: this.loadFromLocalStorage() })
+        
     const query_variable = {
             
             "productId": `${this.props.product_id? this.props.product_id : this.getID()}`
@@ -84,18 +84,11 @@ class ProductDetailPage extends Component {
 
 
     render() {
-        
-        const Object = this.loadFromLocalStorage();
-        // const ddata = Object.keys(data);
-        // console.log(data.category.products)
-            
-          
-        // console.log(ddata[0]) 
-        return (
-            
-            
-            <ImagesBlock>
                 
+        return (
+              
+            <ImagesBlock>
+
                 <PhotoListContainer>    
                     <PhotoList>
                          {this.displayImgList() } 
@@ -105,7 +98,7 @@ class ProductDetailPage extends Component {
                     <BigImg img={this.props.photo}/>
                 </BigImageContainer>
                 <DetailesContainer>
-                    {/* <Detailes data={this.state.data}/> */}
+                   
                     <Detailes />
                     
                 </DetailesContainer>
@@ -117,30 +110,26 @@ class ProductDetailPage extends Component {
 const ImagesBlock = styled.div`
     display: flex;
     flex-direction: row;
-    
-    
     margin-top: 160px;
     max-height: 40vw;
     overflow-y: auto;
+    scrollbar-gutter: stable;
 `;
 const PhotoListContainer = styled.div`
-display: flex;
-flex-direction: column;
-margin-right: 9%;
-margin-left: 3%;
-
-
-
+    display: flex;
+    flex-direction: column;
+    margin-right: 9%;
+    margin-left: 3%;
 `;
 
 const PhotoList = styled.ul`
 list-style-type: none;
 `;
+
 const BigImageContainer = styled.div`
 display: flex;
 margin-right: 7%;
 margin-left: 3%;
-
 `;
 
 const DetailesContainer = styled.div`
@@ -150,7 +139,7 @@ margin-left: 3%;
 
 
 const mapStateToProps = state => {
-    // console.log(state.productid.value)
+    
     if (!state) {
         return (console.log("error"))
     }else{
@@ -158,5 +147,5 @@ const mapStateToProps = state => {
     }
 };
 const mapDispatchToProps = { set_detailes };
-// console.log(this.data)
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailPage);

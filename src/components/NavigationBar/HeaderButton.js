@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { set_category } from '../redux/category'; 
+import { set_category } from '../../redux/category'; 
 import styled, { keyframes } from "styled-components";
-import { responsePathAsArray } from "graphql";
+
 
 class HeaderButton extends Component {
   constructor(props) {
@@ -37,7 +37,6 @@ class HeaderButton extends Component {
   }
   
     render() {
-      console.log()
       return (
         <Link to="/" className="router_links">
           <Button link={this.props.name} onClick={(e) => {
@@ -49,18 +48,12 @@ class HeaderButton extends Component {
             <Label index={this.state.index} name={ this.props.name}>{this.props.name} </Label>
             <Bottomline index={this.state.index} name={ this.props.name}></Bottomline>
           </Button>
-            {/* <button link={this.props.name}
-              onClick={(e) =>
-                this.props.set_category(e.target.innerText)}>
-              {this.props.name}
-            </button> */}
-          
-          {/* </div> */}
+           
         </Link>  
       );
     }
-    // { this.handleClick(e.target.innerText) }
 }
+
 const Button = styled.div`
     position: relative;
     margin-bottom: -20px;
@@ -72,9 +65,7 @@ const Button = styled.div`
     text-decoration: none;
     padding: 6px;
     width: auto;
-    
-    
-    
+ 
 `;
 const Label = styled.p`
 font-family: 'Raleway';

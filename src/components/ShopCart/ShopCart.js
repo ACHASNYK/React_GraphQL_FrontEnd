@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import BigCartItemsList from "./BigCartItemsList";
 // import CartItemsList from './CartItemsList'
-import {increment_count, decrement_count} from '../redux/counter';
+import {increment_count, decrement_count} from '../../redux/counter';
 import { connect } from 'react-redux';
-import { totalAmount } from '../utilities/countershandler';
-import ModalDisplay from "./ModalDisplay";
+import { totalAmount } from '../../utilities/countershandler';
 import styled from "styled-components";
+
 
 
 class ShopCart extends Component {
@@ -19,27 +19,7 @@ class ShopCart extends Component {
         }
     }
 
-    // totalAmount() {
-    //     const data = this.state.data;
-    //     let price = []
-    //     let count = []
-    //     let symbol = ''
-    //     let amount = 0
-    //     data.map(e => {
-    //         price.push(e.price[this.props.index].amount);
-    //         count.push(e.items_count);
-    //         symbol = e.price[this.props.index].currency.symbol;
-    //     })
-    //     console.log(price, count)
-    //     for (let i = 0; i < price.length; ++i){
-    //         amount += (price[i] * count[i]);
-            
-    //         console.log(amount.toFixed(2))
-    //     }
-    //     amount = amount.toFixed(2);
-    //     return { amount, symbol }
-    // }
-
+    
     displayItemsList = () => {
         const data = this.state.data;
 
@@ -102,13 +82,13 @@ class ShopCart extends Component {
       return  sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count();
      
     }
-    // componentDidUpdate(prevProps) {
-    //     if(this.props.counter!==prevProps.counter) {
-    //         this.setState = ({
-    //             counter: this.props.counter,
-    //         })
-    //     }
-    // }
+    
+    handleOrder() {
+        sessionStorage.setItem('shopping_cart',JSON.stringify([]));
+        sessionStorage.setItem('counter', JSON.stringify(0));
+        this.props.increment_count();
+        alert('Thank you to purchase with us!');
+    }
     componentDidUpdate(prevProps) {
         if (this.props.counter !== prevProps.counter) {
             this.setState({data: JSON.parse(sessionStorage.getItem("shopping_cart" || []))})
@@ -149,7 +129,7 @@ class ShopCart extends Component {
 
                     </AmountBox>
                             
-                    <ButtonToOrder>ORDER</ButtonToOrder>
+                    <ButtonToOrder onClick={()=>{this.handleOrder()}}>ORDER</ButtonToOrder>
                     <Link to="/" className="router_links">
                         <ButtonToReturn>CONTINUE SHOPPING</ButtonToReturn>
                     </Link>
@@ -187,7 +167,7 @@ const BigCartItemsListContainer = styled.div`
 box-sizing: border-box;
 display: flex;
 flex-direction: column;
-height: 26vw;
+height: 27vw;
 width: 100%;
 overflow-y: auto;
 
@@ -211,13 +191,14 @@ width: 280px;
 height: auto;
 
 position: absolute;
-bottom: 1%;
+bottom: 4%;
 `;
 
 const AmountBox = styled.div`
 display: flex;
 position: relative;
 margin-left: 0;
+width: 100%;
 flex-direction: column;
 gap: 10px;
 align-items: flex-start;
@@ -231,10 +212,12 @@ align-items: flex-start;
 const TaxLabel = styled.div`
 font-family: 'Raleway';
 font-style: normal;
+width: 100px;
 font-weight: 400;
 font-size: 24px;
 line-height: 28px;
 color: #1D1F22;
+text-align: left;
 `;
 const TaxValue = styled.div`
 font-family: 'Raleway';
@@ -248,6 +231,7 @@ const ItemsQuantity = styled.div`
 display: flex;
 flex-direction: row;
 gap: 10px;
+
 align-items: flex-start;
 `;
 const QuantityLabel = styled.div`
@@ -255,8 +239,10 @@ font-family: 'Raleway';
 font-style: normal;
 font-weight: 400;
 font-size: 24px;
+width: 100px;
 line-height: 28px;
 color: #1D1F22;
+text-align: left;
 `;
 const QuantityCounter = styled.div`
 font-family: 'Raleway';
@@ -278,7 +264,9 @@ font-style: normal;
 font-weight: 400;
 font-size: 24px;
 line-height: 28px;
+width: 100px;
 color: #1D1F22;
+text-align: left;
 `;
 const TotalAmount = styled.div`
 font-family: 'Raleway';

@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { set_productid } from '../redux/productid';
-import { set_imglink } from '../redux/imglink';
-import { set_modal } from '../redux/modal';
-import {increment_count} from '../redux/counter';
-import { setDefaultAttributes } from '../utilities/handleAttributes';
-import { ReactComponent as CircleIcon } from '../components/icons/circle.svg';
+import { set_productid } from '../../redux/productid';
+import { set_imglink } from '../../redux/imglink';
+import { set_modal } from '../../redux/modal';
+import {increment_count} from '../../redux/counter';
+import { setDefaultAttributes } from '../../utilities/handleAttributes';
+import { ReactComponent as CircleIcon } from '/projects/2react/src/icons/circle.svg';
 import styled, { keyframes } from "styled-components";
+
 
 
 
@@ -20,13 +21,13 @@ class Card extends Component {
         if (this.props.attributes === undefined) {
             return null
         }
-        const attributes = setDefaultAttributes(this.props.attributes)
+        // const attributes = setDefaultAttributes(this.props.attributes)
         const Object = {
             name: this.props.name,
             id: this.props.item_key,
             brand: this.props.brand,
             price: this.props.price,
-            attributes: attributes,
+            attributes: setDefaultAttributes(this.props.attributes),
             photo: this.props.photo,
             items_count: 1,      
             
@@ -50,7 +51,7 @@ class Card extends Component {
           
             if (JSON.stringify(element.attributes)===JSON.stringify(Object?.attributes) && element.id===Object?.id)
              {return {...element, items_count: element.items_count +=1}, flag=true, counter +=1}
-            // else   {console.log(element)  }
+          
                
             })
             

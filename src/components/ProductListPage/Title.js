@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { loadFromStorage } from './loadFromStorage'
+import { loadFromStorage } from '../../utilities/loadFromStorage'
 import styled from "styled-components";
 
 class Title extends Component {

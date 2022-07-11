@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { css} from "styled-components";
+import styled, { keyframes} from "styled-components";
 
 
 class SlideShow extends Component {
@@ -9,7 +9,7 @@ class SlideShow extends Component {
         this.state = {
             current: 0
         }
-
+ 
     }
 
     prevSlide(length, current) {
@@ -37,9 +37,9 @@ class SlideShow extends Component {
                 </SlideButtonsContainer>    
                 {data.map((slide, index) =>{
                     return (
-                        <div className={index === current ? "slide active" : "slide"} key={index}>
-                            {index === current && (<img src={slide} alt="product image" className="slide_image"/>)}
-                        </div>
+                        <Slide ind={index} state={current} key={index}>
+                            {index === current && (<SlideImg src={slide} alt="product image" />)}
+                        </Slide>
 
                    )     
                 })}
@@ -58,7 +58,7 @@ const SlideContainer = styled.div`
     width: 100%;
     height: 100%;
     position: relative;
-    border: #1D1F22 1px solid;
+   
 `;
 
 const SlideButtonsContainer = styled.div`
@@ -69,7 +69,7 @@ const SlideButtonsContainer = styled.div`
     right: 10px;
     height: 60px;
     width: 60px;
-    border: #1D1F22 1px solid;
+    
 `;
 const PrevButton = styled.div`
 cursor: pointer;
@@ -85,7 +85,7 @@ cursor: pointer;
     border-radius: 0 3px 3px 0;
     user-select: none;
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 5;
+    z-index: 3;
     &:hover{
         background-color: rgba(0, 0, 0, 0.8);
     }
@@ -105,9 +105,29 @@ const NextButton = styled.div`
     border-radius:  3px 0 0 3px;
     user-select: none;
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 5;
+    z-index: 3;
     &:hover{
         background-color: rgba(0, 0, 0, 0.8);
     }
+`;
+const fade = keyframes`
+from {
+    opacity: .4;
+}
+to {
+    opacity: 1;
+}
+`;
+
+const Slide = styled.div`
+    display: ${props=>props.ind===props.state? 'block' : 'none'};
+    animation: ${fade} 0.8s;
+
+`;
+
+const SlideImg = styled.img`
+    height: 288px;
+    width: 200px;
+    object-fit: contain;
 `;
 export default SlideShow;

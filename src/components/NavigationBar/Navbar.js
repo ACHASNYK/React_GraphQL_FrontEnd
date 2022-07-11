@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import { allCatQuery } from "../queries/query";
-import HeaderButton from "./HeaderButton";
+import { allCatQuery } from "../../queries/query";
+import HeaderButton from './HeaderButton';
 import CurrSelector from "./CurrSelector";
-import { client } from "../App";
+import { client } from "../../App";
 import Modal from "./Modal";
-import {set_swatchid} from '../redux/swatchid'
+import {set_swatchid} from '../../redux/swatchid'
 import CartDisplayButton from "./CartDisplayButton";
 import styled from "styled-components";
-import { ReactComponent as ShopLogo } from '../components/icons/shop.svg'
+import { ReactComponent as ShopLogo } from '/projects/2react/src/icons/shop.svg'
 import { connect } from 'react-redux';
 
 class Navbar extends Component {
@@ -54,10 +54,8 @@ class Navbar extends Component {
       document.body.style.overflowY = "hidden";
       return (
         <NavbarMain modal={ this.props.modal} >
-         <ButtonGroup>
-            
-                {this.displayList() }
-            
+         <ButtonGroup>            
+                {this.displayList() }            
           </ButtonGroup>
           <ShopLogo/>
           <ActionGroup modal={this.props.modal }>
@@ -96,7 +94,6 @@ const ButtonGroup = styled.div`
 const ActionGroup = styled.div`
     display: flex;
     height: 40px;
-    /* padding-right: ${props => props.modal? "17px" : "0px"}; */
     align-items: center;
     flex-direction: row;
     justify-content: center;

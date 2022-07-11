@@ -14,6 +14,10 @@
     width: 100%;
 }
 
+.router_links_cart{
+    text-decoration: none;
+    width: auto;
+}
 .navbar {
     position: fixed;
     display: flex;

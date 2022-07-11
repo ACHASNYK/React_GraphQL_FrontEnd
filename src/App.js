@@ -7,13 +7,13 @@ import { Component } from "react";
 import React from "react";
 import { connect } from "react-redux";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavigationBar/Navbar";
 
 import { Route, Routes } from "react-router-dom";
-import Main from "./components/Main";
+import Main from "./components/ProductListPage/Main";
 import { set_category } from "./redux/category";
-import ProductDetailPage from "./components/ProductDetailPage";
-import ShopCart from "./components/ShopCart";
+import ProductDetailPage from "./components/ProductDetailesPage/ProductDetailPage";
+import ShopCart from "./components/ShopCart/ShopCart";
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache()

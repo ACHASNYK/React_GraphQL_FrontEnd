@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import {increment_count, decrement_count} from '../redux/counter';
+import {increment_count, decrement_count} from '../../redux/counter';
 import BigCart_attributes from "./BigCart_attributes";
 import SlideShow from './slideshow';
 import styled from "styled-components";
-import { ReactComponent as BigPlus } from '../components/icons/bigplus.svg';
-import { ReactComponent as BigMinus } from '../components/icons/bigminus.svg';
+import { ReactComponent as BigPlus } from '../icons/bigplus.svg'
+import { ReactComponent as BigMinus } from '../icons/bigminus.svg';
 
 class BigCartItemsList extends Component {
 
@@ -68,13 +68,12 @@ padding-top:20px;
 border-top: 1px #E5E5E5 solid;
 border-bottom: 1px #E5E5E5 solid;
 
-
 `;
 const BigCartItemDetalsContainer = styled.div`
 display: flex;
 flex-direction: column;
 width: 292px;
-border: 1px black solid;
+
 `;
 
 const BigCartItDetTitle = styled.div`
@@ -128,6 +127,7 @@ const BigCartItemButtonsContainer = styled.div`
 display: flex;
 flex-direction: row;
 gap: 24px;
+margin-right: 25px;
 `;
 
 const DetailesButtons = styled.div`
@@ -139,6 +139,7 @@ justify-content: space-between;
 `;
 
 const ButtonIncrement = styled.div`
+cursor: pointer;
 position: relative;
 display: flex;
 `;
@@ -149,13 +150,12 @@ font-style: normal;
 font-weight: 500;
 font-size: 24px;
 line-height: 160%;
-/* align-items: center; */
-/* justify-content: center; */
 text-align: center;
 color: #1D1F22 ;
 `;
 
 const ButtonDecrement = styled.div`
+cursor: pointer;
 position: relative;
 display: flex;
 `;

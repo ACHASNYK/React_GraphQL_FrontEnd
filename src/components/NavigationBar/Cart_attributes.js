@@ -1,9 +1,4 @@
-import React, {Component, Fragment} from "react";
-
-// import { connect } from 'react-redux';
-// import { set_sizeid } from '../redux/size';
-// import { set_swatchid } from '../redux/swatchid';
-
+import React, {Component} from "react";
 import styled, {css } from "styled-components";
 
 
@@ -38,7 +33,7 @@ class Cart_attributes extends Component {
                                     style={{ background: `${e.value}` }} >
                                 </SwatchItem>)
                         })
-                        }</SwatchElement>;
+                        }</SwatchElement>
 
                                                   
                     </SwatchContainer>);
@@ -59,7 +54,7 @@ class Cart_attributes extends Component {
         }</AttributesContainer>)
         }
         
-// onClick={() => this.props.set_sizeid(e.value)}
+
         
     
 }
@@ -67,6 +62,8 @@ class Cart_attributes extends Component {
 const AttributesContainer = styled.div`
 display: flex;
 flex-direction: column;
+margin-top: 2px;
+gap:8px;
 `;
 const SwatchContainer = styled.div`
 display: flex;
@@ -87,7 +84,6 @@ const SwatchElement = styled.div`
 margin-top: 8px;
 display: flex;
 flex-direction: row;
-/* border: 1px black solid; */
 `;
 
 const SwatchItem = styled.div`
@@ -108,7 +104,7 @@ const TextAttrContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* border: .5px solid #1D1F22 */
+   
 `;
 
 const TextAttrName = styled.div`
@@ -120,7 +116,7 @@ const TextAttrName = styled.div`
     display: flex;
     align-items: center;
     color: #1D1F22;
-    /* border: .5px solid #1D1F22 */
+  
 
 `;
 
@@ -130,7 +126,7 @@ const TextAtrElement = styled.div`
         align-items: flex-start;
         padding: 0px;
         gap: 8px;
-        /* border: .5px solid #1D1F22 */
+
 `;
 
 const TextAtrrItem = styled.div`

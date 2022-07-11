@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { set_modal } from "../redux/modal";
+import { set_modal } from "../../redux/modal";
 import { connect } from 'react-redux'
-import {ReactComponent as CartLogo } from '../components/icons/cart.svg'
+import {ReactComponent as CartLogo } from '/projects/2react/src/icons/cart.svg'
 import styled from "styled-components";
 
 
@@ -42,7 +42,7 @@ class CartDisplayButton extends Component {
 
 }
 const mapStateToProps = state => {
-    // console.log(state.category.value)
+    
     if (!state) {
         return (console.log("error"))
     }else{
@@ -76,7 +76,6 @@ font-size: 14px;
 line-height: 16px;
 
 align-items: center;
-/* text-align: center; */
 justify-content: center;
 text-transform: uppercase;
 background: #1D1F22;

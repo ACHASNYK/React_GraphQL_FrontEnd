@@ -1,42 +1,26 @@
 import React, {Component, Fragment} from "react";
 import { connect } from 'react-redux';
-// import { set_sizeid } from '../redux/size';
-// import { set_swatchid } from '../redux/swatchid';
-import { set_detailes } from '../redux/detail_data';
-import { setDefaultAttributes} from '../utilities/handleAttributes'
+import { set_detailes } from '../../redux/detail_data';
+import { setDefaultAttributes} from '../../utilities/handleAttributes'
 import styled, { css} from "styled-components";
 
 class Attributes extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     attributes: {
-                
-                
-        //     },
-        //     isactive: {
-        //         id: '',
-        //         active:false
-        //     }
-            
-
-            
         
     }
-      setAttributes = (propname, value, data) => {
-        
-        
+      
+    setAttributes = (propname, value, data) => {
+       
         const newData = data.map(obj => {
             if (obj.name === `${propname}`) {
                 return { ...obj, id: value };
             }
                 return obj;                
         });
-    
         
         const storage = { ...this.props?.data, product: { ...this.props?.data?.product, attributes: newData } }
-        // console.log(index)
-        console.log(newData)
+      
         this.props.set_detailes(storage);
     }
     
@@ -46,11 +30,8 @@ class Attributes extends Component {
     
     render() {
         const data = setDefaultAttributes(this.props.data.product.attributes)
-        console.log(data)
         return (<AttributesContainer>
             {data?.map((element, i) => {
-                    
-               
                 if (element.type === "swatch") {
                         
                     return (<SwatchContainer key={i}>
@@ -122,9 +103,9 @@ cursor: pointer;
 list-style: none;
 display: flex;
 flex-direction: row;
-
+padding: 5px;
 margin-top: 8px;
-margin-left: -40px;
+margin-left: 0px;
 gap:5px;
 align-items: center;
 justify-content: space-around;
