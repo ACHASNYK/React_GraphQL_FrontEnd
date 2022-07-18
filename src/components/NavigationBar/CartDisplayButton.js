@@ -50,7 +50,7 @@ const mapStateToProps = state => {
             counter: state.counter.value,
             
         }
-    }
+    } 
 };
 
 const LogoContainer = styled.div`

@@ -13,9 +13,9 @@ import styled, { keyframes } from "styled-components";
 
 
 class Card extends Component {
-     constructor(props) {
-         super(props);
-        }
+    //  constructor(props) {
+    //      super(props);
+    //     }
     
     setShopCartLocalStorage() {
         if (this.props.attributes === undefined) {
@@ -41,27 +41,27 @@ class Card extends Component {
         get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
         counter= JSON.parse(sessionStorage.getItem('counter')) || 1;
         let flag = false;
-        console.log(flag)
+        
         if (get.length===0) {
             // get.push(Object);
             get.push(Object)
             
         } else {  
-            get.map(element => {
+            get.forEach(element => {
           
-            if (JSON.stringify(element.attributes)===JSON.stringify(Object?.attributes) && element.id===Object?.id)
-             {return {...element, items_count: element.items_count +=1}, flag=true, counter +=1}
+                if (JSON.stringify(element.attributes) === JSON.stringify(Object?.attributes) && element.id === Object?.id)
+                    return ({ ...element, items_count: element.items_count += 1 }, flag = true, counter += 1);
           
                
             })
             
-                return !flag? (get.push(Object), counter+=1)  : null, 
+                return (!flag? (get.push(Object), counter+=1)  : null, 
                 sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
-                sessionStorage.setItem('counter', JSON.stringify(counter));
+                sessionStorage.setItem('counter', JSON.stringify(counter)));
         }      
                         
-            return   sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
-                    sessionStorage.setItem('counter', JSON.stringify(counter));
+            return   (sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
+                    sessionStorage.setItem('counter', JSON.stringify(counter)));
                     
     
     }
