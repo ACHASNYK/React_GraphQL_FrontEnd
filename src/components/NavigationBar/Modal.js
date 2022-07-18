@@ -46,10 +46,10 @@ class Modal extends Component {
                    
             </ModalBody>,
             document.getElementById('portal')
-     
+      
         )
     }
-}
+} 
 
 const Fade = keyframes`
 

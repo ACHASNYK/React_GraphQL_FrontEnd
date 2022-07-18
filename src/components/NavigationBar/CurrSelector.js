@@ -80,9 +80,9 @@ class CurrSelector extends Component {
                 </DropDownListContainer>)}
                 
                 
-            </DropdownContainer>
+            </DropdownContainer> 
         )
-    }
+    } 
 }
 const DropdownContainer = styled.div`
 width: 4em;

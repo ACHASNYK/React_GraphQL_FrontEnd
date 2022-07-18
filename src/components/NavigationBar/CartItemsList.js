@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import Cart_attributes from "./Cart_attributes";
+import CartAttributes from "./CartAttributes";
 import styled from "styled-components";
 import { ReactComponent as SmallPlus } from '../icons/smallplus.svg'
 import { ReactComponent as SmallMinus} from '../icons/smallminus.svg'
@@ -9,14 +9,11 @@ import { ReactComponent as SmallMinus} from '../icons/smallminus.svg'
 
 class CartItemsList extends Component {
 
-    constructor(props) {
-    super(props);
-    }
-
+    
         
     
     render() {
-        
+          
         return (
             <CartItem>
                 <CartItemDetAttributes>
@@ -27,9 +24,9 @@ class CartItemsList extends Component {
                             <CartItemDetAttrTitleAmount>
                             {this.props.prices[this.props.index].currency.symbol}  {this.props.prices[this.props.index].amount}
                             </CartItemDetAttrTitleAmount>
-                             <Cart_attributes
+                             <CartAttributes
                                 attributes={this.props.attributes}
-                              />                        
+                              />                         
                     </CartItemDetAttributes>
                     <CartItemDetButtons>
                     <ButtonIncrement onClick={() => {this.props.incrementItemsCount(this.props.id) }}><SmallPlus/></ButtonIncrement>
@@ -38,8 +35,8 @@ class CartItemsList extends Component {
                     </CartItemDetButtons>                
                     <CartItemPhoto alt="product photo" src={this.props.photo[0]} />          
             </CartItem>
-        )
-    }
+        ) 
+    } 
 }
 
 const CartItem = styled.div`

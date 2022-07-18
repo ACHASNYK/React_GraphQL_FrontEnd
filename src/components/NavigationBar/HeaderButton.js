@@ -43,7 +43,7 @@ class HeaderButton extends Component {
             this.props.set_category(this.props.name);
             this.saveToLocalStorage(this.props.name);
             this.handleClick(this.props.name);
-            console.log('render'+ this.state.index)
+            
           }}>
             <Label index={this.state.index} name={ this.props.name}>{this.props.name} </Label>
             <Bottomline index={this.state.index} name={ this.props.name}></Bottomline>
@@ -65,13 +65,13 @@ const Button = styled.div`
     text-decoration: none;
     padding: 6px;
     width: auto;
- 
+  
 `;
 const Label = styled.p`
 font-family: 'Raleway';
 font-style: normal;
 font-weight: 600;
-font-size: 20px;
+font-size: 20px; 
 line-height: 120%;
 text-align: center;
 text-transform: uppercase;

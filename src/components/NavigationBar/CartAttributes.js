@@ -2,10 +2,8 @@ import React, {Component} from "react";
 import styled, {css } from "styled-components";
 
 
-class Cart_attributes extends Component {
-    constructor(props) {
-        super(props);
-    }
+class CartAttributes extends Component {
+    
 
     
 
@@ -28,9 +26,8 @@ class Cart_attributes extends Component {
                         <SwatchElement>{element.items.map((e, i) => {
                             return (
                                 <SwatchItem id={element.id} value={e.value}
-                                    key={i}
-                                    
-                                    style={{ background: `${e.value}` }} >
+                                    key={i}                                    
+                                    >
                                 </SwatchItem>)
                         })
                         }</SwatchElement>
@@ -97,6 +94,8 @@ const SwatchItem = styled.div`
         border: #ffffff 2px solid;
         outline: 1px solid #5ECE7B;
     `};
+    ${props => props.value && css` 
+    background-color: ${props.value}`} ;
 `;
 
 const TextAttrContainer = styled.div`
@@ -154,4 +153,4 @@ const TextAtrrItem = styled.div`
     `}
 
 `;
-export default Cart_attributes
+export default CartAttributes;

@@ -29,12 +29,12 @@ class CartDisplayButton extends Component {
         
     }
 
-    render() {
-
+    render() { 
+ 
         return (
 
             <LogoContainer onClick={() => { this.props.set_modal(true) }}>
-                <CartLogo style={{marginBottom: '3px'}} />
+                <CartLogo />
                 <LogoCounter counter={this.state.counter}>{this.state.counter}</LogoCounter>
             </LogoContainer>
         )
@@ -59,6 +59,7 @@ display: flex;
 flex-direction: row;
 align-items: center;
 cursor: pointer;
+padding-bottom: 6px;
 `;
 
 const LogoCounter = styled.div`

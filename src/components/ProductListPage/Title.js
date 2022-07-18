@@ -8,7 +8,7 @@ class Title extends Component {
         return (
 
             <Display>
-                {this.props.name || loadFromStorage("category") || this.props.initial_name || 'all'}
+                {this.props.category || loadFromStorage("category") || this.props.initial_name}
             </Display>
         )
     }

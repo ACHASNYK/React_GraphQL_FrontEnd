@@ -3,7 +3,6 @@ import Card from "./Card";
 import { client } from "../../App";
 import { connect } from "react-redux";
 import { allProducts } from "../../queries/query";
-import Title from './Title';
 import styled from "styled-components";
 
 
@@ -14,6 +13,7 @@ class Main extends Component {
         this.state = {
             data: {},
             DataIsLoaded: false,
+            category: ''
         }
     }              
          
@@ -23,19 +23,21 @@ class Main extends Component {
     componentDidMount() {
         const query_variable = {
             "input": {
-            "title": `${this.props.cat_name? this.props.cat_name : this.loadFromLocalStorage()? this.loadFromLocalStorage(): this.props.initial_cat_name}`
+                "title": `${this.props.cat_name ? this.props.cat_name : this.loadFromLocalStorage() ? this.loadFromLocalStorage() : JSON.parse(sessionStorage.getItem('initial'))}`
             }
         }
         
-        client.query({ query: allProducts, variables: query_variable })
-            .then(result => {
-            this.setState({
-                data: result.data,
-                DataIsLoaded: true
-            })
+            client.query({ query: allProducts, variables: query_variable })
+                .then(result => {
+                    this.setState({
+                        data: result.data,
+                        DataIsLoaded: true,
+                        category: result.data.category.name
+                    })
                 
-        });
-
+                });
+        
+        
     }
     
     
@@ -77,14 +79,19 @@ class Main extends Component {
         catch (e) { console.log(e) }
     }
     
-    
     render() {
-         
+        const { category, DataIsLoaded } = this.state;
+        console.log(category)
+        
+        if (!DataIsLoaded) {
+         return <div>Loading...</div>
+        } 
       return (
         <> 
-            <Title name={this.props.cat_name} initial_name={this.props.initial_cat_name } />
-              <PLP>   
-                <CardList>
+              
+              <PLP>
+                  <Title>{category}</Title>  
+                <CardList> 
                     <List>
                         {this.displayList() }
                     </List>
@@ -97,7 +104,7 @@ class Main extends Component {
 }
 
 const PLP = styled.div`
-    margin-top: 20px;
+    margin-top: 80px;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -106,12 +113,27 @@ const PLP = styled.div`
 
 `;
 
+const Title = styled.div`
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 160%;
+    display: flexbox;
+    align-items: flex-start;
+    box-sizing: border-box;
+    margin-top: 2%;
+    margin-left: 6%;
+    z-index: 3;
+    text-transform: capitalize;
+`;
+
 const CardList = styled.div`
     position: relative;
     display: inline-flex;
     list-style: none;
     text-decoration: none;
-    margin-top: 250px;
+    margin-top: 3%;
     margin-left: 60px;
     
 
@@ -120,7 +142,7 @@ const List = styled.ul`
     list-style-type: none;
     margin-left: 0;
     margin-right: 40px;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
 
 `;
 

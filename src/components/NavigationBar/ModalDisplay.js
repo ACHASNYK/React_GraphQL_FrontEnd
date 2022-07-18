@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { set_modal } from '../../redux/modal';
 import CartItemsList from "./CartItemsList";
-import styled, {css } from "styled-components";
+import styled from "styled-components";
 import { increment_count, decrement_count } from '../../redux/counter';
 import { totalAmount } from '../../utilities/countershandler';
 
@@ -23,21 +23,21 @@ class ModalDisplay extends Component {
         
         let data = this.state.data;
         let counter = JSON.parse(sessionStorage.getItem('counter'));
-        data?.map(item => {
+        data?.forEach(item => {
             if (item.id === e) {
                 sessionStorage.setItem('counter', JSON.stringify(counter += 1));
                 return { ...item, items_count: item.items_count += 1 };
             }
             console.log("increment", data)
         })
-        return sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.increment_count();
+        return (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.increment_count());
     }
 
     decrementItemsCount = (e) => {
         console.log(e)
         let data = this.state.data;
         let counter = JSON.parse(sessionStorage.getItem('counter'));
-        data?.map(item => {
+        data?.forEach(item => {
             if (item.id === e && item.items_count >= 2) {
                 sessionStorage.setItem('counter', JSON.stringify(counter -= 1));
                 return { ...item, items_count: item.items_count -= 1 };
@@ -49,8 +49,8 @@ class ModalDisplay extends Component {
             }
             console.log("decrement", data)
         })
-        return sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count();
-    }
+        return (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count());
+    } 
 
     displayItemsList() {
         const data = this.state.data;
@@ -124,7 +124,7 @@ class ModalDisplay extends Component {
                         <PriceAmount>
                             {symbol}  { amount }
                         </PriceAmount>
-
+ 
                     </ModalTotalPrice>
                     <ModalButtonGroup>                        
                         <Link to="/shopcart" className="router_links_cart">
@@ -139,7 +139,7 @@ class ModalDisplay extends Component {
 }
 const ModalDisplayFrame = styled.div`
     position: absolute;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;

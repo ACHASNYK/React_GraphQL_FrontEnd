@@ -16,6 +16,7 @@ class Navbar extends Component {
         this.state = {
             DataIsLoaded: false,
             data: {},
+            category: ''
           };
     }
 
@@ -25,9 +26,12 @@ class Navbar extends Component {
         this.setState({
           data: result.data,
           DataIsLoaded: true,
-          modal: this.props.modal
-        }); set_swatchid(result.data.categories[0].name);
+          modal: this.props.modal,
+          category: result.data.categories[0].name
+        }); 
+      this.props.set_swatchid(result.data.categories[0])
       });
+    
     }
 
     displayList(){
@@ -52,6 +56,8 @@ class Navbar extends Component {
     
     render() {
       document.body.style.overflowY = "hidden";
+      console.log(this.state.category)
+      sessionStorage.setItem('initial', JSON.stringify(this.state.category)); 
       return (
         <NavbarMain modal={ this.props.modal} >
          <ButtonGroup>            
@@ -62,9 +68,9 @@ class Navbar extends Component {
             <CurrSelector/>
             <CartDisplayButton />
           </ActionGroup>
-          <Modal/>
+          <Modal/> 
         </NavbarMain>
-      );
+      ); 
     }
   
 }
@@ -117,5 +123,6 @@ const mapStateToProps = state => {
   }
   
 }
+const mapDispatchToProps = {set_swatchid}
 
-export default connect(mapStateToProps, null)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
