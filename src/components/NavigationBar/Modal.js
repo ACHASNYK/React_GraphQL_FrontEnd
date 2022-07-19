@@ -19,7 +19,7 @@ class Modal extends Component {
         }
        
     }
-
+ 
     
         
     componentDidMount() {

@@ -13,7 +13,7 @@ class ShopCart extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = { 
             data: [],
             
         }
@@ -53,33 +53,33 @@ class ShopCart extends Component {
         console.log(e)
         let data = this.state.data;
         let counter = JSON.parse(sessionStorage.getItem('counter'));
-        data?.map(item => {
+        data?.forEach(item => {
             if (item.id === e) {
                    sessionStorage.setItem('counter', JSON.stringify(counter +=1) );
                 return {...item, items_count: item.items_count+=1};
             }
           console.log("increment", data)   
         })
-        return sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.increment_count();
+        return (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.increment_count());
     }
 
     decrementItemsCount = (e) => {
         console.log(e)
         let data = this.state.data;
         let counter = JSON.parse(sessionStorage.getItem('counter'));
-        data?.map(item => {
+        data?.forEach(item => {
             if(item.id=== e && item.items_count>=2) {
                 sessionStorage.setItem('counter', JSON.stringify(counter-=1));
                 return {...item, items_count: item.items_count-=1 };
             }
             else if(item.id===e && item.items_count===1){
                 sessionStorage.setItem('counter', JSON.stringify(counter-=1));
-                data.splice(data.indexOf(item), 1);
-                console.log("erase". data)
+                data.splice(data.indexOf(item), 1); 
+                
             }
             console.log("decrement", data)
         })  
-      return  sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count();
+      return  (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count());
      
     }
     

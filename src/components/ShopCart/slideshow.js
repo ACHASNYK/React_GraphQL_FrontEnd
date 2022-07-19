@@ -15,7 +15,7 @@ class SlideShow extends Component {
     prevSlide(length, current) {
             current === 0 ? this.setState({current: length-1}) : this.setState({current: current-1})
         
-    }
+    } 
     nextSlide(length, current) {
             current===length-1? this.setState({current: 0}) : this.setState({current: current+1})        
     }
@@ -25,11 +25,11 @@ class SlideShow extends Component {
         const length = data.length;
         const current = this.state.current;
         if (!Array.isArray(data) || data.length === 0) {
-            return null, console.log("no images in photo")
+            return (null, console.log("no images in photo"))
         }
 
         return (
-             
+              
             <SlideContainer>
                 <SlideButtonsContainer length={ length}>
                     <PrevButton onClick={() => { this.prevSlide(length, current); console.log(length, current) }}>&#10094;</PrevButton>

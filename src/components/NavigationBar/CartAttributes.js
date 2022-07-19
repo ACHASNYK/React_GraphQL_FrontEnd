@@ -12,7 +12,7 @@ class CartAttributes extends Component {
         const data = this.props.attributes;
         if (data===undefined) {
             return null
-        }
+        } 
        
 
             

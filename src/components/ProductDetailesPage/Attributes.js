@@ -1,14 +1,11 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import { connect } from 'react-redux';
 import { set_detailes } from '../../redux/detail_data';
 import { setDefaultAttributes} from '../../utilities/handleAttributes'
 import styled, { css} from "styled-components";
 
 class Attributes extends Component {
-    constructor(props) {
-        super(props);
-        
-    }
+    
       
     setAttributes = (propname, value, data) => {
        
@@ -21,7 +18,7 @@ class Attributes extends Component {
         
         const storage = { ...this.props?.data, product: { ...this.props?.data?.product, attributes: newData } }
       
-        this.props.set_detailes(storage);
+        this.props.set_detailes(storage); 
     }
     
     

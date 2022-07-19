@@ -18,7 +18,7 @@ class BigImg extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.photo !== prevProps.photo) {
             this.setState({
-                img: this.props.photo
+                img: this.props.photo  
             })
         }
     }

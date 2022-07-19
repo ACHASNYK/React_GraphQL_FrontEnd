@@ -15,7 +15,7 @@ export const setAttributes = (propname, value, data) => {
     this.props.set_detailes(storage);
 }
 
-export const setDefaultAttributes = (data) => {
+export const setDefaultAttributes = (data) => { 
     const newData = data.map(obj => {
         if (obj.id===obj.name) {
             return {...obj, id : obj.items[0].value}

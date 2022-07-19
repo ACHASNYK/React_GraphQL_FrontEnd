@@ -174,7 +174,7 @@ const CardMain = styled.div`
     display: flex;
     position: absolute;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; 
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;

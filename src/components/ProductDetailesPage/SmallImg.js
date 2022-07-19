@@ -16,7 +16,7 @@ class Small_Img extends Component {
                         
         }
     }    
-
+ 
     
     render() {
 

@@ -8,5 +8,5 @@ export const loadFromLocalStorage = () => {
         } catch (e) {
         console.warn(e);
         return undefined;
-        }
+        } 
     }

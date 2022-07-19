@@ -1,11 +1,9 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import styled, {css } from "styled-components";
 
 
-class BigCart_attributes extends Component {
-    constructor(props) {
-        super(props);
-    }
+class BigCartAttributes extends Component {
+    
        
 
     render() {
@@ -14,10 +12,10 @@ class BigCart_attributes extends Component {
         if (data===undefined) {
             return null
         }
-        console.log(data)
+        console.log(data)  
 
             
-            return (<BigAttrContainer>
+            return (<BigAttrContainer> 
                 {data.map((element, i) => {
                     
                     //  console.log(element)
@@ -142,4 +140,4 @@ justify-content: center;
 letter-spacing: 0.05em;
 color: ${props=>props.id===props.value? '#ffffff': '#1D1F22'};
 `;
-export default BigCart_attributes
+export default BigCartAttributes

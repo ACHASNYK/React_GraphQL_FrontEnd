@@ -63,7 +63,7 @@ class Main extends Component {
             } else {
                
                 return data.category.products.map((items, i) => {
-                    return (<div className="card_list" key={i}><Card
+                    return (<ListItem key={i}><Card
                     
                         item_key={items.id}
                         photo={items.gallery}
@@ -72,7 +72,7 @@ class Main extends Component {
                         attributes={items.attributes}
                         price={items.prices}
                         instock={items.inStock}
-                    /></div>); 
+                    /></ListItem>); 
                 })
             }
         }
@@ -100,10 +100,10 @@ class Main extends Component {
         </>
       );
     }
-  
+   
 }
 
-const PLP = styled.div`
+const PLP = styled.div` 
     margin-top: 80px;
     display: flex;
     width: 100%;
@@ -146,6 +146,13 @@ const List = styled.ul`
     /* margin-bottom: 100px; */
 
 `;
+const ListItem = styled.div`
+    display: inline-flex;
+    list-style: none;
+    text-decoration: none;
+
+`;
+
 
 const mapStateToProps = state => {
     if (!state) {

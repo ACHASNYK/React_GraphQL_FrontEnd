@@ -116,7 +116,7 @@ const ButtonIncrement = styled.div`
 
 const ButtonCounter = styled.div`
     position: relative;
-    margin-top: 50%;
+    margin-top: 50%; 
     text-align: center;
     font-family: 'Raleway';
     font-style: normal;

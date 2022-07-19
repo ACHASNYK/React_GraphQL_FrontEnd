@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import {increment_count, decrement_count} from '../../redux/counter';
-import BigCart_attributes from "./BigCart_attributes";
+import BigCartAttributes from "./BigCartAttributes";
 import SlideShow from './slideshow';
 import styled from "styled-components";
 import { ReactComponent as BigPlus } from '../icons/bigplus.svg'
@@ -9,17 +9,13 @@ import { ReactComponent as BigMinus } from '../icons/bigminus.svg';
 
 class BigCartItemsList extends Component {
 
-    constructor(props) {
-    super(props);
-        
-    }
-
+    
     
      
 
     render() {
         
-        return (
+        return ( 
             <BigCartItem>
                 <BigCartItemDetalsContainer>
                     
@@ -33,7 +29,7 @@ class BigCartItemsList extends Component {
                             </BigCartItDetAmount>
                         </BigCartItDetTitle>
                         <BigCartAttrContainer>
-                            <BigCart_attributes
+                            <BigCartAttributes
                                 attributes={this.props.attributes}
                                 
                             />

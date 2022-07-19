@@ -55,7 +55,7 @@ class CurrSelector extends Component {
     document.removeEventListener("click", this.handleClickOutside, true);
   }
     
-    
+     
     render() {
         
         const { data, DataIsLoaded } = this.state;
