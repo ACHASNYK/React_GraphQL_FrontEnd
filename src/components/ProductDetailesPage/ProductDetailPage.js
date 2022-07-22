@@ -16,7 +16,7 @@ class ProductDetailPage extends Component {
         this.state = {
             data: {},
             dataIsLoaded: false,
-            object: {}
+            object: {} 
         }
          
 

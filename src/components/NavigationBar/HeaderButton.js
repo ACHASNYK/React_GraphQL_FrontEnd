@@ -11,7 +11,7 @@ class HeaderButton extends Component {
     this.state = {
       index: '',
     }
-  }
+  } 
 
   componentDidUpdate(prevProps) {
     if (this.props.index !== prevProps.index) {

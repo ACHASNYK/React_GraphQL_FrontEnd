@@ -12,7 +12,7 @@ class BigCartItemsList extends Component {
       
     render() {   
         
-        return (
+        return ( 
             <BigCartItem>
                 <BigCartItemDetalsContainer>
                     

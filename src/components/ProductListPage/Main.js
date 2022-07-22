@@ -101,10 +101,10 @@ class Main extends Component {
         </>
       );
     }
-  
+   
 }
 
-const PLP = styled.div`
+const PLP = styled.div` 
     margin-top: 80px;
     display: flex;
     width: 100%;
@@ -147,6 +147,13 @@ const List = styled.ul`
     /* margin-bottom: 100px; */
 
 `;
+const ListItem = styled.div`
+    display: inline-flex;
+    list-style: none;
+    text-decoration: none;
+
+`;
+
 
 const ListItem = styled.div`
     display: inline-flex;

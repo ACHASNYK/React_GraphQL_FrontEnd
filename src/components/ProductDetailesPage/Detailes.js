@@ -12,7 +12,7 @@ class Detailes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {},
+            data: {}, 
         }
         
     }
@@ -61,7 +61,7 @@ class Detailes extends Component {
              {return ({...element, items_count: element.items_count +=1}, flag=true, counter +=1, increment_count())}
    
                
-            })
+            }) 
             
                 if (!flag) {get.push(Object); counter+=1; increment_count()} else 
                 {sessionStorage.setItem('shopping_cart', JSON.stringify(get));

@@ -15,7 +15,7 @@ class SlideShow extends Component {
     prevSlide(length, current) {
             current === 0 ? this.setState({current: length-1}) : this.setState({current: current-1})
         
-    }
+    } 
     nextSlide(length, current) {
             current===length-1? this.setState({current: 0}) : this.setState({current: current+1})        
     }
@@ -29,7 +29,7 @@ class SlideShow extends Component {
         }
  
         return (
-             
+              
             <SlideContainer>
                 <SlideButtonsContainer length={ length}>
                     <PrevButton onClick={() => { this.prevSlide(length, current)}}>&#10094;</PrevButton>

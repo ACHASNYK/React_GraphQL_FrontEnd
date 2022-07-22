@@ -11,10 +11,10 @@ class BigCartAttributes extends Component {
         if (data===undefined) {
             return null
         }
-        console.log(data)
+        console.log(data)  
 
             
-            return (<BigAttrContainer>
+            return (<BigAttrContainer> 
                 {data.map((element, i) => {
                                        
                     if (element.type === "swatch")

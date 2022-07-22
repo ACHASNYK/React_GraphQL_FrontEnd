@@ -12,7 +12,7 @@ class ModalDisplay extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = { 
             data: [],
             counter: 0,
         }
