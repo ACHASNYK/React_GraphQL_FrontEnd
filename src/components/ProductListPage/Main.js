@@ -155,12 +155,6 @@ const ListItem = styled.div`
 `;
 
 
-const ListItem = styled.div`
-    display: inline-flex;
-    list-style: none;
-    text-decoration: none;
-`;
-
 const mapStateToProps = state => {
     if (!state) {
         return (console.log("error"))
