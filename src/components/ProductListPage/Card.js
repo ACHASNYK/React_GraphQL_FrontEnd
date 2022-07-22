@@ -13,15 +13,13 @@ import styled, { keyframes } from "styled-components";
 
 
 class Card extends Component {
-    //  constructor(props) {
-    //      super(props);
-    //     }
+    
     
     setShopCartLocalStorage() {
         if (this.props.attributes === undefined) {
             return null
         }
-        // const attributes = setDefaultAttributes(this.props.attributes)
+       
         const Object = {
             name: this.props.name,
             id: this.props.item_key,
@@ -96,7 +94,7 @@ class Card extends Component {
     render() {
         
         const data = this.props.price[this.props.index];
-        // const index = this.props.index;
+        
         if (this.props.price === undefined) {
               return null;
         }
@@ -124,7 +122,7 @@ class Card extends Component {
                                 <CircleIcon />
                             </CircleContainer>
                 
-                    {/* <Modal show = {this.state.show} handleClose = {this.hideModal}/> */}
+                   
                     <Image >
                      <Link to="/pdp" className="router_links">       
                         <Photo  onClick={() => {
@@ -149,7 +147,7 @@ class Card extends Component {
                 </CardMain>
             </CardContainer>           
         </>
-        )
+        ) 
        
     
     }

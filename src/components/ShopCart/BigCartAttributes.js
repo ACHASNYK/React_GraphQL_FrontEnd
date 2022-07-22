@@ -1,15 +1,12 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import styled, {css } from "styled-components";
 
 
-class BigCart_attributes extends Component {
-    constructor(props) {
-        super(props);
-    }
-       
+class BigCartAttributes extends Component {
+           
 
     render() {
-        // const get = JSON.parse(localStorage.getItem('shopping_cart'));
+      
         const data = this.props.attributes;
         if (data===undefined) {
             return null
@@ -19,14 +16,7 @@ class BigCart_attributes extends Component {
             
             return (<BigAttrContainer>
                 {data.map((element, i) => {
-                    
-                    //  console.log(element)
-                    // switch (element) {
-                    //     case element === undefined:
-                        
-                    //         return null;
-                                                
-                    //     case element.type === "text":
+                                       
                     if (element.type === "swatch")
                         
                         return (<SwatchContainer key={i}>
@@ -35,8 +25,7 @@ class BigCart_attributes extends Component {
                                 return (
                                     <ElementItem id={element.id} value={e.value}
                                         key={i}
-                                        // onClick={}
-                                        style={{ background: `${e.value}` }} >
+                                        >
                                     </ElementItem>)
                             })
                             }</SwatchElement>;
@@ -94,13 +83,16 @@ align-items: flex-start;
 justify-content: center;
 `;
 const ElementItem = styled.div`
-width: 32px;
+width: 32px; 
 height: 32px;
 border: 0.5px solid #1D1F22;
 ${props => props.id === props.value && css`
     border: 3px solid #ffffff;
     outline: 1px solid #5ECE7B;
-`}
+`};
+${props => props.value && css`
+    background-color: ${props.value};
+`};
 
 `;
 const AtrrTextContainer = styled.div`
@@ -142,4 +134,4 @@ justify-content: center;
 letter-spacing: 0.05em;
 color: ${props=>props.id===props.value? '#ffffff': '#1D1F22'};
 `;
-export default BigCart_attributes
+export default BigCartAttributes

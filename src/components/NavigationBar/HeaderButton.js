@@ -64,10 +64,10 @@ const Button = styled.div`
     margin-left: 16px;
     text-decoration: none;
     padding: 6px;
-    width: auto;
+    width: auto; 
   
 `;
-const Label = styled.p`
+const Label = styled.p` 
 font-family: 'Raleway';
 font-style: normal;
 font-weight: 600;

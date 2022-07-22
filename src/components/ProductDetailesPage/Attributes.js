@@ -1,14 +1,11 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import { connect } from 'react-redux';
 import { set_detailes } from '../../redux/detail_data';
 import { setDefaultAttributes} from '../../utilities/handleAttributes'
 import styled, { css} from "styled-components";
 
 class Attributes extends Component {
-    constructor(props) {
-        super(props);
-        
-    }
+     
       
     setAttributes = (propname, value, data) => {
        
@@ -42,7 +39,7 @@ class Attributes extends Component {
                                     key={i}
                                     name={element.name}
                                     onClick={() => this.setAttributes(element.name, e.value, data)}
-                                    style={{ background: `${e.value}` }} >
+                                    >
                                 </AttributesSwatch>)
                         })}</SwatchElement>
 
@@ -73,7 +70,7 @@ class Attributes extends Component {
             )
             }</AttributesContainer>)
 
-    }   
+    }    
     
 }
 
@@ -119,7 +116,10 @@ const AttributesSwatch = styled.div`
     ${props => props.id === props.value && css`
         border: #ffffff 3px solid;
         outline: 1px solid #5ECE7B;
-    `}
+    `};
+    ${props => props.value && css`
+        background-color: ${props.value};
+    ` };
 `;
 const AttributesText = styled.div`
   /* box-sizing: border-box; */

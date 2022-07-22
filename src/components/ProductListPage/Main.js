@@ -13,7 +13,7 @@ class Main extends Component {
         this.state = {
             data: {},
             DataIsLoaded: false,
-            category: ''
+            category: '',
         }
     }              
          
@@ -32,7 +32,8 @@ class Main extends Component {
                     this.setState({
                         data: result.data,
                         DataIsLoaded: true,
-                        category: result.data.category.name
+                        category: result.data.category.name,
+                         
                     })
                 
                 });
@@ -61,9 +62,9 @@ class Main extends Component {
             if (!DataIsLoaded) {
                 return (<div>Loading...</div>)
             } else {
-               
+                              
                 return data.category.products.map((items, i) => {
-                    return (<div className="card_list" key={i}><Card
+                    return (<ListItem key={i}><Card
                     
                         item_key={items.id}
                         photo={items.gallery}
@@ -72,7 +73,7 @@ class Main extends Component {
                         attributes={items.attributes}
                         price={items.prices}
                         instock={items.inStock}
-                    /></div>); 
+                    /></ListItem>); 
                 })
             }
         }
@@ -96,7 +97,7 @@ class Main extends Component {
                         {this.displayList() }
                     </List>
                 </CardList>
-              </PLP>
+              </PLP> 
         </>
       );
     }
@@ -145,6 +146,12 @@ const List = styled.ul`
     margin-right: 40px;
     /* margin-bottom: 100px; */
 
+`;
+
+const ListItem = styled.div`
+    display: inline-flex;
+    list-style: none;
+    text-decoration: none;
 `;
 
 const mapStateToProps = state => {

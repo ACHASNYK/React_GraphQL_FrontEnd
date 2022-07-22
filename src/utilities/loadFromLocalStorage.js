@@ -7,6 +7,6 @@ export const loadFromLocalStorage = () => {
             return data
         } catch (e) {
         console.warn(e);
-        return undefined;
+        return undefined; 
         }
     }

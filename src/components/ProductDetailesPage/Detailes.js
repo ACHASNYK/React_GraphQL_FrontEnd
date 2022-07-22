@@ -1,11 +1,8 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import {increment_count, decrement_count} from '../../redux/counter';
-import { set_imglink } from '../../redux/imglink';
-import parse from 'html-react-parser';
+import {increment_count} from '../../redux/counter';
 import Attributes from "./Attributes";
-// import { setShopCartLocalStorage } from "./setLocalStorage";
 import {setDefaultAttributes} from '../../utilities/handleAttributes';
 import styled from "styled-components";
 import { Interweave } from 'interweave';
@@ -29,8 +26,7 @@ class Detailes extends Component {
             return null
         }
         
-        // const attributes = setDefaultAttributes(data.product.attributes);
-        
+               
         const Object = {
             name: data.product?.name,
             id: data.product?.id,
@@ -55,15 +51,15 @@ class Detailes extends Component {
         console.log(flag)
         if (get.length===0) {
             
-            return get.push(Object), increment_count(), counter += 1,
+            return (get.push(Object), increment_count(), counter += 1,
                 sessionStorage.setItem('shopping_cart', JSON.stringify(get)),
-                sessionStorage.setItem('counter', JSON.stringify(counter));
+                sessionStorage.setItem('counter', JSON.stringify(counter)));
         } else {  
-            get.map(element => {
+            get.forEach(element => {
           
             if (JSON.stringify(element.attributes)===JSON.stringify(Object?.attributes) && element.id===Object?.id)
-             {return {...element, items_count: element.items_count +=1}, flag=true, counter +=1, increment_count()}
-            // else   {console.log(element)  }
+             {return ({...element, items_count: element.items_count +=1}, flag=true, counter +=1, increment_count())}
+   
                
             })
             
@@ -72,11 +68,11 @@ class Detailes extends Component {
                 sessionStorage.setItem('counter', JSON.stringify(counter))}
         }      
                         
-               {sessionStorage.setItem('shopping_cart', JSON.stringify(get));
-               sessionStorage.setItem('counter', JSON.stringify(counter))}
+               sessionStorage.setItem('shopping_cart', JSON.stringify(get));
+        sessionStorage.setItem('counter', JSON.stringify(counter));
     
     }
-       
+        
         
         
     
@@ -130,7 +126,7 @@ class Detailes extends Component {
         )
     }
 
-}
+} 
 
 const DetailesContainer = styled.div`
     display: flex;

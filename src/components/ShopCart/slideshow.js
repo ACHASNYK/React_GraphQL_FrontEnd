@@ -25,15 +25,15 @@ class SlideShow extends Component {
         const length = data.length;
         const current = this.state.current;
         if (!Array.isArray(data) || data.length === 0) {
-            return null, console.log("no images in photo")
+            return (null, console.log("no images in photo"))
         }
-
+ 
         return (
              
             <SlideContainer>
                 <SlideButtonsContainer length={ length}>
-                    <PrevButton onClick={() => { this.prevSlide(length, current); console.log(length, current) }}>&#10094;</PrevButton>
-                    <NextButton onClick={() => { this.nextSlide(length, current); console.log(length, current) }}>&#10095;</NextButton>
+                    <PrevButton onClick={() => { this.prevSlide(length, current)}}>&#10094;</PrevButton>
+                    <NextButton onClick={() => { this.nextSlide(length, current)}}>&#10095;</NextButton>
                 </SlideButtonsContainer>    
                 {data.map((slide, index) =>{
                     return (

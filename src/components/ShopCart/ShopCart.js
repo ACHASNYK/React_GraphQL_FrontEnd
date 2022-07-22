@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import BigCartItemsList from "./BigCartItemsList";
-// import CartItemsList from './CartItemsList'
 import {increment_count, decrement_count} from '../../redux/counter';
 import { connect } from 'react-redux';
 import { totalAmount } from '../../utilities/countershandler';
@@ -53,21 +52,21 @@ class ShopCart extends Component {
         console.log(e)
         let data = this.state.data;
         let counter = JSON.parse(sessionStorage.getItem('counter'));
-        data?.map(item => {
+        data?.forEach(item => {
             if (item.id === e) {
                    sessionStorage.setItem('counter', JSON.stringify(counter +=1) );
                 return {...item, items_count: item.items_count+=1};
             }
           console.log("increment", data)   
         })
-        return sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.increment_count();
+        return (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.increment_count());
     }
 
     decrementItemsCount = (e) => {
         console.log(e)
         let data = this.state.data;
         let counter = JSON.parse(sessionStorage.getItem('counter'));
-        data?.map(item => {
+        data?.forEach(item => {
             if(item.id=== e && item.items_count>=2) {
                 sessionStorage.setItem('counter', JSON.stringify(counter-=1));
                 return {...item, items_count: item.items_count-=1 };
@@ -75,13 +74,13 @@ class ShopCart extends Component {
             else if(item.id===e && item.items_count===1){
                 sessionStorage.setItem('counter', JSON.stringify(counter-=1));
                 data.splice(data.indexOf(item), 1);
-                console.log("erase". data)
+                
             }
-            console.log("decrement", data)
+            
         })  
-      return  sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count();
+      return  (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count());
      
-    }
+    } 
     
     handleOrder() {
         sessionStorage.setItem('shopping_cart',JSON.stringify([]));
@@ -139,7 +138,7 @@ class ShopCart extends Component {
         )
 
     }
-}
+} 
 
 const BigCartContainer = styled.div`
 display: flex;

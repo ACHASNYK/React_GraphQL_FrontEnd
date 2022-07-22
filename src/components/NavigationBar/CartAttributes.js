@@ -13,7 +13,7 @@ class CartAttributes extends Component {
         if (data===undefined) {
             return null
         }
-       
+        
 
             
         return (<AttributesContainer>{

@@ -5,7 +5,7 @@ export const setAttributes = (propname, value, data) => {
         if (obj.name === `${propname}`) {
             return { ...obj, id: value };
         }
-            return obj;                
+            return obj;                 
     });
 
     

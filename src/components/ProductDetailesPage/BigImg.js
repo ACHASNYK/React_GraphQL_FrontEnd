@@ -9,7 +9,7 @@ class BigImg extends Component {
         this.state = {
             img: '',
         }
-    }
+    } 
     displayBigPhoto() {
         const data = loadFromLocalStorage();
         return data.photo[0]? data.photo[0] : null;

@@ -10,13 +10,13 @@ import styled from "styled-components";
 import { ReactComponent as ShopLogo } from '../icons/shop.svg'
 import { connect } from 'react-redux';
 
-class Navbar extends Component {
+class Navbar extends Component { 
     constructor(props) {
         super(props);
         this.state = {
             DataIsLoaded: false,
             data: {},
-            category: ''
+            category: '' 
           };
     }
 

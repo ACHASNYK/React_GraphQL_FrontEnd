@@ -212,7 +212,7 @@ const PriceLabel = styled.div`
     margin-left: 16px;
 `;
 
-const PriceAmount = styled.div`
+const PriceAmount = styled.div` 
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 700;

@@ -20,7 +20,7 @@ class Small_Img extends Component {
     
     render() {
 
-        return (
+        return ( 
       
             
                 <SmallCard onClick={() => this.props.set_imglink(this.props.photo)} >                

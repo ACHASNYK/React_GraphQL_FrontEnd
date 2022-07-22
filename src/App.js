@@ -15,7 +15,7 @@ import { set_category } from "./redux/category";
 import ProductDetailPage from "./components/ProductDetailesPage/ProductDetailPage";
 import ShopCart from "./components/ShopCart/ShopCart";
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://localhost:4000/graphql', 
   cache: new InMemoryCache()
 })
 

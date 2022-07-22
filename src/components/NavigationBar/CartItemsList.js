@@ -37,7 +37,7 @@ class CartItemsList extends Component {
             </CartItem>
         ) 
     } 
-}
+} 
 
 const CartItem = styled.div`
     display: flex;

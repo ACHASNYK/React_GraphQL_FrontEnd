@@ -105,7 +105,7 @@ class ProductDetailPage extends Component {
             </ImagesBlock>
         )
     }
-}
+} 
 
 const ImagesBlock = styled.div`
     display: flex;

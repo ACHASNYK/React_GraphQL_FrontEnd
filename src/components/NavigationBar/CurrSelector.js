@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 
 
+
 class CurrSelector extends Component {
     constructor(props) {
         super(props);
@@ -158,7 +159,7 @@ const ListItem = styled.li`
   
   `; 
 const Symbol = <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 3.5L4 0.5L7 3.5" stroke="black" strokeLinecap="round" strokeLinejoin="round"/> */
+<path d="M1 3.5L4 0.5L7 3.5" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 const mapDispatchToProps = { set_currencyid };
-export default connect(null, mapDispatchToProps)(CurrSelector)
+export default connect(null, mapDispatchToProps)(CurrSelector) 
