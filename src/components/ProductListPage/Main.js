@@ -110,7 +110,7 @@ const PLP = styled.div`
     flex-direction: column;
     overflow-y: auto;
     scrollbar-gutter: stable;
-    max-height: 95vh;
+    max-height: 92vh;
 
 `;
 
