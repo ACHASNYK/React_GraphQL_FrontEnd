@@ -9,4 +9,4 @@ export const loadFromLocalStorage = () => {
         console.warn(e);
         return undefined; 
         }
-    }
+    } 

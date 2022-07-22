@@ -48,7 +48,7 @@ class Detailes extends Component {
         get = JSON.parse(sessionStorage.getItem('shopping_cart')) || [];
         counter= JSON.parse(sessionStorage.getItem('counter')) || 0;
         let flag = false;
-        console.log(flag)
+        
         if (get.length===0) {
             
             return (get.push(Object), increment_count(), counter += 1,
@@ -59,7 +59,7 @@ class Detailes extends Component {
           
             if (JSON.stringify(element.attributes)===JSON.stringify(Object?.attributes) && element.id===Object?.id)
              {return ({...element, items_count: element.items_count +=1}, flag=true, counter +=1, increment_count())}
-   
+    
                
             }) 
             

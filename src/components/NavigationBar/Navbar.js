@@ -52,11 +52,11 @@ class Navbar extends Component {
       } 
     }
     
-    
+     
     
     render() {
       document.body.style.overflowY = "hidden";
-      console.log(this.state.category)
+      
       sessionStorage.setItem('initial', JSON.stringify(this.state.category)); 
       return (
         <NavbarMain modal={ this.props.modal} >

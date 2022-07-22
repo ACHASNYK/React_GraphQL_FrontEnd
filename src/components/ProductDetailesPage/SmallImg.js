@@ -27,7 +27,7 @@ class Small_Img extends Component {
                     <SmallImage src={this.props.photo} />                    
                 </SmallCard>
    
-        )
+        ) 
        
     
     }

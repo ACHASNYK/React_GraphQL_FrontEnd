@@ -65,7 +65,7 @@ const Button = styled.div`
     text-decoration: none;
     padding: 6px;
     width: auto; 
-  
+   
 `;
 const Label = styled.p` 
 font-family: 'Raleway';

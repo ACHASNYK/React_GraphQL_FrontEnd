@@ -11,8 +11,7 @@ class BigCartAttributes extends Component {
         if (data===undefined) {
             return null
         }
-        console.log(data)  
-
+         
             
             return (<BigAttrContainer> 
                 {data.map((element, i) => {
@@ -29,7 +28,7 @@ class BigCartAttributes extends Component {
                                     </ElementItem>)
                             })
                             }</SwatchElement>;
-
+ 
                                                   
                         </SwatchContainer>);
                     else

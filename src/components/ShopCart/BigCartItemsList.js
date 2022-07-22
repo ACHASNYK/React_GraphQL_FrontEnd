@@ -28,7 +28,7 @@ class BigCartItemsList extends Component {
                         <BigCartAttrContainer>
                             <BigCartAttributes
                                 attributes={this.props.attributes}
-                                
+                                 
                             />
                         </BigCartAttrContainer>
                     

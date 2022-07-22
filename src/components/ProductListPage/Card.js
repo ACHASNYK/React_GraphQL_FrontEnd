@@ -152,7 +152,7 @@ class Card extends Component {
     
     }
   
-}
+} 
 
 const CardContainer = styled.div`
 margin-right: 40px;

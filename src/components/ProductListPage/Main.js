@@ -82,14 +82,13 @@ class Main extends Component {
     
     render() {
         const { category, DataIsLoaded } = this.state;
-        console.log(category)
-        
+                
         if (!DataIsLoaded) {
          return <div>Loading...</div>
         } 
       return (
         <> 
-              
+               
               <PLP>
                   <Title>{category}</Title>  
                 <CardList> 

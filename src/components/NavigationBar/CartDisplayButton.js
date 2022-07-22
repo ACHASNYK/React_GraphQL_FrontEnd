@@ -52,7 +52,7 @@ const mapStateToProps = state => {
         }
     } 
 }; 
-
+ 
 const LogoContainer = styled.div`
 position: relative;
 display: flex;

@@ -9,4 +9,4 @@ export const loadFromStorage = (name) => {
         console.warn(e);
         return undefined;
         }
-    } 
+    }  

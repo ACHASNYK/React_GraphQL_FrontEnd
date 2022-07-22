@@ -50,7 +50,7 @@ class Modal extends Component {
         )
     } 
 } 
-
+ 
 const Fade = keyframes`
 
 from {

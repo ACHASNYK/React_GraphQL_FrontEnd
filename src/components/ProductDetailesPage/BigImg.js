@@ -58,11 +58,11 @@ const BigImage = styled.img`
 `;
 
 const mapStateToProps = state => {
-    console.log(state.imglink.value)
+    
     if (!state) {
         return (console.log("error"))
     } else {
         return { photo: state.imglink.value, }
     }
 }
-export default connect(mapStateToProps,null)(BigImg);
+export default connect(mapStateToProps,null)(BigImg); 

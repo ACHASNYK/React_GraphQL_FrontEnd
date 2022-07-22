@@ -15,7 +15,7 @@ class Attributes extends Component {
             }
                 return obj;                
         });
-        
+         
         const storage = { ...this.props?.data, product: { ...this.props?.data?.product, attributes: newData } }
       
         this.props.set_detailes(storage); 

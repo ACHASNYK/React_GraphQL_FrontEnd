@@ -40,7 +40,7 @@ class SlideShow extends Component {
                         <Slide ind={index} state={current} key={index}>
                             {index === current && (<SlideImg src={slide} alt="product image" />)}
                         </Slide>
-
+ 
                    )     
                 })}
             </SlideContainer> 

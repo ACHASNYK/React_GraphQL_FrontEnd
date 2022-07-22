@@ -63,7 +63,7 @@ class ShopCart extends Component {
     }
 
     decrementItemsCount = (e) => {
-        console.log(e)
+        
         let data = this.state.data;
         let counter = JSON.parse(sessionStorage.getItem('counter'));
         data?.forEach(item => {
@@ -78,10 +78,10 @@ class ShopCart extends Component {
             }
             
         })  
-      return  (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), console.log(data), this.props.decrement_count());
+      return  (sessionStorage.setItem('shopping_cart', JSON.stringify(data)), this.props.decrement_count());
      
     } 
-    
+     
     handleOrder() {
         sessionStorage.setItem('shopping_cart',JSON.stringify([]));
         sessionStorage.setItem('counter', JSON.stringify(0));

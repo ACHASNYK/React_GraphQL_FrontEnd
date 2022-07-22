@@ -57,8 +57,8 @@ class ProductDetailPage extends Component {
       displayImgList() {
         
              const { data, dataIsLoaded } = this.state;
-             
-             console.log(data)
+              
+            
              if (!dataIsLoaded) {
                  return (<div>Loading...</div>)
               } else {
